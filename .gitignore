@@ -1,0 +1,17 @@
+/.flutter-plugins
+/.flutter-plugins-dependencies
+/.packages
+/.dart_tool/
+
+# FVM Version Cache
+.fvm/
+
+.DS_Store
+android/.idea/
+android/app/proguard/
+.vscode/
+build/
+pubspec.lock
+.idea/
+.gradle/
+macos/Flutter/ephemeral/
