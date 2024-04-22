@@ -3,7 +3,7 @@ import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
 
-import '../user_profile _panel_logic.dart';
+import '../user_profile_panel_logic.dart';
 
 class SetFriendRemarkLogic extends GetxController {
   final userProfilesLogic =

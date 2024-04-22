@@ -58,8 +58,8 @@ import '../pages/contacts/user_profile_panel/personal_info/personal_info_binding
 import '../pages/contacts/user_profile_panel/personal_info/personal_info_view.dart';
 import '../pages/contacts/user_profile_panel/set_remark/set_remark_binding.dart';
 import '../pages/contacts/user_profile_panel/set_remark/set_remark_view.dart';
-import '../pages/contacts/user_profile_panel/user_profile _panel_binding.dart';
-import '../pages/contacts/user_profile_panel/user_profile _panel_view.dart';
+import '../pages/contacts/user_profile_panel/user_profile_panel_binding.dart';
+import '../pages/contacts/user_profile_panel/user_profile_panel_view.dart';
 import '../pages/home/home_binding.dart';
 import '../pages/home/home_view.dart';
 import '../pages/login/login_binding.dart';

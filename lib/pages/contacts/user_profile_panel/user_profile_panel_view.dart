@@ -7,7 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
 
-import 'user_profile _panel_logic.dart';
+import 'user_profile_panel_logic.dart';
 
 class UserProfilePanelPage extends StatelessWidget {
   final logic = Get.find<UserProfilePanelLogic>(tag: GetTags.userProfile);
@@ -35,6 +35,7 @@ class UserProfilePanelPage extends StatelessWidget {
                     children: [
                       _buildBaseInfoView(),
                       if (logic.isGroupMemberPage) _buildEnterGroupMethodView(),
+                      _buildManagedView(),
                       if (logic.isFriendship)
                         _buildItemView(
                           label: StrRes.personalInfo,
@@ -141,6 +142,26 @@ class UserProfilePanelPage extends StatelessWidget {
               label: StrRes.joinGroupMethod,
               value: logic.joinGroupMethod.value,
             ),
+          ],
+        ),
+      );
+
+  Widget _buildManagedView() => Container(
+        color: Styles.c_FFFFFF,
+        margin: EdgeInsets.only(bottom: 10.h),
+        padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 8.h),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildItemView(
+              label: StrRes.setAsAdmin,
+              showSwitchButton: true
+            ),
+            _buildItemView(
+              label: StrRes.setMute,
+              showRightArrow: true
+            )
           ],
         ),
       );

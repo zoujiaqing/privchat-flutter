@@ -300,7 +300,7 @@ const Map<String, String> zh_CN = {
   "clearAll": "清空",
   "clearSuccessfully": "清除成功",
   "groupChatSetup": "群聊设置",
-  "viewAllGroupMembers": "查看全部群成员(%s)",
+  "viewAllGroupMembers": "群成员(%s)",
   "groupManage": "群管理",
   "myGroupMemberNickname": "我在本群的名称",
   "topChat": "聊天置顶",

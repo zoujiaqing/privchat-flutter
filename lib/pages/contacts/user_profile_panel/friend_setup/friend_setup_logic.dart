@@ -4,7 +4,7 @@ import 'package:privchat_common/privchat_common.dart';
 
 import '../../../../routes/app_navigator.dart';
 import '../../../conversation/conversation_logic.dart';
-import '../user_profile _panel_logic.dart';
+import '../user_profile_panel_logic.dart';
 
 class FriendSetupLogic extends GetxController {
   final conversationLogic = Get.find<ConversationLogic>();
