@@ -6,6 +6,7 @@ import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:star_menu/star_menu.dart';
 
 double maxWidth = 247.w;
 double pictureWidth = 120.w;
@@ -168,6 +169,17 @@ class _ChatItemViewState extends State<ChatItemView> {
     String? senderFaceURL;
     bool isBubbleBg = false;
 
+    final chatItemStarMenuController = StarMenuController();
+
+    // entries for the dropdown menu
+    final upperMenuItems = <Widget>[
+      const Text('复制'),
+      const Text('回复'),
+      const Text('撤销'),
+      const Text('删除'),
+      const Text('转发'),
+    ];
+
     if (_message.isTextType) {
       isBubbleBg = true;
       child = ChatText(
@@ -243,27 +255,18 @@ class _ChatItemViewState extends State<ChatItemView> {
         behavior: HitTestBehavior.translucent,
         onTap: widget.onClickItemView,
         child: child ?? ChatText(text: StrRes.unsupportedMessage),
-        onLongPressStart: (details) {
-          Feedback.forLongPress(context);
-          showMenu(
-            context: context,
-            position: RelativeRect.fromLTRB(
-              details.globalPosition.dx,
-              details.globalPosition.dy,
-              details.globalPosition.dx,
-              details.globalPosition.dy,
-            ),
-            items: <PopupMenuEntry>[
-              PopupMenuItem(child: Text("复制")),
-              PopupMenuItem(child: Text("删除")),
-              PopupMenuItem(child: Text("转发")),
-              PopupMenuItem(child: Text("撤销")),
-            ],
-          );
-        },
       ),
+    ).addStarMenu(
+      items: upperMenuItems,
+      params: StarMenuParameters.dropdown(context).copyWith(
+        backgroundParams: const BackgroundParams().copyWith(
+          sigmaX: 3,
+          sigmaY: 3,
+        ),
+        useTouchAsCenter: true,
+        useLongPress: true
+      ),
+      controller: chatItemStarMenuController,
     );
   }
-
-  
 }

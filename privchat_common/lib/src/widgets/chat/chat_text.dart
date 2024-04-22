@@ -31,7 +31,8 @@ class ChatText extends StatelessWidget {
   final Function(String? text)? onVisibleTrulyText;
 
   @override
-  Widget build(BuildContext context) => MatchTextView(
+  Widget build(BuildContext context) => GestureDetector(
+    child: MatchTextView(
         text: text,
         textStyle: textStyle ??
             (isISend ? Styles.ts_FFFFFF_17sp : Styles.ts_0C1C33_17sp),
@@ -45,5 +46,6 @@ class ChatText extends StatelessWidget {
         model: model,
         maxLines: maxLines,
         onVisibleTrulyText: onVisibleTrulyText,
-      );
+      ),
+  );
 }

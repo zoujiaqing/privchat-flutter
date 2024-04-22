@@ -87,6 +87,7 @@ dependencies:
   flutter_download_manager:
     path: ../local_plugin/flutter_download_manager
   flutter_openim_sdk: any
+  star_menu: ^4.0.0
 
 dependency_overrides:
   wechat_assets_picker: ^9.0.3
