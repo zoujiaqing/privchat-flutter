@@ -36,6 +36,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  popover: ^0.3.0
   get: 4.6.6
   dio: 5.4.2+1
   hive: 2.2.3
@@ -108,7 +109,7 @@ dependencies:
   privchat_common:
     path: privchat_common
   privchat_live:
-    path: privchat_live
+    path: privchat_live  
 
 dependency_overrides:
   wechat_assets_picker: 9.0.3

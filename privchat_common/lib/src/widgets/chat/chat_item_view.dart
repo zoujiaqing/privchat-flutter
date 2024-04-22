@@ -243,7 +243,27 @@ class _ChatItemViewState extends State<ChatItemView> {
         behavior: HitTestBehavior.translucent,
         onTap: widget.onClickItemView,
         child: child ?? ChatText(text: StrRes.unsupportedMessage),
+        onLongPressStart: (details) {
+          Feedback.forLongPress(context);
+          showMenu(
+            context: context,
+            position: RelativeRect.fromLTRB(
+              details.globalPosition.dx,
+              details.globalPosition.dy,
+              details.globalPosition.dx,
+              details.globalPosition.dy,
+            ),
+            items: <PopupMenuEntry>[
+              PopupMenuItem(child: Text("复制")),
+              PopupMenuItem(child: Text("删除")),
+              PopupMenuItem(child: Text("转发")),
+              PopupMenuItem(child: Text("撤销")),
+            ],
+          );
+        },
       ),
     );
   }
+
+  
 }
