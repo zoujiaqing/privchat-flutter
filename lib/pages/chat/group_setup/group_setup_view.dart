@@ -7,10 +7,15 @@ import 'package:sprintf/sprintf.dart';
 
 import 'group_setup_logic.dart';
 
-class GroupSetupPage extends StatelessWidget {
-  final logic = Get.find<GroupSetupLogic>();
+class GroupSetupPage extends StatefulWidget {
+  const GroupSetupPage({Key? key}) : super(key: key);
 
-  GroupSetupPage({super.key});
+  @override
+  _GroupSetupPageState createState() => _GroupSetupPageState();
+}
+
+class _GroupSetupPageState extends State<GroupSetupPage> {
+  final logic = Get.find<GroupSetupLogic>();
 
   @override
   Widget build(BuildContext context) {
@@ -264,7 +269,6 @@ class GroupSetupPage extends StatelessWidget {
       ]
     ),
   );
-
   
   Widget _buildChatOptionView() => Container(
     decoration: BoxDecoration(
@@ -279,7 +283,12 @@ class GroupSetupPage extends StatelessWidget {
           isBottomRadius: true,
           showSwitchButton: true,
           switchOn: logic.conversationInfo.value.isPinned!,
-          onTap: () => logic.chatLogic.setConversationTop(true),
+          onTap: () => logic.chatLogic.setConversationTop(!logic.conversationInfo.value.isPinned!),
+          onChanged: (newValue) {
+            logic.chatLogic.setConversationTop(newValue);
+            // 刷新界面以更新开关状态
+            setState(() {});
+          }
         ),
         _buildItemView(
           text: StrRes.messageNotDisturb,
