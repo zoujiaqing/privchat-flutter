@@ -18,7 +18,7 @@ class UserProfilePanelPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GroupSetupLogic? groupSetupLogic;
-    if (logic.isGroupMemberPage) {
+    if (logic.isGroupMemberPage && !logic.isMyself) {
       groupSetupLogic = Get.find<GroupSetupLogic>();
     }
 
@@ -41,7 +41,7 @@ class UserProfilePanelPage extends StatelessWidget {
                     children: [
                       _buildBaseInfoView(),
                       if (logic.isGroupMemberPage) _buildEnterGroupMethodView(),
-                      if (logic.isGroupMemberPage && groupSetupLogic!.isOwnerOrAdmin) _buildManageView(),
+                      if (logic.isGroupMemberPage && !logic.isMyself && groupSetupLogic!.isOwnerOrAdmin) _buildManageView(),
                       if (logic.isFriendship)
                         _buildItemView(
                           label: StrRes.personalInfo,
