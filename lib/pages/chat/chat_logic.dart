@@ -277,6 +277,16 @@ class ChatLogic extends GetxController {
     curMsgAtUser.removeWhere((uid) => !inputCtrl.text.contains('@$uid '));
   }
 
+  /// [isPinned] true: pin, false: unpin
+  void setConversationTop(bool isPinned) async {
+    await OpenIM.iMManager.conversationManager.pinConversation(conversationID: conversationInfo.conversationID, isPinned: isPinned);
+  }
+
+  /// [status] 0: normal; 1: not receiving messages; 2: receive online messages but not offline messages
+  void setConversationDisturb(int status) async {
+    await OpenIM.iMManager.conversationManager.setConversationRecvMessageOpt(conversationID: conversationInfo.conversationID, status: 1);
+  }
+
   void _putMemberInfo(List<GroupMembersInfo>? list) {
     list?.forEach((member) {
       _setAtMapping(

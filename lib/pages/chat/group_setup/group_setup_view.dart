@@ -277,7 +277,9 @@ class GroupSetupPage extends StatelessWidget {
         _buildItemView(
           text: StrRes.topChat,
           isBottomRadius: true,
-          showSwitchButton: true
+          showSwitchButton: true,
+          switchOn: logic.conversationInfo.value.isPinned!,
+          onTap: () => logic.chatLogic.setConversationTop(true),
         ),
         _buildItemView(
           text: StrRes.messageNotDisturb,
