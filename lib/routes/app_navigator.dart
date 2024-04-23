@@ -93,6 +93,7 @@ class AppNavigator {
     String? faceURL,
     bool offAllWhenDelFriend = false,
     bool offAndToNamed = false,
+    ConversationInfo? conversationInfo
   }) {
     GetTags.createUserProfileTag();
 
@@ -102,6 +103,7 @@ class AppNavigator {
       'nickname': nickname,
       'faceURL': faceURL,
       'offAllWhenDelFriend': offAllWhenDelFriend,
+      'conversationInfo': conversationInfo,
     };
 
     return offAndToNamed

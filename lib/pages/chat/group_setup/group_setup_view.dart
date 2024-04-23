@@ -22,7 +22,7 @@ class GroupSetupPage extends StatelessWidget {
           children: [
             if (logic.isJoinedGroup.value) _buildBaseInfoView(),
             if (logic.isJoinedGroup.value) _buildMemberView(),
-            if (logic.isOwner) _buildManageView(),
+            if (logic.isOwnerOrAdmin) _buildManageView(),
             _buildChatOptionView(),
             if (!logic.isOwner)
               _buildItemView(

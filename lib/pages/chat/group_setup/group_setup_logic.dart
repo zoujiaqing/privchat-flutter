@@ -37,6 +37,7 @@ class GroupSetupLogic extends GetxController {
   @override
   void onInit() {
     conversationInfo = Rx(Get.arguments['conversationInfo']);
+    // conversationInfo = Rx(chatLogic.conversationInfo);
     groupInfo = Rx(_defaultGroupInfo);
     myGroupMembersInfo = Rx(_defaultMemberInfo);
 

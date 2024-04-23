@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:get/get.dart';
+import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 
 import 'chat_logic.dart';

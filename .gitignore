@@ -15,3 +15,7 @@ pubspec.lock
 .idea/
 .gradle/
 macos/Flutter/ephemeral/
+
+.flutter-plugins
+.flutter-plugins-dependencies
+.dart_tool

@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 
 import 'user_profile_panel_logic.dart';
@@ -16,6 +17,11 @@ class UserProfilePanelPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GroupSetupLogic? groupSetupLogic;
+    if (logic.isGroupMemberPage) {
+      groupSetupLogic = Get.find<GroupSetupLogic>();
+    }
+
     return Obx(() => Scaffold(
           appBar: TitleBar.back(
             right: logic.isFriendship
@@ -35,7 +41,7 @@ class UserProfilePanelPage extends StatelessWidget {
                     children: [
                       _buildBaseInfoView(),
                       if (logic.isGroupMemberPage) _buildEnterGroupMethodView(),
-                      _buildManagedView(),
+                      if (logic.isGroupMemberPage && groupSetupLogic!.isOwnerOrAdmin) _buildManageView(),
                       if (logic.isFriendship)
                         _buildItemView(
                           label: StrRes.personalInfo,
@@ -146,7 +152,7 @@ class UserProfilePanelPage extends StatelessWidget {
         ),
       );
 
-  Widget _buildManagedView() => Container(
+  Widget _buildManageView() => Container(
         color: Styles.c_FFFFFF,
         margin: EdgeInsets.only(bottom: 10.h),
         padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 8.h),

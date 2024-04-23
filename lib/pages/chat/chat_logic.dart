@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:get/get.dart';
+import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_live/privchat_live.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -527,6 +528,9 @@ class ChatLogic extends GetxController {
   void onLongPressLeftAvatar(Message message) {}
 
   void onTapLeftAvatar(Message message) {
+    if (isGroupChat) {
+      Get.lazyPut(() => GroupSetupLogic());
+    }
     viewUserInfo(UserInfo()
       ..userID = message.sendID
       ..nickname = message.senderNickname
@@ -544,6 +548,7 @@ class ChatLogic extends GetxController {
       faceURL: userInfo.faceURL,
       groupID: groupID,
       offAllWhenDelFriend: isSingleChat,
+      conversationInfo: conversationInfo
     );
   }
 
