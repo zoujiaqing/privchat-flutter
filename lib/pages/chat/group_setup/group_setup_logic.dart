@@ -23,7 +23,6 @@ class GroupSetupLogic extends GetxController {
   final appLogic = Get.find<AppController>();
   final conversationLogic = Get.find<ConversationLogic>();
   final memberList = <GroupMembersInfo>[].obs;
-  late Rx<ConversationInfo> conversationInfo;
   late Rx<GroupInfo> groupInfo;
   late Rx<GroupMembersInfo> myGroupMembersInfo;
   late StreamSubscription _mASub;
@@ -36,7 +35,7 @@ class GroupSetupLogic extends GetxController {
 
   @override
   void onInit() {
-    conversationInfo = Rx(Get.arguments['conversationInfo']);
+    // conversationInfo = Rx(Get.arguments['conversationInfo']);
     // conversationInfo = Rx(chatLogic.conversationInfo);
     groupInfo = Rx(_defaultGroupInfo);
     myGroupMembersInfo = Rx(_defaultMemberInfo);
@@ -101,9 +100,9 @@ class GroupSetupLogic extends GetxController {
   }
 
   get _defaultGroupInfo => GroupInfo(
-        groupID: conversationInfo.value.groupID!,
-        groupName: conversationInfo.value.showName,
-        faceURL: conversationInfo.value.faceURL,
+        groupID: chatLogic.conversationInfo.value.groupID!,
+        groupName: chatLogic.conversationInfo.value.showName,
+        faceURL: chatLogic.conversationInfo.value.faceURL,
         memberCount: 0,
       );
 
@@ -118,11 +117,11 @@ class GroupSetupLogic extends GetxController {
 
   bool get isOwner => groupInfo.value.ownerUserID == OpenIM.iMManager.userID;
 
-  bool get isPinned => conversationInfo.value.isPinned == true;
+  bool get isPinned => chatLogic.conversationInfo.value.isPinned == true;
 
-  bool get isNotDisturb => conversationInfo.value.recvMsgOpt != 0;
+  bool get isNotDisturb => chatLogic.conversationInfo.value.recvMsgOpt != 0;
 
-  String get conversationID => conversationInfo.value.conversationID;
+  String get conversationID => chatLogic.conversationInfo.value.conversationID;
 
   void _checkIsJoinedGroup() async {
     isJoinedGroup.value = await OpenIM.iMManager.groupManager.isJoinedGroup(
@@ -227,10 +226,10 @@ class GroupSetupLogic extends GetxController {
       );
   void _removeConversation() async {
     await OpenIM.iMManager.conversationManager.deleteConversationAndDeleteAllMsg(
-      conversationID: conversationInfo.value.conversationID,
+      conversationID: chatLogic.conversationInfo.value.conversationID,
     );
 
-    conversationLogic.removeConversation(conversationInfo.value.conversationID);
+    conversationLogic.removeConversation(chatLogic.conversationInfo.value.conversationID);
   }
 
   void quitGroup() async {

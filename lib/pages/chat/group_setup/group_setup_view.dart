@@ -282,8 +282,8 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
           text: StrRes.topChat,
           isBottomRadius: true,
           showSwitchButton: true,
-          switchOn: logic.conversationInfo.value.isPinned!,
-          onTap: () => logic.chatLogic.setConversationTop(!logic.conversationInfo.value.isPinned!),
+          switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
+          onTap: () => logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!),
           onChanged: (newValue) {
             logic.chatLogic.setConversationTop(newValue);
             // 刷新界面以更新开关状态

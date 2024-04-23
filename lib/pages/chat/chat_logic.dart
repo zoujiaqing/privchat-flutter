@@ -13,7 +13,7 @@ import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_live/privchat_live.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:rxdart/subjects.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 
@@ -41,7 +41,7 @@ class ChatLogic extends GetxController {
   final sendProgressSub = BehaviorSubject<MsgStreamEv<int>>();
   final downloadProgressSub = PublishSubject<MsgStreamEv<double>>();
 
-  late ConversationInfo conversationInfo;
+  late Rx<ConversationInfo> conversationInfo;
   Message? searchMessage;
   final nickname = ''.obs;
   final faceUrl = ''.obs;
@@ -88,9 +88,9 @@ class ChatLogic extends GetxController {
 
   String? groupOwnerID;
 
-  String? get userID => conversationInfo.userID;
+  String? get userID => conversationInfo.value.userID;
 
-  String? get groupID => conversationInfo.groupID;
+  String? get groupID => conversationInfo.value.groupID;
 
   bool get isSingleChat => null != userID && userID!.trim().isNotEmpty;
 
@@ -127,10 +127,10 @@ class ChatLogic extends GetxController {
   @override
   void onInit() {
     var arguments = Get.arguments;
-    conversationInfo = arguments['conversationInfo'];
+    conversationInfo = Rx(arguments['conversationInfo']);
     searchMessage = arguments['searchMessage'];
-    nickname.value = conversationInfo.showName ?? '';
-    faceUrl.value = conversationInfo.faceURL ?? '';
+    nickname.value = conversationInfo.value.showName ?? '';
+    faceUrl.value = conversationInfo.value.faceURL ?? '';
 
     _setSdkSyncDataListener();
 
@@ -270,21 +270,27 @@ class ChatLogic extends GetxController {
   }
 
   void chatSetup() => isSingleChat
-      ? AppNavigator.startChatSetup(conversationInfo: conversationInfo)
-      : AppNavigator.startGroupChatSetup(conversationInfo: conversationInfo);
+      ? AppNavigator.startChatSetup(conversationInfo: conversationInfo.value)
+      : AppNavigator.startGroupChatSetup(conversationInfo: conversationInfo.value);
 
   void clearCurAtMap() {
     curMsgAtUser.removeWhere((uid) => !inputCtrl.text.contains('@$uid '));
   }
 
   /// [isPinned] true: pin, false: unpin
-  void setConversationTop(bool isPinned) async {
-    await OpenIM.iMManager.conversationManager.pinConversation(conversationID: conversationInfo.conversationID, isPinned: isPinned);
+  void setConversationTop(bool isPinned) {
+    LoadingView.singleton.wrap(
+      asyncFunction: () => OpenIM.iMManager.conversationManager.pinConversation(conversationID: conversationInfo.value.conversationID, isPinned: isPinned).then((value) => this.conversationInfo.update((val) {
+            val?.isPinned = isPinned;
+          })),
+    );
   }
 
   /// [status] 0: normal; 1: not receiving messages; 2: receive online messages but not offline messages
-  void setConversationDisturb(int status) async {
-    await OpenIM.iMManager.conversationManager.setConversationRecvMessageOpt(conversationID: conversationInfo.conversationID, status: 1);
+  void setConversationDisturb(int status) {
+    LoadingView.singleton.wrap(
+      asyncFunction: () => OpenIM.iMManager.conversationManager.setConversationRecvMessageOpt(conversationID: conversationInfo.value.conversationID, status: 1)
+    );
   }
 
   void _putMemberInfo(List<GroupMembersInfo>? list) {
@@ -558,7 +564,7 @@ class ChatLogic extends GetxController {
       faceURL: userInfo.faceURL,
       groupID: groupID,
       offAllWhenDelFriend: isSingleChat,
-      conversationInfo: conversationInfo
+      conversationInfo: conversationInfo.value
     );
   }
 
@@ -808,7 +814,7 @@ class ChatLogic extends GetxController {
   }
 
   Future<AdvancedMessage> _requestHistoryMessage() => OpenIM.iMManager.messageManager.getAdvancedHistoryMessageList(
-        conversationID: conversationInfo.conversationID,
+        conversationID: conversationInfo.value.conversationID,
         count: 20,
         startMsg: _isFirstLoad ? null : messageList.firstOrNull,
         lastMinSeq: _isFirstLoad ? null : lastMinSeq,
