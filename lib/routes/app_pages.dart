@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_binding.dart';
+import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_logic.dart';
+import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_view.dart';
 
 import '../pages/chat/chat_binding.dart';
 import '../pages/chat/chat_setup/chat_setup_binding.dart';
@@ -201,6 +204,11 @@ class AppPages {
       name: AppRoutes.aboutUs,
       page: () => AboutUsPage(),
       binding: AboutUsBinding(),
+    ),
+    _pageBuilder(
+      name: AppRoutes.groupManage,
+      page: () => GroupManagePage(),
+      binding: GroupManageBinding(),
     ),
     _pageBuilder(
       name: AppRoutes.groupChatSetup,

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:sprintf/sprintf.dart';
 
@@ -265,6 +266,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
           text: StrRes.groupManage,
           isBottomRadius: true,
           showRightArrow: true,
+          onTap: logic.manageGroup,
         ),
       ]
     ),
@@ -293,7 +295,14 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
         _buildItemView(
           text: StrRes.messageNotDisturb,
           isBottomRadius: true,
-          showSwitchButton: true
+          showSwitchButton: true,
+          switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
+          onTap: () => logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0),
+          onChanged: (newValue) {
+            logic.chatLogic.setConversationTop(newValue);
+            // 刷新界面以更新开关状态
+            setState(() {});
+          }
         ),
       ]
     ),
