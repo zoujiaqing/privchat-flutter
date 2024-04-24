@@ -110,6 +110,7 @@ dependencies:
     path: privchat_common
   privchat_live:
     path: privchat_live  
+  clipboard: ^0.1.3
 
 dependency_overrides:
   wechat_assets_picker: 9.0.3

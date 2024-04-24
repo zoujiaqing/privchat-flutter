@@ -16,6 +16,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:rxdart/subjects.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
+import 'package:star_menu/star_menu.dart';
 
 import '../../core/controller/app_controller.dart';
 import '../../core/controller/im_controller.dart';
@@ -542,6 +543,36 @@ class ChatLogic extends GetxController {
   }
 
   void onLongPressLeftAvatar(Message message) {}
+
+  void onClickMenuTapItem(int index, StarMenuController controller, Message message) {
+    print(message.toJson());
+    print("122221" + " " + index.toString());
+    controller.closeMenu!();
+    switch (index) {
+      //复制
+      case 0:
+        copyText(message.textElem!.content!);
+      case 1://回复
+
+      case 2://撤销
+
+      case 3://删除
+        deleteMessage(message);
+      case 4://转发
+
+    }
+  }
+  void copyText(String text) {
+
+    Clipboard.setData(ClipboardData(text: text));
+    IMViews.showToast(StrRes.copySuccessfully);
+  }
+
+  void deleteMessage(Message message) async {
+    await OpenIM.iMManager.messageManager.deleteMessageFromLocalAndSvr(conversationID: conversationInfo.conversationID, clientMsgID: message.clientMsgID!);
+
+
+  }
 
   void onTapLeftAvatar(Message message) {
     if (isGroupChat) {

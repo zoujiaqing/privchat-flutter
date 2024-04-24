@@ -1,6 +1,9 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:privchat_common/privchat_common.dart';
+import 'package:star_menu/star_menu.dart';
 
 class ChatItemContainer extends StatelessWidget {
   const ChatItemContainer({
@@ -26,6 +29,7 @@ class ChatItemContainer extends StatelessWidget {
     this.onLongPressLeftAvatar,
     this.onLongPressRightAvatar,
     this.onFailedToResend,
+    this.onClickMenuTapItem,
   }) : super(key: key);
   final String id;
   final String? leftFaceUrl;
@@ -48,6 +52,7 @@ class ChatItemContainer extends StatelessWidget {
   final Function()? onLongPressLeftAvatar;
   final Function()? onLongPressRightAvatar;
   final Function()? onFailedToResend;
+  final Function(int index, StarMenuController controller)? onClickMenuTapItem;
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -89,6 +90,7 @@ class ChatItemView extends StatefulWidget {
     this.onVisibleTrulyText,
     this.onFailedToResend,
     this.onClickItemView,
+    this.onClickMenuTapItem,
   }) : super(key: key);
 
   final ItemViewBuilder? itemViewBuilder;
@@ -118,6 +120,7 @@ class ChatItemView extends StatefulWidget {
   final Function()? onLongPressRightAvatar;
   final Function(String? text)? onVisibleTrulyText;
   final Function()? onClickItemView;
+  final Function(int index, StarMenuController controller)? onClickMenuTapItem;
 
   final Function()? onFailedToResend;
 
@@ -170,6 +173,7 @@ class _ChatItemViewState extends State<ChatItemView> {
     bool isBubbleBg = false;
 
     final chatItemStarMenuController = StarMenuController();
+    Function(int index, StarMenuController controller)? func = widget.onClickMenuTapItem;
 
     // entries for the dropdown menu
     final upperMenuItems = <Widget>[
@@ -251,6 +255,7 @@ class _ChatItemViewState extends State<ChatItemView> {
       onLongPressRightAvatar: widget.onLongPressRightAvatar,
       onTapLeftAvatar: widget.onTapLeftAvatar,
       onTapRightAvatar: widget.onTapRightAvatar,
+      onClickMenuTapItem: widget.onClickMenuTapItem,
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: widget.onClickItemView,
@@ -263,10 +268,12 @@ class _ChatItemViewState extends State<ChatItemView> {
           sigmaX: 3,
           sigmaY: 3,
         ),
+        shape: MenuShape.linear,
         useTouchAsCenter: true,
         useLongPress: true
       ),
       controller: chatItemStarMenuController,
+      onItemTapped: func,
     );
   }
 }

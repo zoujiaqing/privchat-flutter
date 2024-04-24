@@ -36,6 +36,10 @@ class ChatPage extends StatelessWidget {
         onTapRightAvatar: logic.onTapRightAvatar,
         onVisibleTrulyText: (text) {},
         customTypeBuilder: _buildCustomTypeItemView,
+        onClickMenuTapItem: (idx, controller) {
+          print(idx);
+          logic.onClickMenuTapItem(idx, controller, message);
+        },
       );
 
   CustomTypeInfo? _buildCustomTypeItemView(_, Message message) {
