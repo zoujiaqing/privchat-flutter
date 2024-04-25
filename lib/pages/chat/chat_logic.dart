@@ -289,7 +289,7 @@ class ChatLogic extends GetxController {
   /// [status] 0: normal; 1: not receiving messages; 2: receive online messages but not offline messages
   void setConversationDisturb(int status) {
     LoadingView.singleton.wrap(
-      asyncFunction: () => OpenIM.iMManager.conversationManager.setConversationRecvMessageOpt(conversationID: conversationInfo.value.conversationID, status: 1)
+      asyncFunction: () => OpenIM.iMManager.conversationManager.setConversationRecvMessageOpt(conversationID: conversationInfo.value.conversationID, status: status)
         .then((value) => this.conversationInfo.update((val) {
           val?.recvMsgOpt = status;
         })),

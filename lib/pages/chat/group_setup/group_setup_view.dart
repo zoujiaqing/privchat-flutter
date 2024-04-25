@@ -285,11 +285,13 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
           isBottomRadius: true,
           showSwitchButton: true,
           switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
-          onTap: () => logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!),
-          onChanged: (newValue) {
-            logic.chatLogic.setConversationTop(newValue);
-            // 刷新界面以更新开关状态
+          onTap: () {
             setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!);
+            });
           }
         ),
         _buildItemView(
@@ -297,11 +299,14 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
           isBottomRadius: true,
           showSwitchButton: true,
           switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
-          onTap: () => logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0),
-          onChanged: (newValue) {
-            logic.chatLogic.setConversationTop(newValue);
-            // 刷新界面以更新开关状态
+          onTap: () {
             setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.chatLogic.conversationInfo.value.recvMsgOpt = logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0;
+              logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt!);
+            });
           }
         ),
       ]
