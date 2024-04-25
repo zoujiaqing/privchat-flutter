@@ -22,7 +22,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
     return Scaffold(
       appBar: TitleBar.back(title: StrRes.groupChatSetup),
       backgroundColor: Styles.c_F8F9FA,
-      body: Obx(() => SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
             _buildTalkView(),
@@ -32,7 +32,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
             _buildManageView(),
           ],
         ),
-      )),
+      ),
     );
   }
 
@@ -47,7 +47,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
         _buildItemView(
           text: StrRes.muteAllMember,
           isBottomRadius: true,
-          showRightArrow: true,
+          showSwitchButton: true,
         ),
       ]
     ),
@@ -64,12 +64,12 @@ class _GroupSetupPageState extends State<GroupManagePage> {
         _buildItemView(
           text: StrRes.notAllowSeeMemberProfile,
           isBottomRadius: true,
-          showRightArrow: true,
+          showSwitchButton: true,
         ),
         _buildItemView(
           text: StrRes.notAllAddMemberToBeFriend,
           isBottomRadius: true,
-          showRightArrow: true,
+          showSwitchButton: true,
         ),
         _buildItemView(
           text: StrRes.joinGroupSet,
@@ -85,7 +85,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+    margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
     child: Column(
       children: [
         _buildItemView(

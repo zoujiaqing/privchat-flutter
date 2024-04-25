@@ -20,32 +20,22 @@ class GroupManageLogic extends GetxController {
 
   final chatLogic = Get.find<ChatLogic>(tag: GetTags.chat);
   final appLogic = Get.find<AppController>();
-  final conversationLogic = Get.find<ConversationLogic>();
-  final memberList = <GroupMembersInfo>[].obs;
   late Rx<GroupInfo> groupInfo;
   late Rx<GroupMembersInfo> myGroupMembersInfo;
   final lock = Lock();
-  final isJoinedGroup = false.obs;
 
   @override
   void onInit() {
-    groupInfo = Rx(_defaultGroupInfo);
+    groupInfo = Rx(Get.arguments['groupInfo']);
     myGroupMembersInfo = Rx(_defaultMemberInfo);
     super.onInit();
   }
 
   @override
   void onReady() {
-    _checkIsJoinedGroup();
+    _queryAllInfo();
     super.onReady();
   }
-
-  get _defaultGroupInfo => GroupInfo(
-        groupID: chatLogic.conversationInfo.value.groupID!,
-        groupName: chatLogic.conversationInfo.value.showName,
-        faceURL: chatLogic.conversationInfo.value.faceURL,
-        memberCount: 0,
-      );
 
   get _defaultMemberInfo => GroupMembersInfo(
         userID: OpenIM.iMManager.userID,
@@ -64,17 +54,8 @@ class GroupManageLogic extends GetxController {
 
   String get conversationID => chatLogic.conversationInfo.value.conversationID;
 
-  void _checkIsJoinedGroup() async {
-    isJoinedGroup.value = await OpenIM.iMManager.groupManager.isJoinedGroup(
-      groupID: groupInfo.value.groupID,
-    );
-    _queryAllInfo();
-  }
-
   void _queryAllInfo() {
-    if (isJoinedGroup.value) {
-      getGroupInfo();
-    }
+    getGroupInfo();
   }
 
   getGroupInfo() async {
