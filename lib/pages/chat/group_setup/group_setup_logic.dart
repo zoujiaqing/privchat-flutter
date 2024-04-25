@@ -221,9 +221,12 @@ class GroupSetupLogic extends GetxController {
 
   void viewGroupQrcode() => AppNavigator.startGroupQrcode();
 
+  void manageGroup() => AppNavigator.startGroupManage(groupInfo: groupInfo.value);
+
   void viewGroupMembers() => AppNavigator.startGroupMemberList(
         groupInfo: groupInfo.value,
       );
+      
   void _removeConversation() async {
     await OpenIM.iMManager.conversationManager.deleteConversationAndDeleteAllMsg(
       conversationID: chatLogic.conversationInfo.value.conversationID,

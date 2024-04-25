@@ -291,6 +291,9 @@ class ChatLogic extends GetxController {
   void setConversationDisturb(int status) {
     LoadingView.singleton.wrap(
       asyncFunction: () => OpenIM.iMManager.conversationManager.setConversationRecvMessageOpt(conversationID: conversationInfo.value.conversationID, status: 1)
+        .then((value) => this.conversationInfo.update((val) {
+          val?.recvMsgOpt = status;
+        })),
     );
   }
 
