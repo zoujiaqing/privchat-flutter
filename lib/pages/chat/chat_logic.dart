@@ -340,6 +340,19 @@ class ChatLogic extends GetxController {
     _sendMessage(message);
   }
 
+  void sendVoiceMsg({
+    required String path,
+    required int duration
+    }) async {
+    final file = await IMUtils.compressImageAndGetFile(File(path));
+
+    var message = await OpenIM.iMManager.messageManager.createSoundMessage(
+      soundPath: file!.path,
+      duration: duration
+    );
+    _sendMessage(message);
+  }
+
   void sendPicture({required String path}) async {
     final file = await IMUtils.compressImageAndGetFile(File(path));
 
