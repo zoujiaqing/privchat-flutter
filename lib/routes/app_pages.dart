@@ -2,6 +2,12 @@ import 'package:get/get.dart';
 import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_binding.dart';
 import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_logic.dart';
 import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_view.dart';
+import 'package:privchat/pages/mine/notification_setup/notification_setup_binding.dart';
+import 'package:privchat/pages/mine/notification_setup/notification_setup_view.dart';
+import 'package:privchat/pages/mine/privacy_setup/privacy_setup_binding.dart';
+import 'package:privchat/pages/mine/privacy_setup/privacy_setup_view.dart';
+import 'package:privchat/pages/mine/system_setup/system_setup_binding.dart';
+import 'package:privchat/pages/mine/system_setup/system_setup_view.dart';
 
 import '../pages/chat/chat_binding.dart';
 import '../pages/chat/chat_setup/chat_setup_binding.dart';
@@ -194,6 +200,21 @@ class AppPages {
       name: AppRoutes.accountSetup,
       page: () => AccountSetupPage(),
       binding: AccountSetupBinding(),
+    ),
+    _pageBuilder(
+      name: AppRoutes.notificationSetup,
+      page: () => NotificationSetupPage(),
+      binding: NotificationSetupBinding(),
+    ),
+    _pageBuilder(
+      name: AppRoutes.systemSetup,
+      page: () => SystemSetupPage(),
+      binding: SystemSetupBinding(),
+    ),
+    _pageBuilder(
+      name: AppRoutes.privacySetup,
+      page: () => PrivacySetupPage(),
+      binding: PrivacySetupBinding(),
     ),
     _pageBuilder(
       name: AppRoutes.blacklist,

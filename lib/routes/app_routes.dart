@@ -21,6 +21,9 @@ abstract class AppRoutes {
   static const myInfo = '/my_info';
   static const editMyInfo = '/edit_my_info';
   static const accountSetup = '/account_setup';
+  static const notificationSetup = '/notification_setup';
+  static const systemSetup = '/system_setup';
+  static const privacySetup = '/privacy_setup';
   static const blacklist = '/blacklist';
   static const languageSetup = '/language_setup';
   static const unlockSetup = '/unlock_setup';

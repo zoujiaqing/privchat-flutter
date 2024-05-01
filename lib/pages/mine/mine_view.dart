@@ -41,6 +41,21 @@ class MinePage extends StatelessWidget {
               onTap: logic.accountSetup,
             ),
             _buildItemView(
+              icon: ImageRes.accountSetup,
+              label: StrRes.notificationSetup,
+              onTap: logic.notificationSetup,
+            ),
+            _buildItemView(
+              icon: ImageRes.accountSetup,
+              label: StrRes.systemSetup,
+              onTap: logic.systemSetup,
+            ),
+            _buildItemView(
+              icon: ImageRes.accountSetup,
+              label: StrRes.privacySetup,
+              onTap: logic.privacySetup,
+            ),
+            _buildItemView(
               icon: ImageRes.aboutUs,
               label: StrRes.aboutUs,
               onTap: logic.aboutUs,

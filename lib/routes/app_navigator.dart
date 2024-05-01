@@ -174,6 +174,12 @@ class AppNavigator {
 
   static startAccountSetup() => Get.toNamed(AppRoutes.accountSetup);
 
+  static startNotificationSetup() => Get.toNamed(AppRoutes.notificationSetup);
+
+  static startSystemSetup() => Get.toNamed(AppRoutes.systemSetup);
+
+  static startPrivacySetup() => Get.toNamed(AppRoutes.privacySetup);
+
   static startBlacklist() => Get.toNamed(AppRoutes.blacklist);
 
   static startLanguageSetup() => Get.toNamed(AppRoutes.languageSetup);

@@ -345,6 +345,12 @@ class StrRes {
 
   static String get accountSetup => 'accountSetup'.tr;
 
+  static String get notificationSetup => 'notificationSetup'.tr;
+
+  static String get systemSetup => 'systemSetup'.tr;
+
+  static String get privacySetup => 'privacySetup'.tr;
+
   static String get aboutUs => 'aboutUs'.tr;
 
   static String get logout => 'logout'.tr;

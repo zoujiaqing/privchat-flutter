@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
 
-import 'account_setup_logic.dart';
+import 'system_setup_logic.dart';
 
-class AccountSetupPage extends StatelessWidget {
-  final logic = Get.find<AccountSetupLogic>();
+class SystemSetupPage extends StatelessWidget {
+  final logic = Get.find<SystemSetupLogic>();
 
-  AccountSetupPage({super.key});
+  SystemSetupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,49 +22,16 @@ class AccountSetupPage extends StatelessWidget {
         child: Column(
           children: [
             10.verticalSpace,
-            _buildCornerBgView(
-              children: [
-                _buildItemView(
-                  label: StrRes.mobile,
-                  showRightArrow: true,
-                  isBottomRadius: true,
-                ),
-                _buildItemView(
-                  label: StrRes.email,
-                  showRightArrow: true,
-                  isBottomRadius: true,
-                ),
-              ],
-            ),
-            10.verticalSpace,
-            _buildCornerBgView(
-              children: [
-                _buildItemView(
-                  label: StrRes.changePassword,
-                  showRightArrow: true,
-                ),
-              ],
+            _buildItemView(
+              label: StrRes.languageSetup,
+              showRightArrow: true,
+              isBottomRadius: true,
             ),
           ],
         ),
       ),
     );
   }
-
-  Widget _buildCornerBgView({required List<Widget> children}) => Container(
-        // padding: EdgeInsets.symmetric(horizontal: 10.w),
-        margin: EdgeInsets.symmetric(horizontal: 10.w),
-        decoration: BoxDecoration(
-          color: Styles.c_FFFFFF,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(6.r),
-            topRight: Radius.circular(6.r),
-            bottomLeft: Radius.circular(6.r),
-            bottomRight: Radius.circular(6.r),
-          ),
-        ),
-        child: Column(children: children),
-      );
 
   Widget _buildItemView({
     required String label,
@@ -79,9 +46,16 @@ class AccountSetupPage extends StatelessWidget {
     Function()? onTap,
   }) =>
       Container(
+        margin: EdgeInsets.symmetric(horizontal: 10.w),
         child: Ink(
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(isTopRadius ? 6.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 6.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+            ),
           ),
           child: InkWell(
             onTap: onTap,
