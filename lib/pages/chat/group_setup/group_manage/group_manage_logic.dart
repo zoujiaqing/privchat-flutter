@@ -68,6 +68,17 @@ class GroupManageLogic extends GetxController {
     }
   }
 
+  void setGroupMute(bool mute) async {
+    LoadingView.singleton.wrap(
+      asyncFunction: () => OpenIM.iMManager.groupManager.changeGroupMute(
+            groupID: groupInfo.value.groupID,
+            mute: mute,
+          ).then((value) => this.groupInfo.update((val) {
+            val?.status = mute ? 3 : 0;
+          })),
+    );
+  }
+
   void _updateGroupInfo(GroupInfo value) {
     groupInfo.update((val) {
       val?.groupName = value.groupName;

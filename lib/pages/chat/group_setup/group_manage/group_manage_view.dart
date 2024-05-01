@@ -25,6 +25,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            10.verticalSpace,
             _buildTalkView(),
             10.verticalSpace,
             _buildGroupOptionView(),
@@ -41,13 +42,21 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
     child: Column(
       children: [
         _buildItemView(
           text: StrRes.muteAllMember,
           isBottomRadius: true,
           showSwitchButton: true,
+          switchOn: logic.groupInfo.value.status == 3,
+          onTap: () {
+            setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.chatLogic.setConversationTop(logic.groupInfo.value.status == 3 ? false : true);
+            });
+          }
         ),
       ]
     ),
@@ -58,7 +67,6 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
     child: Column(
       children: [
         _buildItemView(
@@ -85,7 +93,6 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
     child: Column(
       children: [
         _buildItemView(

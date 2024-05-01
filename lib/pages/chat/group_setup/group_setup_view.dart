@@ -254,7 +254,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+    margin: EdgeInsets.symmetric(vertical: 10.h),
     child: Column(
       children: [
         _buildItemView(
@@ -277,7 +277,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+    margin: EdgeInsets.symmetric(vertical: 10.h),
     child: Column(
       children: [
         _buildItemView(
