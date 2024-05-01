@@ -48,13 +48,14 @@ class _GroupSetupPageState extends State<GroupManagePage> {
           text: StrRes.muteAllMember,
           isBottomRadius: true,
           showSwitchButton: true,
-          switchOn: logic.groupInfo.value.status == 3,
+          switchOn: logic.groupSetupLogic.groupInfo.value.status == 3,
           onTap: () {
             setState(() {});
           },
           onChanged: (newValue) {
             setState(() {
-              logic.chatLogic.setConversationTop(logic.groupInfo.value.status == 3 ? false : true);
+              logic.groupSetupLogic.groupInfo.value.status == newValue ? 3 : 0;
+              logic.setGroupMute(newValue);
             });
           }
         ),
@@ -73,11 +74,31 @@ class _GroupSetupPageState extends State<GroupManagePage> {
           text: StrRes.notAllowSeeMemberProfile,
           isBottomRadius: true,
           showSwitchButton: true,
+          switchOn: logic.groupSetupLogic.groupInfo.value.lookMemberInfo == 1 ? false : true,
+          onTap: () {
+            setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.groupSetupLogic.groupInfo.value.lookMemberInfo == newValue ? 0 : 1;
+              logic.setDisableViewMemberProfile(newValue);
+            });
+          }
         ),
         _buildItemView(
           text: StrRes.notAllAddMemberToBeFriend,
           isBottomRadius: true,
           showSwitchButton: true,
+          switchOn: logic.groupSetupLogic.groupInfo.value.applyMemberFriend == 1 ? false : true,
+          onTap: () {
+            setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.groupSetupLogic.groupInfo.value.applyMemberFriend == newValue ? 0 : 1;
+              logic.setDisableMemberAddFriend(newValue);
+            });
+          }
         ),
         _buildItemView(
           text: StrRes.joinGroupSet,
