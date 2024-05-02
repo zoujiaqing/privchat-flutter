@@ -35,7 +35,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
           decoration: showUnderline
               ? BoxDecoration(
                   border: BorderDirectional(
-                    bottom: BorderSide(color: Styles.c_E8EAEF, width: .5),
+                    bottom: BorderSide(color: Styles.c_E8EAEF, width: 1),
                   ),
                 )
               : null,
@@ -67,7 +67,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
       this.left})
       : backgroundColor = null,
         height = 48.h,
-        showUnderline = false,
+        showUnderline = true,
         center = null,
         right = Row(
           mainAxisSize: MainAxisSize.min,
