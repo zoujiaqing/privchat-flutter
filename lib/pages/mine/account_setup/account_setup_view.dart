@@ -27,8 +27,10 @@ class AccountSetupPage extends StatelessWidget {
                 _buildItemView(
                   label: StrRes.mobile,
                   showRightArrow: true,
-                  isBottomRadius: true,
+                  isTopRadius: true,
                 ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w)
+                ,
                 _buildItemView(
                   label: StrRes.email,
                   showRightArrow: true,
@@ -42,6 +44,8 @@ class AccountSetupPage extends StatelessWidget {
                 _buildItemView(
                   label: StrRes.changePassword,
                   showRightArrow: true,
+                  isTopRadius: true,
+                  isBottomRadius: true,
                 ),
               ],
             ),
@@ -82,6 +86,12 @@ class AccountSetupPage extends StatelessWidget {
         child: Ink(
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(isTopRadius ? 6.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 6.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+            ),
           ),
           child: InkWell(
             onTap: onTap,

@@ -15,7 +15,7 @@ class SystemSetupPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: TitleBar.back(
-        title: StrRes.accountSetup,
+        title: StrRes.systemSetup,
       ),
       backgroundColor: Styles.c_F8F9FA,
       body: SingleChildScrollView(

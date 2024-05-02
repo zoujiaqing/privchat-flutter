@@ -35,20 +35,7 @@ class ConversationPage extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    AvatarView(
-                      width: 42.w,
-                      height: 42.h,
-                      text: im.userInfo.value.nickname,
-                      url: im.userInfo.value.faceURL,
-                    ),
-                    10.horizontalSpace,
-                    if (null != im.userInfo.value.nickname)
-                      Flexible(
-                        child: im.userInfo.value.nickname!.toText
-                          ..style = Styles.ts_0C1C33_17sp
-                          ..maxLines = 1
-                          ..overflow = TextOverflow.ellipsis,
-                      ),
+                    StrRes.home.toText..style = Styles.ts_0C1C33_20sp_semibold,
                     10.horizontalSpace,
                     if (null != logic.imSdkStatus)
                       Flexible(

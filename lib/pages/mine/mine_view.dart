@@ -13,59 +13,76 @@ class MinePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: TitleBar.mine(
+        onScan: null,
+      ),
       backgroundColor: Styles.c_F8F9FA,
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Stack(
+            Obx(() => _buildMyInfoView()),
+            10.verticalSpace,
+            _buildCornerBgView(
               children: [
-                Container(
-                  height: 138.h,
-                  width: 1.sw,
-                  color: Styles.c_0089FF,
-                  child: ImageRes.mineHeaderBg.toImage,
+                _buildItemView(
+                  icon: ImageRes.profileEdit,
+                  label: StrRes.myInfo,
+                  onTap: logic.viewMyInfo,
+                  isTopRadius: true,
                 ),
-                Obx(() => _buildMyInfoView()),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
+                ,
+                _buildItemView(
+                  icon: ImageRes.accountSetup,
+                  label: StrRes.accountSetup,
+                  onTap: logic.accountSetup,
+                ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
+                ,
+                _buildItemView(
+                  icon: ImageRes.notificationSetup,
+                  label: StrRes.notificationSetup,
+                  onTap: logic.notificationSetup,
+                ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
+                ,
+                _buildItemView(
+                  icon: ImageRes.settingSetup,
+                  label: StrRes.systemSetup,
+                  onTap: logic.systemSetup,
+                ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
+                ,
+                _buildItemView(
+                  icon: ImageRes.privacySetup,
+                  label: StrRes.privacySetup,
+                  onTap: logic.privacySetup,
+                  isBottomRadius: true,
+                ),
               ],
             ),
             10.verticalSpace,
-            _buildItemView(
-              icon: ImageRes.myInfo,
-              label: StrRes.myInfo,
-              onTap: logic.viewMyInfo,
-              isTopRadius: true,
-            ),
-            _buildItemView(
-              icon: ImageRes.accountSetup,
-              label: StrRes.accountSetup,
-              onTap: logic.accountSetup,
-            ),
-            _buildItemView(
-              icon: ImageRes.accountSetup,
-              label: StrRes.notificationSetup,
-              onTap: logic.notificationSetup,
-            ),
-            _buildItemView(
-              icon: ImageRes.accountSetup,
-              label: StrRes.systemSetup,
-              onTap: logic.systemSetup,
-            ),
-            _buildItemView(
-              icon: ImageRes.accountSetup,
-              label: StrRes.privacySetup,
-              onTap: logic.privacySetup,
-            ),
-            _buildItemView(
-              icon: ImageRes.aboutUs,
-              label: StrRes.aboutUs,
-              onTap: logic.aboutUs,
-            ),
-            _buildItemView(
-              icon: ImageRes.logout,
-              label: StrRes.logout,
-              onTap: logic.logout,
-              isBottomRadius: true,
-            ),
+            _buildCornerBgView(
+              children: [
+                _buildItemView(
+                  icon: ImageRes.aboutUs,
+                  label: StrRes.aboutUs,
+                  onTap: logic.aboutUs,
+                  isTopRadius: true,
+                  isBottomRadius: true,
+                ),
+              ]),
+            10.verticalSpace,
+            _buildCornerBgView(
+              children: [
+                _buildItemView(
+                  icon: ImageRes.logout,
+                  label: StrRes.logout,
+                  onTap: logic.logout,
+                  isTopRadius: true,
+                  isBottomRadius: true,
+                ),
+              ]),
           ],
         ),
       ),
@@ -74,7 +91,7 @@ class MinePage extends StatelessWidget {
 
   Widget _buildMyInfoView() => Container(
         height: 98.h,
-        margin: EdgeInsets.only(left: 16.w, right: 16.w, top: 90.h),
+        margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h),
         padding: EdgeInsets.symmetric(horizontal: 16.w),
         decoration: BoxDecoration(
           color: Styles.c_FFFFFF,
@@ -134,6 +151,20 @@ class MinePage extends StatelessWidget {
         ),
       );
 
+  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+        margin: EdgeInsets.symmetric(horizontal: 10.w),
+        decoration: BoxDecoration(
+          color: Styles.c_FFFFFF,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(6.r),
+            topRight: Radius.circular(6.r),
+            bottomLeft: Radius.circular(6.r),
+            bottomRight: Radius.circular(6.r),
+          ),
+        ),
+        child: Column(children: children),
+      );
+
   Widget _buildItemView({
     required String icon,
     required String label,
@@ -142,7 +173,6 @@ class MinePage extends StatelessWidget {
     Function()? onTap,
   }) =>
       Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.w),
         child: Ink(
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
@@ -156,7 +186,7 @@ class MinePage extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: Container(
-              height: 56.h,
+              height: 44.h,
               padding: EdgeInsets.only(left: 12.w, right: 16.w),
               child: Row(
                 children: [
