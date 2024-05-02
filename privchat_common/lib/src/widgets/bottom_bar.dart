@@ -14,7 +14,7 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 66.h,
+      height: 58.h,
       decoration: BoxDecoration(
         color: Styles.c_FFFFFF,
         border: BorderDirectional(
@@ -64,12 +64,11 @@ class BottomBar extends StatelessWidget {
                     ),
                   ],
                 ),
-                4.verticalSpace,
                 item.label.toText
                   ..style = i == index
-                      ? (item.selectedStyle ?? Styles.ts_0089FF_10sp_semibold)
+                      ? (item.selectedStyle ?? Styles.ts_0089FF_12sp)
                       : (item.unselectedStyle ??
-                          Styles.ts_8E9AB0_10sp_semibold),
+                          Styles.ts_8E9AB0_12sp),
               ],
             ),
           ),
