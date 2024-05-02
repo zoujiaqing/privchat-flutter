@@ -30,27 +30,27 @@ class MinePage extends StatelessWidget {
                   onTap: logic.viewMyInfo,
                   isTopRadius: true,
                 ),
-                Divider(height: .5, color: Styles.c_E8EAEF, indent: 44.w),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 _buildItemView(
                   icon: ImageRes.accountSetup,
                   label: StrRes.accountSetup,
                   onTap: logic.accountSetup,
                 ),
-                Divider(height: .5, color: Styles.c_E8EAEF, indent: 44.w)
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
                 ,
                 _buildItemView(
                   icon: ImageRes.notificationSetup,
                   label: StrRes.notificationSetup,
                   onTap: logic.notificationSetup,
                 ),
-                Divider(height: .5, color: Styles.c_E8EAEF, indent: 44.w)
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
                 ,
                 _buildItemView(
                   icon: ImageRes.settingSetup,
                   label: StrRes.systemSetup,
                   onTap: logic.systemSetup,
                 ),
-                Divider(height: .5, color: Styles.c_E8EAEF, indent: 44.w)
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
                 ,
                 _buildItemView(
                   icon: ImageRes.privacySetup,
@@ -176,10 +176,10 @@ class MinePage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 6.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 6.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+              topRight: Radius.circular(isTopRadius ? 10.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
             ),
           ),
           child: InkWell(
@@ -190,14 +190,14 @@ class MinePage extends StatelessWidget {
               child: Row(
                 children: [
                   icon.toImage
-                    ..width = 24.w
-                    ..height = 24.h,
+                    ..width = 20.w
+                    ..height = 20.h,
                   11.horizontalSpace,
-                  label.toText..style = Styles.ts_0C1C33_17sp,
+                  label.toText..style = Styles.ts_0C1C33_14sp,
                   const Spacer(),
                   ImageRes.rightArrow.toImage
-                    ..width = 24.w
-                    ..height = 24.h,
+                    ..width = 20.w
+                    ..height = 20.h,
                 ],
               ),
             ),

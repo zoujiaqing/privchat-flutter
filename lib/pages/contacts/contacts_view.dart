@@ -76,7 +76,7 @@ class ContactsPage extends StatelessWidget {
                     ..height = 42.h,
                 if (null != icon) icon,
                 12.horizontalSpace,
-                label.toText..style = Styles.ts_0C1C33_17sp,
+                label.toText..style = Styles.ts_0C1C33_14sp,
                 const Spacer(),
                 if (count > 0) UnreadCountView(count: count),
                 4.horizontalSpace,

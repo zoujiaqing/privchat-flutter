@@ -87,10 +87,10 @@ class AccountSetupPage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 6.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 6.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+              topRight: Radius.circular(isTopRadius ? 10.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
             ),
           ),
           child: InkWell(
@@ -100,7 +100,7 @@ class AccountSetupPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 children: [
-                  label.toText..style = textStyle ?? Styles.ts_0C1C33_17sp,
+                  label.toText..style = textStyle ?? Styles.ts_0C1C33_14sp,
                   const Spacer(),
                   if (showSwitchButton)
                     CupertinoSwitch(
@@ -110,8 +110,8 @@ class AccountSetupPage extends StatelessWidget {
                     ),
                   if (showRightArrow)
                     ImageRes.rightArrow.toImage
-                      ..width = 24.w
-                      ..height = 24.h,
+                      ..width = 20.w
+                      ..height = 20.h,
                 ],
               ),
             ),

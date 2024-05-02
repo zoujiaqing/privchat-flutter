@@ -228,8 +228,8 @@ class UserProfilePanelPage extends StatelessWidget {
                     value.toText..style = Styles.ts_0C1C33_17sp,
                   if (showRightArrow)
                     ImageRes.rightArrow.toImage
-                      ..width = 24.w
-                      ..height = 24.h,
+                      ..width = 20.w
+                      ..height = 20.h,
                 ],
               ),
             ),

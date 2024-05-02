@@ -112,7 +112,7 @@ class ConversationPage extends StatelessWidget {
         child: Column(
             children: [
               _buildItemView(info),
-              Divider(height: 1, color: Styles.c_E8EAEF, indent: 76.w),
+              Divider(height: 1, color: Styles.c_E8EAEF, indent: 72.w),
             ],
           )
       );
@@ -123,13 +123,13 @@ class ConversationPage extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                height: 68.h,
+                height: 58.h,
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Row(
                   children: [
                     AvatarView(
-                      width: 48.w,
-                      height: 48.h,
+                      width: 42.w,
+                      height: 42.h,
                       text: logic.getShowName(info),
                       url: info.faceURL,
                       isGroup: logic.isGroupChat(info),
@@ -145,7 +145,7 @@ class ConversationPage extends StatelessWidget {
                               ConstrainedBox(
                                 constraints: BoxConstraints(maxWidth: 180.w),
                                 child: logic.getShowName(info).toText
-                                  ..style = Styles.ts_0C1C33_17sp
+                                  ..style = Styles.ts_0C1C33_14sp
                                   ..maxLines = 1
                                   ..overflow = TextOverflow.ellipsis,
                               ),
@@ -200,11 +200,11 @@ class ConversationPage extends StatelessWidget {
               ),
               if (logic.isPinned(info))
                 Container(
-                  height: 68.h,
-                  margin: EdgeInsets.only(right: 6.w),
+                  height: 58.h,
+                  margin: EdgeInsets.only(right: 16.w),
                   foregroundDecoration: RotatedCornerDecoration.withColor(
                     color: Styles.c_0089FF,
-                    badgeSize: Size(8.29.w, 8.29.h),
+                    badgeSize: Size(10.w, 10.h),
                   ),
                 ),
             ],

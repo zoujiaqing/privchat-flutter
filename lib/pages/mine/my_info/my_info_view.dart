@@ -80,10 +80,10 @@ class MyInfoPage extends StatelessWidget {
         decoration: BoxDecoration(
           color: Styles.c_FFFFFF,
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(6.r),
-            topRight: Radius.circular(6.r),
-            bottomLeft: Radius.circular(6.r),
-            bottomRight: Radius.circular(6.r),
+            topLeft: Radius.circular(10.r),
+            topRight: Radius.circular(10.r),
+            bottomLeft: Radius.circular(10.r),
+            bottomRight: Radius.circular(10.r),
           ),
         ),
         child: Column(children: children),
@@ -104,7 +104,7 @@ class MyInfoPage extends StatelessWidget {
           height: 46.h,
           child: Row(
             children: [
-              label.toText..style = Styles.ts_0C1C33_17sp,
+              label.toText..style = Styles.ts_0C1C33_14sp,
               const Spacer(),
               if (isAvatar)
                 AvatarView(
@@ -118,14 +118,14 @@ class MyInfoPage extends StatelessWidget {
                 Expanded(
                     flex: 3,
                     child: (IMUtils.emptyStrToNull(value) ?? '').toText
-                      ..style = Styles.ts_0C1C33_17sp
+                      ..style = Styles.ts_0C1C33_14sp
                       ..maxLines = 1
                       ..overflow = TextOverflow.ellipsis
                       ..textAlign = TextAlign.right),
               if (showRightArrow)
                 ImageRes.rightArrow.toImage
-                  ..width = 24.w
-                  ..height = 24.h,
+                  ..width = 20.w
+                  ..height = 20.h,
             ],
           ),
         ),
