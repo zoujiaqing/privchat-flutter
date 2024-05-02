@@ -5,6 +5,7 @@ const Map<String, String> en_US = {
   "password": "Password",
   "plsEnterPassword": "Please enter your password",
   "account": "Account",
+  "accountID": "ID",
   "plsEnterAccount": "Please enter your account",
   "forgetPassword": "Forgot Password",
   "verificationCodeLogin": "Verification Code Login",

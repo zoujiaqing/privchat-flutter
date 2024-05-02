@@ -5,6 +5,7 @@ const Map<String, String> zh_CN = {
   "password": "密码",
   "plsEnterPassword": "请输入您的密码",
   "account": "账号",
+  "accountID": "私信号",
   "plsEnterAccount": "请输入您的账号",
   "forgetPassword": "忘记密码",
   "verificationCodeLogin": "验证码登录",

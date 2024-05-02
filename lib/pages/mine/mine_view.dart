@@ -30,8 +30,7 @@ class MinePage extends StatelessWidget {
                   onTap: logic.viewMyInfo,
                   isTopRadius: true,
                 ),
-                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
-                ,
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 _buildItemView(
                   icon: ImageRes.accountSetup,
                   label: StrRes.accountSetup,
@@ -90,9 +89,9 @@ class MinePage extends StatelessWidget {
   }
 
   Widget _buildMyInfoView() => Container(
-        height: 98.h,
+        // height: 98.h,
         margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h),
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
           color: Styles.c_FFFFFF,
           borderRadius: BorderRadius.circular(6.r),

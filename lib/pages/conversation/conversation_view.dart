@@ -21,7 +21,7 @@ class ConversationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          backgroundColor: Styles.c_F8F9FA,
+          backgroundColor: Styles.c_FFFFFF,
           appBar: TitleBar.conversation(
               statusStr: logic.imSdkStatus,
               isFailed: logic.isFailedSdkStatus,
@@ -109,7 +109,12 @@ class ConversationPage extends StatelessWidget {
             ),
           ],
         ),
-        child: _buildItemView(info),
+        child: Column(
+            children: [
+              _buildItemView(info),
+              Divider(height: 1, color: Styles.c_E8EAEF, indent: 76.w),
+            ],
+          )
       );
 
   Widget _buildItemView(ConversationInfo info) => Ink(
@@ -201,7 +206,7 @@ class ConversationPage extends StatelessWidget {
                     color: Styles.c_0089FF,
                     badgeSize: Size(8.29.w, 8.29.h),
                   ),
-                )
+                ),
             ],
           ),
         ),
