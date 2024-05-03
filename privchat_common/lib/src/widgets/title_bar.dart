@@ -206,7 +206,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
     this.right,
     this.showUnderline = false,
     Function()? onTap,
-  })  : height = 44.h,
+  })  : height = 48.h,
         backgroundColor = backgroundColor ?? Styles.c_FFFFFF,
         center = Expanded(
             child: (title ?? '').toText
