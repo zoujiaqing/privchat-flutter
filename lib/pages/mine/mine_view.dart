@@ -36,22 +36,19 @@ class MinePage extends StatelessWidget {
                   label: StrRes.accountSetup,
                   onTap: logic.accountSetup,
                 ),
-                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
-                ,
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 _buildItemView(
                   icon: ImageRes.notificationSetup,
                   label: StrRes.notificationSetup,
                   onTap: logic.notificationSetup,
                 ),
-                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
-                ,
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 _buildItemView(
                   icon: ImageRes.settingSetup,
                   label: StrRes.systemSetup,
                   onTap: logic.systemSetup,
                 ),
-                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w)
-                ,
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 _buildItemView(
                   icon: ImageRes.privacySetup,
                   label: StrRes.privacySetup,
