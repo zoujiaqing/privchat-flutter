@@ -50,6 +50,13 @@ class MyInfoLogic extends GetxController {
         quality: 15);
   }
 
+  int getEighteenYearsAgoToday() {
+    DateTime now = DateTime.now();
+    DateTime eighteenYearsAgo = DateTime(now.year - 18);
+    int timestamp = eighteenYearsAgo.millisecondsSinceEpoch;
+    return timestamp;
+  }
+
   void openDatePicker() {
     var appLocale = Get.locale;
     var isZh = appLocale!.languageCode.toLowerCase().contains("zh");
@@ -57,7 +64,7 @@ class MyInfoLogic extends GetxController {
       Get.context!,
       locale: isZh ? LocaleType.zh : LocaleType.en,
       maxTime: DateTime.now(),
-      currentTime: DateTime.fromMillisecondsSinceEpoch(imLogic.userInfo.value.birth ?? 0),
+      currentTime: DateTime.fromMillisecondsSinceEpoch((imLogic.userInfo.value.birth != null && imLogic.userInfo.value.birth! > 0) ? imLogic.userInfo.value.birth! : getEighteenYearsAgoToday()),
       theme: DatePickerTheme(
         cancelStyle: Styles.ts_0C1C33_17sp,
         doneStyle: Styles.ts_0089FF_17sp,

@@ -45,10 +45,10 @@ class MyInfoPage extends StatelessWidget {
                     ),
                     _buildItemView(
                       label: StrRes.birthDay,
-                      value: DateUtil.formatDateMs(
+                      value: (imLogic.userInfo.value.birth != null && imLogic.userInfo.value.birth! > 0) ? DateUtil.formatDateMs(
                         imLogic.userInfo.value.birth ?? 0,
                         format: IMUtils.getTimeFormat1(),
-                      ),
+                      ) : "",
                       onTap: logic.openDatePicker,
                     ),
                   ],
