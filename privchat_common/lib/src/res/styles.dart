@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Styles {
   Styles._();
 
-  static Color c_0089FF = const Color(0xFF0089FF);
+  static Color c_0089FF = const Color(0xFF0066FF);
   static Color c_0C1C33 = const Color(0xFF0C1C33);
   static Color c_8E9AB0 = const Color(0xFF8E9AB0);
   static Color c_E8EAEF = const Color(0xFFE8EAEF);
@@ -95,6 +95,11 @@ class Styles {
     color: c_FFFFFF,
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
+  );
+  static TextStyle ts_FFFFFF_14sp_semibold = TextStyle(
+    color: c_FFFFFF,
+    fontSize: 17.sp,
+    fontWeight: FontWeight.w600,
   );
   static TextStyle ts_FFFFFF_12sp = TextStyle(
     color: c_FFFFFF,

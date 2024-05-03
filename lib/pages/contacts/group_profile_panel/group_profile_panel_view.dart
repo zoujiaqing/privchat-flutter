@@ -29,10 +29,10 @@ class GroupProfilePanelPage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Row(
                   children: [
-                    StrRes.groupID.toText..style = Styles.ts_0C1C33_17sp,
+                    StrRes.groupID.toText..style = Styles.ts_0C1C33_14sp,
                     12.horizontalSpace,
                     logic.groupInfo.value.groupID.toText
-                      ..style = Styles.ts_8E9AB0_17sp,
+                      ..style = Styles.ts_8E9AB0_14sp,
                   ],
                 ),
               ),
@@ -73,7 +73,7 @@ class GroupProfilePanelPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   (logic.groupInfo.value.groupName ?? '').toText
-                    ..style = Styles.ts_0C1C33_17sp_medium,
+                    ..style = Styles.ts_0C1C33_14sp_medium,
                   4.verticalSpace,
                   Row(
                     children: [
@@ -105,13 +105,13 @@ class GroupProfilePanelPage extends StatelessWidget {
             RichText(
               text: TextSpan(
                 text: StrRes.groupMember,
-                style: Styles.ts_0C1C33_17sp,
+                style: Styles.ts_0C1C33_14sp,
                 children: [
                   WidgetSpan(child: 12.horizontalSpace),
                   TextSpan(
                     text: sprintf(
                         StrRes.nPerson, [logic.groupInfo.value.memberCount]),
-                    style: Styles.ts_8E9AB0_17sp,
+                    style: Styles.ts_8E9AB0_14sp,
                   ),
                 ],
               ),
@@ -134,8 +134,6 @@ class GroupProfilePanelPage extends StatelessWidget {
                     ..height = 44.h;
                 }
                 return AvatarView(
-                  width: 44.w,
-                  height: 44.h,
                   text: member.nickname,
                   url: member.faceURL,
                 );

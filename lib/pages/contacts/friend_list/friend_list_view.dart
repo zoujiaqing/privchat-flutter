@@ -41,7 +41,7 @@ class FriendListPage extends StatelessWidget {
   }
 
   Widget _buildItemView(ISUserInfo info) => Ink(
-        height: 64.h,
+        height: 48.h,
         color: Styles.c_FFFFFF,
         child: InkWell(
           onTap: () => logic.viewFriendInfo(info),
@@ -52,9 +52,11 @@ class FriendListPage extends StatelessWidget {
                 AvatarView(
                   url: info.faceURL,
                   text: info.showName,
+                  width: 32,
+                  height: 32,
                 ),
                 10.horizontalSpace,
-                info.showName.toText..style = Styles.ts_0C1C33_17sp,
+                info.showName.toText..style = Styles.ts_0C1C33_14sp,
               ],
             ),
           ),

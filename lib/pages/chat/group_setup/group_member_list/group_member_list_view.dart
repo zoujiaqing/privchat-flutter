@@ -47,13 +47,13 @@ class GroupMemberListPage extends StatelessWidget {
                     child: Row(
                       children: [
                         AvatarView(
-                          width: 44.w,
-                          height: 44.h,
+                          width: 32.w,
+                          height: 32.h,
                           text: '@',
                           textStyle: Styles.ts_FFFFFF_21sp,
                         ),
                         10.horizontalSpace,
-                        StrRes.everyone.toText..style = Styles.ts_0C1C33_17sp,
+                        StrRes.everyone.toText..style = Styles.ts_0C1C33_14sp,
                       ],
                     ),
                   ),
@@ -99,18 +99,20 @@ class GroupMemberListPage extends StatelessWidget {
                     AvatarView(
                       url: membersInfo.faceURL,
                       text: membersInfo.nickname,
+                      height: 32,
+                      width: 32,
                     ),
                     10.horizontalSpace,
                     Expanded(
                       child: (membersInfo.nickname ?? '').toText
-                        ..style = Styles.ts_0C1C33_17sp
+                        ..style = Styles.ts_0C1C33_14sp
                         ..maxLines = 1
                         ..overflow = TextOverflow.ellipsis,
                     ),
                     if (membersInfo.roleLevel == GroupRoleLevel.owner)
-                      StrRes.groupOwner.toText..style = Styles.ts_8E9AB0_17sp,
+                      StrRes.groupOwner.toText..style = Styles.ts_8E9AB0_14sp,
                     if (membersInfo.roleLevel == GroupRoleLevel.admin)
-                      StrRes.groupAdmin.toText..style = Styles.ts_8E9AB0_17sp,
+                      StrRes.groupAdmin.toText..style = Styles.ts_8E9AB0_14sp,
                   ],
                 ),
               ),
@@ -209,7 +211,7 @@ class SelectedMemberListView extends StatelessWidget {
                   children: [
                     sprintf(StrRes.selectedPeopleCount,
                         [logic.checkedList.length]).toText
-                      ..style = Styles.ts_0C1C33_17sp_medium,
+                      ..style = Styles.ts_0C1C33_14sp_medium,
                     const Spacer(),
                     GestureDetector(
                       behavior: HitTestBehavior.translucent,
@@ -218,7 +220,7 @@ class SelectedMemberListView extends StatelessWidget {
                         height: 52.h,
                         alignment: Alignment.center,
                         child: StrRes.confirm.toText
-                          ..style = Styles.ts_0089FF_17sp,
+                          ..style = Styles.ts_0089FF_14sp,
                       ),
                     ),
                   ],
@@ -250,7 +252,7 @@ class SelectedMemberListView extends StatelessWidget {
             10.horizontalSpace,
             Expanded(
               child: (membersInfo.nickname ?? '').toText
-                ..style = Styles.ts_0C1C33_17sp
+                ..style = Styles.ts_0C1C33_14sp
                 ..maxLines = 1
                 ..overflow = TextOverflow.ellipsis,
             ),
@@ -266,7 +268,7 @@ class SelectedMemberListView extends StatelessWidget {
                     width: 1,
                   ),
                 ),
-                child: StrRes.remove.toText..style = Styles.ts_0089FF_17sp,
+                child: StrRes.remove.toText..style = Styles.ts_0089FF_14sp,
               ),
             ),
           ],

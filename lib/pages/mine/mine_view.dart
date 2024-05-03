@@ -185,7 +185,7 @@ class MinePage extends StatelessWidget {
           child: InkWell(
             onTap: onTap,
             child: Container(
-              height: 44.h,
+              height: 48.h,
               padding: EdgeInsets.only(left: 12.w, right: 16.w),
               child: Row(
                 children: [

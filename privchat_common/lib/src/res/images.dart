@@ -92,10 +92,10 @@ class ImageRes {
   static const privacySetup = "$_dir/ic_mine_privacy.png";
   static const aboutUs = "$_dir/ic_mine_about_us.png";
   static const logout = "$_dir/ic_mine_logout.png";
-  static const myFriend = "$_dir/ic_my_friend.webp";
-  static const myGroup = "$_dir/ic_my_group.webp";
-  static const newFriend = "$_dir/ic_new_friend.webp";
-  static const newGroup = "$_dir/ic_new_group.webp";
+  static const myFriend = "$_dir/ic_my_friend.png";
+  static const myGroup = "$_dir/ic_my_group.png";
+  static const newFriend = "$_dir/ic_new_friend.png";
+  static const newGroup = "$_dir/ic_new_group.png";
   static const searchBlack = "$_dir/ic_search_black.webp";
   static const addContacts = "$_dir/ic_add_contacts.webp";
   static const tree = "$_dir/ic_tree.webp";

@@ -10,7 +10,7 @@ const Map<String, String> en_US = {
   "forgetPassword": "Forgot Password",
   "verificationCodeLogin": "Verification Code Login",
   "login": "Login",
-  "noAccountYet": "Don't have an account yet?",
+  "noAccountYet": "Don't have an account yet? ",
   "loginNow": "Login now",
   "registerNow": "Register now",
   'lockPwdErrorHint': 'Error %s times',

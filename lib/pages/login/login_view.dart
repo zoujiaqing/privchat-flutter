@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,22 +15,44 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      // color: Styles.c_F8F9FA,
       child: TouchCloseSoftKeyboard(
         isGradientBg: true,
         child: SingleChildScrollView(
           child: Column(
             children: [
               88.verticalSpace,
-              ImageRes.loginLogo.toImage
-                ..width = 64.w
-                ..height = 64.h
-                ..onDoubleTap = logic.configService,
-              // StrRes.welcome.toText..style = Styles.ts_0089FF_17sp_semibold,
-              51.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 32.w),
                 child: Obx(() => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        StrRes.welcome.toText
+                          ..style = Styles.ts_0C1C33_20sp_semibold,
+                        29.verticalSpace,
+                        // _buildCornerBgView(
+                        //   children: [
+                        //     _buildItemView(
+                        //       label: StrRes.languageSetup,
+                        //       showRightArrow: true,
+                        //       isBottomRadius: true,
+                        //     ),
+                        //     Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+                        //     _buildItemView(
+                        //       label: StrRes.phoneNumber,
+                        //       showRightArrow: true,
+                        //       isBottomRadius: true,
+                        //     ),
+                        //     Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w)
+                        //     ,
+                        //     _buildItemView(
+                        //       label: StrRes.password,
+                        //       showRightArrow: true,
+                        //       isBottomRadius: true,
+                        //     ),
+                        //   ],
+                        // ),
+                        // 10.verticalSpace,
                         InputBox.phone(
                           label: StrRes.phoneNumber,
                           hintText: StrRes.plsEnterPhoneNumber,
@@ -43,13 +66,13 @@ class LoginPage extends StatelessWidget {
                           hintText: StrRes.plsEnterPassword,
                           controller: logic.pwdCtrl,
                         ),
-                        46.verticalSpace,
+                        30.verticalSpace,
                         Button(
                           text: StrRes.login,
                           enabled: logic.enabled.value,
                           onTap: logic.login,
                         ),
-                        194.verticalSpace,
+                        10.verticalSpace,
                         RichText(
                           text: TextSpan(
                             text: StrRes.noAccountYet,
@@ -73,4 +96,67 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+        // margin: EdgeInsets.symmetric(horizontal: 10.w),
+        decoration: BoxDecoration(
+          color: Styles.c_FFFFFF,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(6.r),
+            topRight: Radius.circular(6.r),
+            bottomLeft: Radius.circular(6.r),
+            bottomRight: Radius.circular(6.r),
+          ),
+        ),
+        child: Column(children: children),
+      );
+
+  Widget _buildItemView({
+    required String label,
+    TextStyle? textStyle,
+    String? value,
+    bool switchOn = false,
+    bool isTopRadius = false,
+    bool isBottomRadius = false,
+    bool showRightArrow = false,
+    bool showSwitchButton = false,
+    ValueChanged<bool>? onChanged,
+    Function()? onTap,
+  }) =>
+      Container(
+        child: Ink(
+          decoration: BoxDecoration(
+            color: Styles.c_FFFFFF,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(isTopRadius ? 10.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+            ),
+          ),
+          child: InkWell(
+            onTap: onTap,
+            child: Container(
+              height: 46.h,
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
+              child: Row(
+                children: [
+                  label.toText..style = textStyle ?? Styles.ts_0C1C33_14sp,
+                  const Spacer(),
+                  if (showSwitchButton)
+                    CupertinoSwitch(
+                      value: switchOn,
+                      activeColor: Styles.c_0089FF,
+                      onChanged: onChanged,
+                    ),
+                  if (showRightArrow)
+                    ImageRes.rightArrow.toImage
+                      ..width = 20.w
+                      ..height = 20.h,
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
 }

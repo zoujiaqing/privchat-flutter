@@ -54,7 +54,7 @@ class AboutUsPage extends StatelessWidget {
                     child: Row(
                       children: [
                         StrRes.checkNewVersion.toText
-                          ..style = Styles.ts_0C1C33_17sp,
+                          ..style = Styles.ts_0C1C33_14sp,
                         const Spacer(),
                         ImageRes.rightArrow.toImage
                           ..width = 24.w

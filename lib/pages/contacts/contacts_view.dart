@@ -21,29 +21,36 @@ class ContactsPage extends StatelessWidget {
         () => SingleChildScrollView(
           child: Column(
             children: [
-              _buildItemView(
-                assetsName: ImageRes.newFriend,
-                label: StrRes.newFriend,
-                count: logic.friendApplicationCount,
-                onTap: logic.newFriend,
-              ),
-              _buildItemView(
-                assetsName: ImageRes.newGroup,
-                label: StrRes.newGroup,
-                count: logic.groupApplicationCount,
-                onTap: logic.newGroup,
-              ),
               10.verticalSpace,
-              _buildItemView(
-                assetsName: ImageRes.myFriend,
-                label: StrRes.myFriend,
-                onTap: logic.myFriend,
-              ),
-              _buildItemView(
-                assetsName: ImageRes.myGroup,
-                label: StrRes.myGroup,
-                onTap: logic.myGroup,
-              ),
+              _buildCornerBgView(children: [
+                _buildItemView(
+                  assetsName: ImageRes.newFriend,
+                  label: StrRes.newFriend,
+                  count: logic.friendApplicationCount,
+                  onTap: logic.newFriend,
+                ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
+                _buildItemView(
+                  assetsName: ImageRes.newGroup,
+                  label: StrRes.newGroup,
+                  count: logic.groupApplicationCount,
+                  onTap: logic.newGroup,
+                ),
+              ]),
+              10.verticalSpace,
+              _buildCornerBgView(children: [
+                _buildItemView(
+                  assetsName: ImageRes.myFriend,
+                  label: StrRes.myFriend,
+                  onTap: logic.myFriend,
+                ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
+                _buildItemView(
+                  assetsName: ImageRes.myGroup,
+                  label: StrRes.myGroup,
+                  onTap: logic.myGroup,
+                ),
+              ]),
               10.verticalSpace,
             ],
           ),
@@ -51,6 +58,20 @@ class ContactsPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+        margin: EdgeInsets.symmetric(horizontal: 10.w),
+        decoration: BoxDecoration(
+          color: Styles.c_FFFFFF,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(6.r),
+            topRight: Radius.circular(6.r),
+            bottomLeft: Radius.circular(6.r),
+            bottomRight: Radius.circular(6.r),
+          ),
+        ),
+        child: Column(children: children),
+      );
 
   Widget _buildItemView({
     String? assetsName,
@@ -72,8 +93,8 @@ class ContactsPage extends StatelessWidget {
               children: [
                 if (null != assetsName)
                   assetsName.toImage
-                    ..width = 42.w
-                    ..height = 42.h,
+                    ..width = 20.w
+                    ..height = 20.h,
                 if (null != icon) icon,
                 12.horizontalSpace,
                 label.toText..style = Styles.ts_0C1C33_14sp,
@@ -82,8 +103,8 @@ class ContactsPage extends StatelessWidget {
                 4.horizontalSpace,
                 if (showRightArrow)
                   ImageRes.rightArrow.toImage
-                    ..width = 24.w
-                    ..height = 24.h,
+                    ..width = 20.w
+                    ..height = 20.h,
               ],
             ),
           ),
