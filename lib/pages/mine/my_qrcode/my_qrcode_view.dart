@@ -22,20 +22,20 @@ class MyQrcodePage extends StatelessWidget {
         body: Container(
           alignment: Alignment.topCenter,
           child: Container(
-            margin: EdgeInsets.only(top: 22.h),
+            margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
             padding: EdgeInsets.symmetric(horizontal: 30.w),
-            width: 331.w,
+            // width: 331.w,
             height: 460.h,
             decoration: BoxDecoration(
               color: Styles.c_FFFFFF,
-              borderRadius: BorderRadius.circular(10.r),
-              boxShadow: [
-                BoxShadow(
-                  blurRadius: 7.r,
-                  spreadRadius: 1.r,
-                  color: Styles.c_000000.withOpacity(.08),
-                ),
-              ],
+              borderRadius: BorderRadius.circular(6.r),
+              // boxShadow: [
+              //   BoxShadow(
+              //     blurRadius: 7.r,
+              //     spreadRadius: 1.r,
+              //     color: Styles.c_000000.withOpacity(.08),
+              //   ),
+              // ],
             ),
             child: Stack(
               children: [
@@ -58,7 +58,7 @@ class MyQrcodePage extends StatelessWidget {
                   ),
                 ),
                 Positioned(
-                  top: 140.h,
+                  top: 100.h,
                   width: 272.w,
                   child: StrRes.qrcodeHint.toText
                     ..style = Styles.ts_8E9AB0_15sp
@@ -70,16 +70,12 @@ class MyQrcodePage extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     child: Container(
-                      width: 180.w,
-                      height: 180.w,
+                      width: 240.w,
+                      height: 240.w,
                       alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        color: Styles.c_FFFFFF,
-                        border: Border.all(color: Styles.c_E8EAEF, width: 4.w),
-                      ),
                       child: QrImageView(
                         data: logic.buildQRContent(),
-                        size: 140.w,
+                        size: 240.w,
                         backgroundColor: Styles.c_FFFFFF,
                       ),
                     ),

@@ -47,7 +47,7 @@ class AvatarView extends StatelessWidget {
 
   TextStyle get _textStyle => textStyle ?? Styles.ts_FFFFFF_16sp;
 
-  Color get _textAvatarBgColor => Styles.c_0089FF;
+  Color get _textAvatarBgColor => Styles.c_0089FF_opacity50;
 
   String? get _showName {
     if (isGroup) return null;

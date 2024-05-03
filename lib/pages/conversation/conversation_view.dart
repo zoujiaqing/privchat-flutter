@@ -145,7 +145,7 @@ class ConversationPage extends StatelessWidget {
                               ConstrainedBox(
                                 constraints: BoxConstraints(maxWidth: 180.w),
                                 child: logic.getShowName(info).toText
-                                  ..style = Styles.ts_0C1C33_14sp
+                                  ..style = Styles.ts_0C1C33_14sp_medium
                                   ..maxLines = 1
                                   ..overflow = TextOverflow.ellipsis,
                               ),

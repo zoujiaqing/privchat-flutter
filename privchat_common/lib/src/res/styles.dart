@@ -170,6 +170,11 @@ class Styles {
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle ts_0C1C33_14sp_semibold = TextStyle(
+    color: c_0C1C33,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
+  );
   static TextStyle ts_0C1C33_17sp = TextStyle(
     color: c_0C1C33,
     fontSize: 17.sp,

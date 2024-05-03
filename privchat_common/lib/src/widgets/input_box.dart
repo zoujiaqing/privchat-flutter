@@ -157,12 +157,14 @@ class _InputBoxState extends State<InputBox> {
   void initState() {
     _obscureText = widget.obscureText;
     widget.controller?.addListener(_onChanged);
+    widget.focusNode?.addListener(_onChanged);
     super.initState();
   }
 
   void _onChanged() {
     setState(() {
-      _showClearBtn = widget.controller!.text.isNotEmpty;
+      // TODO: Not show clear button?
+      _showClearBtn = (widget.focusNode != null && widget.focusNode!.hasFocus && widget.controller!.text.isNotEmpty);
     });
   }
 
