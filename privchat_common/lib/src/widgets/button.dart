@@ -40,7 +40,7 @@ class Button extends StatelessWidget {
           decoration: BoxDecoration(
             color: enabled
                 ? enabledColor ?? Styles.c_0089FF
-                : disabledColor ?? Styles.c_0089FF_opacity50,
+                : disabledColor ?? Styles.c_0089FF_opacity20,
             borderRadius: BorderRadius.circular(radius ?? 4.r),
           ),
           child: InkWell(
