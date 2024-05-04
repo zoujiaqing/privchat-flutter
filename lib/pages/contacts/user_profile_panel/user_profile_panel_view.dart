@@ -182,14 +182,14 @@ class UserProfilePanelPage extends StatelessWidget {
             child: Container(
               height: 40.h,
               alignment: Alignment.centerLeft,
-              child: label.toText..style = Styles.ts_8E9AB0_17sp,
+              child: label.toText..style = Styles.ts_8E9AB0_14sp,
             ),
           ),
           TableCell(
             child: Container(
               height: 40.h,
               alignment: Alignment.centerLeft,
-              child: (value ?? '').toText..style = Styles.ts_0C1C33_17sp,
+              child: (value ?? '').toText..style = Styles.ts_0C1C33_14sp,
             ),
           ),
         ],
@@ -216,7 +216,7 @@ class UserProfilePanelPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 children: [
-                  label.toText..style = Styles.ts_0C1C33_17sp,
+                  label.toText..style = Styles.ts_0C1C33_14sp,
                   const Spacer(),
                   if (showSwitchButton)
                     CupertinoSwitch(
@@ -225,11 +225,11 @@ class UserProfilePanelPage extends StatelessWidget {
                       onChanged: onChanged,
                     ),
                   if (null != value)
-                    value.toText..style = Styles.ts_0C1C33_17sp,
+                    value.toText..style = Styles.ts_0C1C33_14sp,
                   if (showRightArrow)
                     ImageRes.rightArrow.toImage
-                      ..width = 24.w
-                      ..height = 24.h,
+                      ..width = 20.w
+                      ..height = 20.h,
                 ],
               ),
             ),

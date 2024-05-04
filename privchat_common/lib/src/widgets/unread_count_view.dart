@@ -6,7 +6,7 @@ class UnreadCountView extends StatelessWidget {
   const UnreadCountView({
     Key? key,
     this.count = 0,
-    this.size = 13,
+    this.size = 16,
     this.margin,
   }) : super(key: key);
   final int count;
@@ -31,7 +31,7 @@ class UnreadCountView extends StatelessWidget {
   Text get _text => Text(
         '${count > 99 ? '99+' : count}',
         style: TextStyle(
-          fontSize: 8.sp,
+          fontSize: 10.sp,
           color: const Color(0xFFFFFFFF),
         ),
         textAlign: TextAlign.center,

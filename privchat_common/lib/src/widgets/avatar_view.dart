@@ -43,11 +43,11 @@ class AvatarView extends StatelessWidget {
   final bool isGroup;
   final bool showDefaultAvatar;
 
-  double get _avatarSize => min(width ?? 44.w, height ?? 44.h);
+  double get _avatarSize => min(width ?? 42.w, height ?? 42.h);
 
   TextStyle get _textStyle => textStyle ?? Styles.ts_FFFFFF_16sp;
 
-  Color get _textAvatarBgColor => Styles.c_0089FF;
+  Color get _textAvatarBgColor => Styles.c_0089FF_opacity50;
 
   String? get _showName {
     if (isGroup) return null;

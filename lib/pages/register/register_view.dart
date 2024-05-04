@@ -18,8 +18,8 @@ class RegisterPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             StrRes.newUserRegister.toText
-              ..style = Styles.ts_0089FF_22sp_semibold,
-            29.verticalSpace,
+              ..style = Styles.ts_0C1C33_20sp_semibold,
+            30.verticalSpace,
             Obx(() => InputBox.phone(
                   label: StrRes.phoneNumber,
                   hintText: StrRes.plsEnterPhoneNumber,
@@ -35,7 +35,7 @@ class RegisterPage extends StatelessWidget {
             //   ]),
             //   controller: logic.invitationCodeCtrl,
             // ),
-            130.verticalSpace,
+            30.verticalSpace,
             Obx(() => Button(
                   text: StrRes.nextStep,
                   enabled: logic.enabled.value,

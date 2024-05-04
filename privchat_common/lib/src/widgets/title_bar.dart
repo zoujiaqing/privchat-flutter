@@ -35,7 +35,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
           decoration: showUnderline
               ? BoxDecoration(
                   border: BorderDirectional(
-                    bottom: BorderSide(color: Styles.c_E8EAEF, width: .5),
+                    bottom: BorderSide(color: Styles.c_E8EAEF, width: 1),
                   ),
                 )
               : null,
@@ -66,8 +66,8 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
       CustomPopupMenuController? popCtrl,
       this.left})
       : backgroundColor = null,
-        height = 62.h,
-        showUnderline = false,
+        height = 48.h,
+        showUnderline = true,
         center = null,
         right = Row(
           mainAxisSize: MainAxisSize.min,
@@ -206,7 +206,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
     this.right,
     this.showUnderline = false,
     Function()? onTap,
-  })  : height = 44.h,
+  })  : height = 48.h,
         backgroundColor = backgroundColor ?? Styles.c_FFFFFF,
         center = Expanded(
             child: (title ?? '').toText
@@ -232,7 +232,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
     this.showUnderline = false,
     Function()? onClickSearch,
     Function()? onClickAddContacts,
-  })  : height = 44.h,
+  })  : height = 48.h,
         backgroundColor = Styles.c_FFFFFF,
         center = Spacer(),
         left = StrRes.contacts.toText..style = Styles.ts_0C1C33_20sp_semibold,
@@ -248,6 +248,29 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
               ..width = 28.w
               ..height = 28.h
               ..onTap = onClickAddContacts,
+          ],
+        );
+
+  TitleBar.mine({
+    super.key,
+    this.showUnderline = false,
+    Function()? onScan,
+  })  : height = 48.h,
+        backgroundColor = Styles.c_FFFFFF,
+        center = Spacer(),
+        left = StrRes.mine.toText..style = Styles.ts_0C1C33_20sp_semibold,
+        right = Row(
+          children: [
+            // TODO: Search button
+            // ImageRes.searchBlack.toImage
+            //   ..width = 28.w
+            //   ..height = 28.h
+            //   ..onTap = onClickSearch,
+            // 16.horizontalSpace,
+            ImageRes.popMenuScan.toImage
+              ..width = 28.w
+              ..height = 28.h
+              ..onTap = onScan,
           ],
         );
 

@@ -61,7 +61,7 @@ class PersonalInfoLogic extends GetxController {
   int? get _birth =>
       userProfilesLogic.userInfo.value.birth ?? userFullInfo.value.birth;
 
-  String? get birth => _birth == null
+  String? get birth => (_birth == null || _birth == 0) 
       ? '-'
       : DateUtil.formatDateMs(_birth!, format: IMUtils.getTimeFormat1());
 

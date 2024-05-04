@@ -22,23 +22,53 @@ class AccountSetupPage extends StatelessWidget {
         child: Column(
           children: [
             10.verticalSpace,
-            _buildItemView(
-              label: StrRes.blacklist,
-              onTap: logic.blacklist,
-              showRightArrow: true,
+            _buildCornerBgView(
+              children: [
+                _buildItemView(
+                  label: StrRes.mobile,
+                  showRightArrow: true,
+                  isTopRadius: true,
+                ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w)
+                ,
+                _buildItemView(
+                  label: StrRes.email,
+                  showRightArrow: true,
+                  isBottomRadius: true,
+                ),
+              ],
             ),
-            _buildItemView(
-              label: StrRes.clearChatHistory,
-              textStyle: Styles.ts_FF381F_17sp,
-              onTap: logic.clearChatHistory,
-              showRightArrow: true,
-              isBottomRadius: true,
+            10.verticalSpace,
+            _buildCornerBgView(
+              children: [
+                _buildItemView(
+                  label: StrRes.changePassword,
+                  showRightArrow: true,
+                  isTopRadius: true,
+                  isBottomRadius: true,
+                ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+
+  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+        // padding: EdgeInsets.symmetric(horizontal: 10.w),
+        margin: EdgeInsets.symmetric(horizontal: 10.w),
+        decoration: BoxDecoration(
+          color: Styles.c_FFFFFF,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(6.r),
+            topRight: Radius.circular(6.r),
+            bottomLeft: Radius.circular(6.r),
+            bottomRight: Radius.circular(6.r),
+          ),
+        ),
+        child: Column(children: children),
+      );
 
   Widget _buildItemView({
     required String label,
@@ -53,15 +83,14 @@ class AccountSetupPage extends StatelessWidget {
     Function()? onTap,
   }) =>
       Container(
-        margin: EdgeInsets.symmetric(horizontal: 10.w),
         child: Ink(
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 6.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 6.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+              topRight: Radius.circular(isTopRadius ? 10.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
             ),
           ),
           child: InkWell(
@@ -71,7 +100,7 @@ class AccountSetupPage extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: Row(
                 children: [
-                  label.toText..style = textStyle ?? Styles.ts_0C1C33_17sp,
+                  label.toText..style = textStyle ?? Styles.ts_0C1C33_14sp,
                   const Spacer(),
                   if (showSwitchButton)
                     CupertinoSwitch(
@@ -81,8 +110,8 @@ class AccountSetupPage extends StatelessWidget {
                     ),
                   if (showRightArrow)
                     ImageRes.rightArrow.toImage
-                      ..width = 24.w
-                      ..height = 24.h,
+                      ..width = 20.w
+                      ..height = 20.h,
                 ],
               ),
             ),

@@ -157,12 +157,14 @@ class _InputBoxState extends State<InputBox> {
   void initState() {
     _obscureText = widget.obscureText;
     widget.controller?.addListener(_onChanged);
+    widget.focusNode?.addListener(_onChanged);
     super.initState();
   }
 
   void _onChanged() {
     setState(() {
-      _showClearBtn = widget.controller!.text.isNotEmpty;
+      // TODO: Not show clear button?
+      _showClearBtn = (widget.focusNode != null && widget.focusNode!.hasFocus && widget.controller!.text.isNotEmpty);
     });
   }
 
@@ -182,14 +184,15 @@ class _InputBoxState extends State<InputBox> {
         children: [
           Text(
             widget.label,
-            style: widget.labelStyle ?? Styles.ts_8E9AB0_12sp,
+            style: widget.labelStyle ?? Styles.ts_0C1C33_12sp,
           ),
           6.verticalSpace,
           Container(
             height: 42.h,
             padding: EdgeInsets.only(left: 12.w, right: 8.w),
             decoration: BoxDecoration(
-              border: Border.all(color: Styles.c_E8EAEF, width: 1),
+              color: Styles.c_FFFFFF,
+              border: Border.all(color: Styles.c_FFFFFF, width: 1),
               borderRadius: BorderRadius.circular(8.r),
             ),
             child: Row(
@@ -233,7 +236,7 @@ class _InputBoxState extends State<InputBox> {
           ],
           decoration: InputDecoration(
             hintText: widget.hintText,
-            hintStyle: widget.hintStyle ?? Styles.ts_8E9AB0_17sp,
+            hintStyle: widget.hintStyle ?? Styles.ts_8E9AB0_14sp,
             isDense: true,
             contentPadding: EdgeInsets.zero,
             border: InputBorder.none,
@@ -249,7 +252,7 @@ class _InputBoxState extends State<InputBox> {
           children: [
             Text(
               widget.code,
-              style: widget.codeStyle ?? Styles.ts_0C1C33_17sp,
+              style: widget.codeStyle ?? Styles.ts_0C1C33_14sp,
             ),
             8.horizontalSpace,
             ImageRes.downArrow.toImage

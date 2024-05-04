@@ -6,10 +6,16 @@ import 'package:privchat_common/privchat_common.dart';
 
 import 'chat_setup_logic.dart';
 
-class ChatSetupPage extends StatelessWidget {
-  final logic = Get.find<ChatSetupLogic>();
+class ChatSetupPage extends StatefulWidget {
 
   ChatSetupPage({super.key});
+  
+  @override
+  _ChatSetupPageState createState() => _ChatSetupPageState();
+}
+
+class _ChatSetupPageState extends State<ChatSetupPage> {
+  final logic = Get.find<ChatSetupLogic>();
 
   @override
   Widget build(BuildContext context) {
@@ -99,32 +105,37 @@ Widget _buildChatOptionView() => Container(
     color: Styles.c_FFFFFF,
     borderRadius: BorderRadius.circular(6.r),
   ),
-  margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 0.h),
+  margin: EdgeInsets.symmetric(vertical: 0.h),
   child: Column(
     children: [
       _buildItemView(
         text: StrRes.topContacts,
         isBottomRadius: true,
         showSwitchButton: true,
-        // switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
-        // onTap: () => logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!),
-        // onChanged: (newValue) {
-        //   logic.chatLogic.setConversationTop(newValue);
-        //   // 刷新界面以更新开关状态
-        //   setState(() {});
-        // }
+        switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
+        onTap: () {
+          setState(() {});
+        },
+        onChanged: (newValue) {
+          setState(() {
+            logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!);
+          });
+        }
       ),
       _buildItemView(
         text: StrRes.messageNotDisturb,
         isBottomRadius: true,
         showSwitchButton: true,
-        // switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
-        // onTap: () => logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0),
-        // onChanged: (newValue) {
-        //   logic.chatLogic.setConversationTop(newValue);
-        //   // 刷新界面以更新开关状态
-        //   setState(() {});
-        // }
+        switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
+        onTap: () {
+          setState(() {});
+        },
+        onChanged: (newValue) {
+          setState(() {
+            logic.chatLogic.conversationInfo.value.recvMsgOpt = logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0;
+            logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt!);
+          });
+        }
       ),
     ]
   ),
@@ -152,10 +163,10 @@ Widget _buildItemView({
       decoration: BoxDecoration(
         color: Styles.c_FFFFFF,
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(isTopRadius ? 6.r : 0),
-          topLeft: Radius.circular(isTopRadius ? 6.r : 0),
-          bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
-          bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+          topRight: Radius.circular(isTopRadius ? 10.r : 0),
+          topLeft: Radius.circular(isTopRadius ? 10.r : 0),
+          bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
+          bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
         ),
       ),
       child: Row(

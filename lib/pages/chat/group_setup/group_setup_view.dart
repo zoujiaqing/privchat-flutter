@@ -35,14 +35,14 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
                 text: logic.isJoinedGroup.value
                     ? StrRes.exitGroup
                     : StrRes.delete,
-                textStyle: Styles.ts_FF381F_17sp,
+                textStyle: Styles.ts_FF381F_14sp,
                 showRightArrow: true,
                 onTap: logic.quitGroup,
               ),
             if (logic.isOwner)
               _buildItemView(
                 text: StrRes.dismissGroup,
-                textStyle: Styles.ts_FF381F_17sp,
+                textStyle: Styles.ts_FF381F_14sp,
                 isBottomRadius: true,
                 showRightArrow: true,
                 onTap: logic.quitGroup,
@@ -102,12 +102,12 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
                     ConstrainedBox(
                       constraints: BoxConstraints(maxWidth: 150.w),
                       child: (logic.groupInfo.value.groupName ?? '').toText
-                        ..style = Styles.ts_0C1C33_17sp
+                        ..style = Styles.ts_0C1C33_14sp
                         ..maxLines = 1
                         ..overflow = TextOverflow.ellipsis,
                     ),
                     '(${logic.groupInfo.value.memberCount ?? 0})'.toText
-                      ..style = Styles.ts_0C1C33_17sp,
+                      ..style = Styles.ts_0C1C33_14sp,
                     6.horizontalSpace,
                     if (logic.isOwnerOrAdmin)
                       ImageRes.editName.toImage
@@ -149,7 +149,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
               children: [
                 sprintf(StrRes.viewAllGroupMembers,
                     [logic.groupInfo.value.memberCount]).toText
-                  ..style = Styles.ts_0C1C33_17sp,
+                  ..style = Styles.ts_0C1C33_14sp,
                 const Spacer(),
                 ImageRes.rightArrow.toImage
                   ..width = 24.w
@@ -254,7 +254,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+    margin: EdgeInsets.symmetric(vertical: 10.h),
     child: Column(
       children: [
         _buildItemView(
@@ -277,7 +277,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+    margin: EdgeInsets.symmetric(vertical: 10.h),
     child: Column(
       children: [
         _buildItemView(
@@ -335,15 +335,15 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 6.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 6.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+              topRight: Radius.circular(isTopRadius ? 10.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
             ),
           ),
           child: Row(
             children: [
-              text.toText..style = textStyle ?? Styles.ts_0C1C33_17sp,
+              text.toText..style = textStyle ?? Styles.ts_0C1C33_14sp,
               const Spacer(),
               if (null != value) value.toText..style = Styles.ts_8E9AB0_14sp,
               if (showSwitchButton)

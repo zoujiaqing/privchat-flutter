@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Styles {
   Styles._();
 
-  static Color c_0089FF = const Color(0xFF0089FF);
+  static Color c_0089FF = const Color(0xFF0099FF);
   static Color c_0C1C33 = const Color(0xFF0C1C33);
   static Color c_8E9AB0 = const Color(0xFF8E9AB0);
   static Color c_E8EAEF = const Color(0xFFE8EAEF);
@@ -15,7 +15,7 @@ class Styles {
   static Color c_000000 = const Color(0xFF000000);
   static Color c_92B3E0 = const Color(0xFF92B3E0);
   static Color c_F2F8FF = const Color(0xFFF2F8FF);
-  static Color c_F8F9FA = const Color(0xFFF8F9FA);
+  static Color c_F8F9FA = const Color(0xFFF0F0F0);
   static Color c_6085B1 = const Color(0xFF6085B1);
   static Color c_FFB300 = const Color(0xFFFFB300);
   static Color c_FFE1DD = const Color(0xFFFFE1DD);
@@ -96,6 +96,11 @@ class Styles {
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle ts_FFFFFF_14sp_semibold = TextStyle(
+    color: c_FFFFFF,
+    fontSize: 17.sp,
+    fontWeight: FontWeight.w600,
+  );
   static TextStyle ts_FFFFFF_12sp = TextStyle(
     color: c_FFFFFF,
     fontSize: 12.sp,
@@ -164,6 +169,11 @@ class Styles {
     color: c_0C1C33,
     fontSize: 14.sp,
     fontWeight: FontWeight.w500,
+  );
+  static TextStyle ts_0C1C33_14sp_semibold = TextStyle(
+    color: c_0C1C33,
+    fontSize: 14.sp,
+    fontWeight: FontWeight.w600,
   );
   static TextStyle ts_0C1C33_17sp = TextStyle(
     color: c_0C1C33,

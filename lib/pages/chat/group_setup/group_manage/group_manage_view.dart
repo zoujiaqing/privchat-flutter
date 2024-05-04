@@ -25,6 +25,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            10.verticalSpace,
             _buildTalkView(),
             10.verticalSpace,
             _buildGroupOptionView(),
@@ -41,13 +42,22 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
     child: Column(
       children: [
         _buildItemView(
           text: StrRes.muteAllMember,
           isBottomRadius: true,
           showSwitchButton: true,
+          switchOn: logic.groupSetupLogic.groupInfo.value.status == 3,
+          onTap: () {
+            setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.groupSetupLogic.groupInfo.value.status == newValue ? 3 : 0;
+              logic.setGroupMute(newValue);
+            });
+          }
         ),
       ]
     ),
@@ -58,18 +68,37 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
     child: Column(
       children: [
         _buildItemView(
           text: StrRes.notAllowSeeMemberProfile,
           isBottomRadius: true,
           showSwitchButton: true,
+          switchOn: logic.groupSetupLogic.groupInfo.value.lookMemberInfo == 1 ? false : true,
+          onTap: () {
+            setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.groupSetupLogic.groupInfo.value.lookMemberInfo == newValue ? 0 : 1;
+              logic.setDisableViewMemberProfile(newValue);
+            });
+          }
         ),
         _buildItemView(
           text: StrRes.notAllAddMemberToBeFriend,
           isBottomRadius: true,
           showSwitchButton: true,
+          switchOn: logic.groupSetupLogic.groupInfo.value.applyMemberFriend == 1 ? false : true,
+          onTap: () {
+            setState(() {});
+          },
+          onChanged: (newValue) {
+            setState(() {
+              logic.groupSetupLogic.groupInfo.value.applyMemberFriend == newValue ? 0 : 1;
+              logic.setDisableMemberAddFriend(newValue);
+            });
+          }
         ),
         _buildItemView(
           text: StrRes.joinGroupSet,
@@ -85,7 +114,6 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       color: Styles.c_FFFFFF,
       borderRadius: BorderRadius.circular(6.r),
     ),
-    margin: EdgeInsets.symmetric(horizontal: 0.w, vertical: 0.h),
     child: Column(
       children: [
         _buildItemView(
@@ -119,10 +147,10 @@ class _GroupSetupPageState extends State<GroupManagePage> {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 6.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 6.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 6.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 6.r : 0),
+              topRight: Radius.circular(isTopRadius ? 10.r : 0),
+              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
+              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
+              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
             ),
           ),
           child: Row(

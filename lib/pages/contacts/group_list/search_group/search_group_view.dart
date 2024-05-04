@@ -57,8 +57,8 @@ class SearchGroupPage extends StatelessWidget {
                     SearchKeywordText(
                       text: info.groupName ?? '',
                       keyText: logic.searchCtrl.text.trim(),
-                      style: Styles.ts_0C1C33_17sp,
-                      keyStyle: Styles.ts_0089FF_17sp,
+                      style: Styles.ts_0C1C33_14sp,
+                      keyStyle: Styles.ts_0089FF_14sp,
                     ),
                     sprintf(StrRes.nPerson, [info.memberCount]).toText
                       ..style = Styles.ts_8E9AB0_14sp,
@@ -76,7 +76,7 @@ class SearchGroupPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             44.verticalSpace,
-            StrRes.searchNotFound.toText..style = Styles.ts_8E9AB0_17sp,
+            StrRes.searchNotFound.toText..style = Styles.ts_8E9AB0_14sp,
           ],
         ),
       );

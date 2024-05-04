@@ -45,7 +45,7 @@ class FriendRequestsPage extends StatelessWidget {
       ),
       child: Row(
         children: [
-          AvatarView(url: faceURL, text: name),
+          AvatarView(url: faceURL, text: name,),
           10.horizontalSpace,
           Expanded(
             child: Column(
@@ -53,10 +53,10 @@ class FriendRequestsPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 (name ?? '').toText
-                  ..style = Styles.ts_0C1C33_17sp
+                  ..style = Styles.ts_0C1C33_14sp
                   ..maxLines = 1
                   ..overflow = TextOverflow.ellipsis,
-                4.verticalSpace,
+                2.verticalSpace,
                 if (IMUtils.isNotNullEmptyStr(reason))
                   (reason ?? '').toText
                     ..style = Styles.ts_8E9AB0_14sp

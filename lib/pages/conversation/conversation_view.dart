@@ -21,7 +21,7 @@ class ConversationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          backgroundColor: Styles.c_F8F9FA,
+          backgroundColor: Styles.c_FFFFFF,
           appBar: TitleBar.conversation(
               statusStr: logic.imSdkStatus,
               isFailed: logic.isFailedSdkStatus,
@@ -35,20 +35,7 @@ class ConversationPage extends StatelessWidget {
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
-                    AvatarView(
-                      width: 42.w,
-                      height: 42.h,
-                      text: im.userInfo.value.nickname,
-                      url: im.userInfo.value.faceURL,
-                    ),
-                    10.horizontalSpace,
-                    if (null != im.userInfo.value.nickname)
-                      Flexible(
-                        child: im.userInfo.value.nickname!.toText
-                          ..style = Styles.ts_0C1C33_17sp
-                          ..maxLines = 1
-                          ..overflow = TextOverflow.ellipsis,
-                      ),
+                    StrRes.home.toText..style = Styles.ts_0C1C33_20sp_semibold,
                     10.horizontalSpace,
                     if (null != logic.imSdkStatus)
                       Flexible(
@@ -122,7 +109,12 @@ class ConversationPage extends StatelessWidget {
             ),
           ],
         ),
-        child: _buildItemView(info),
+        child: Column(
+            children: [
+              _buildItemView(info),
+              Divider(height: 1, color: Styles.c_E8EAEF, indent: 72.w),
+            ],
+          )
       );
 
   Widget _buildItemView(ConversationInfo info) => Ink(
@@ -131,13 +123,13 @@ class ConversationPage extends StatelessWidget {
           child: Stack(
             children: [
               Container(
-                height: 68.h,
+                height: 58.h,
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Row(
                   children: [
                     AvatarView(
-                      width: 48.w,
-                      height: 48.h,
+                      width: 42.w,
+                      height: 42.h,
                       text: logic.getShowName(info),
                       url: info.faceURL,
                       isGroup: logic.isGroupChat(info),
@@ -153,7 +145,7 @@ class ConversationPage extends StatelessWidget {
                               ConstrainedBox(
                                 constraints: BoxConstraints(maxWidth: 180.w),
                                 child: logic.getShowName(info).toText
-                                  ..style = Styles.ts_0C1C33_17sp
+                                  ..style = Styles.ts_0C1C33_14sp_medium
                                   ..maxLines = 1
                                   ..overflow = TextOverflow.ellipsis,
                               ),
@@ -208,13 +200,13 @@ class ConversationPage extends StatelessWidget {
               ),
               if (logic.isPinned(info))
                 Container(
-                  height: 68.h,
-                  margin: EdgeInsets.only(right: 6.w),
+                  height: 58.h,
+                  margin: EdgeInsets.only(right: 16.w),
                   foregroundDecoration: RotatedCornerDecoration.withColor(
                     color: Styles.c_0089FF,
-                    badgeSize: Size(8.29.w, 8.29.h),
+                    badgeSize: Size(10.w, 10.h),
                   ),
-                )
+                ),
             ],
           ),
         ),
