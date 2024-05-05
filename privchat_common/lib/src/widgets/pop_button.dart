@@ -150,7 +150,7 @@ class PopButton extends StatelessWidget {
                         padding: EdgeInsets.only(right: 12.w),
                         child: info.iconWidget,
                       ),
-                    info.text.toText..style = (menuItemTextStyle ?? Styles.ts_0C1C33_17sp),
+                    info.text.toText..style = (menuItemTextStyle ?? Styles.ts_0C1C33_14sp),
                   ],
                 )
               : Row(
@@ -163,7 +163,7 @@ class PopButton extends StatelessWidget {
                           ..width = (menuItemIconWidth ?? 20.w)
                           ..height = (menuItemIconHeight ?? 20.h),
                       ),
-                    info.text.toText..style = (menuItemTextStyle ?? Styles.ts_0C1C33_17sp),
+                    info.text.toText..style = (menuItemTextStyle ?? Styles.ts_0C1C33_14sp),
                   ],
                 ),
         ),
