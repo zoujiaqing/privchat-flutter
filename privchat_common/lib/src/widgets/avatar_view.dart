@@ -106,14 +106,19 @@ class AvatarView extends StatelessWidget {
             : Text(_showName!, style: _textStyle),
       );
 
-  Widget _networkImageAvatar() => ImageUtil.networkImage(
-        url: url!,
+  Widget _networkImageAvatar() => Container(
         width: _avatarSize,
         height: _avatarSize,
-        fit: BoxFit.cover,
-        lowMemory: lowMemory,
-        loadProgress: false,
-        errorWidget: _textAvatar(),
+        color: Colors.grey[300],
+        child: ImageUtil.networkImage(
+          url: url!,
+          width: _avatarSize,
+          height: _avatarSize,
+          fit: BoxFit.cover,
+          lowMemory: lowMemory,
+          loadProgress: false,
+          errorWidget: _textAvatar(),
+        ),
       );
 
   Widget _nineGridAvatar() => Container(

@@ -84,8 +84,6 @@ dependencies:
   syncfusion_flutter_sliders: ^23.2.4
   flutter_map: ^6.1.0
 
-  flutter_download_manager:
-    path: ../local_plugin/flutter_download_manager
   flutter_openim_sdk: any
   star_menu: ^4.0.0
 

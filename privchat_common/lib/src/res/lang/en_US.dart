@@ -4,7 +4,7 @@ const Map<String, String> en_US = {
   "plsEnterPhoneNumber": "Please enter your phone number",
   "password": "Password",
   "plsEnterPassword": "Please enter your password",
-  "account": "Pirv ID",
+  "account": "Priv ID",
   "colon": ":",
   "plsEnterAccount": "Please enter your account",
   "forgetPassword": "Forgot Password",
