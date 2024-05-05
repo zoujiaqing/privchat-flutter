@@ -79,13 +79,13 @@ class _SearchBoxState extends State<SearchBox> {
             child: TextField(
               controller: widget.controller,
               focusNode: widget.focusNode,
-              style: widget.textStyle ?? Styles.ts_0C1C33_17sp,
+              style: widget.textStyle ?? Styles.ts_0C1C33_14sp,
               autofocus: widget.autofocus,
               enabled: widget.enabled,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
                 hintText: widget.hintText ?? StrRes.search,
-                hintStyle: widget.hintStyle ?? Styles.ts_8E9AB0_17sp,
+                hintStyle: widget.hintStyle ?? Styles.ts_8E9AB0_14sp,
                 isDense: true,
                 contentPadding: EdgeInsets.zero,
                 border: InputBorder.none,

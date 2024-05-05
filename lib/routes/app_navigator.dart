@@ -89,6 +89,7 @@ class AppNavigator {
   static startUserProfilePane({
     required String userID,
     String? groupID,
+    String? account,
     String? nickname,
     String? faceURL,
     bool offAllWhenDelFriend = false,
@@ -100,6 +101,7 @@ class AppNavigator {
     final arguments = {
       'groupID': groupID,
       'userID': userID,
+      'account': account,
       'nickname': nickname,
       'faceURL': faceURL,
       'offAllWhenDelFriend': offAllWhenDelFriend,
