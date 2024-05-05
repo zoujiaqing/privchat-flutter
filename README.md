@@ -31,3 +31,16 @@ export PATH=$HOME/fvm/default/bin:$PATH
 flutter pub get
 flutter run
 ```
+
+
+## Install
+
+```bash
+# for iPhone
+flutter build ios
+flutter install --release
+
+# for Android
+flutter build apk
+flutter install --release
+```
