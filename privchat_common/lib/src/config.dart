@@ -56,7 +56,7 @@ class Config {
   static const friendScheme = "io.openim.app/addFriend/";
   static const groupScheme = "io.openim.app/joinGroup/";
   
-  static const appAuthUrl = "https://account.privchat.cn";
-  static const imApiUrl = "https://web-api.privchat.cn";
-  static const imWsUrl = "wss://api.privchat.cn";
+  static const appAuthUrl = "https://web.privchat.cn/logic";
+  static const imApiUrl = "https://web.privchat.cn/api";
+  static const imWsUrl = "wss://web.privchat.cn/gateway";
 }

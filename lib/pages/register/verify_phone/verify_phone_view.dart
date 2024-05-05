@@ -21,9 +21,7 @@ class VerifyPhonePage extends StatelessWidget {
             StrRes.enterVerificationCode.toText
               ..style = Styles.ts_0089FF_22sp_semibold,
             10.verticalSpace,
-            '${logic.areaCode} ${logic.phoneNumber} ${sprintf(StrRes.defaultVerificationCode, [
-                  '666666'
-                ])}'
+            '${logic.areaCode} ${logic.phoneNumber} ${StrRes.defaultVerificationCode}'
                 .toText
               ..style = Styles.ts_8E9AB0_12sp,
             35.verticalSpace,
@@ -54,7 +52,7 @@ class VerifyPhonePage extends StatelessWidget {
                 fieldWidth: 42.h,
               ),
               cursorColor: Colors.black,
-              animationDuration: 300.milliseconds,
+              animationDuration: 60.milliseconds,
               errorAnimationController: logic.codeErrorCtrl,
               keyboardType: TextInputType.number,
               onCompleted: (v) {
@@ -69,10 +67,10 @@ class VerifyPhonePage extends StatelessWidget {
               },
             ),
             VerifyCodeSendButton(
-              sec: 300,
+              sec: 60,
               onTapCallback: () => logic.requestVerificationCode(),
             ),
-            170.verticalSpace,
+            60.verticalSpace,
             Obx(() => Button(
                   text: StrRes.nextStep,
                   enabled: logic.enabled.value,

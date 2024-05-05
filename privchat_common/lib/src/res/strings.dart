@@ -31,6 +31,8 @@ class StrRes {
 
   static String get account => 'account'.tr;
 
+  static String get colon => 'colon'.tr;
+
   static String get plsEnterAccount => 'plsEnterAccount'.tr;
 
   static String get forgetPassword => 'forgetPassword'.tr;

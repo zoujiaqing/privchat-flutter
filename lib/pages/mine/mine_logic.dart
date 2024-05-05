@@ -17,7 +17,7 @@ class MineLogic extends GetxController {
   void viewMyInfo() => AppNavigator.startMyInfo();
 
   void copyID() {
-    IMUtils.copy(text: imLogic.userInfo.value.userID!);
+    IMUtils.copy(text: imLogic.userInfo.value.account!);
   }
 
   void accountSetup() => AppNavigator.startAccountSetup();

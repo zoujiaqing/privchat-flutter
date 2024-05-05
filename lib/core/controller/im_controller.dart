@@ -194,6 +194,7 @@ class IMController extends GetxController with IMCallback, OpenIMLive {
         val?.allowVibration = data.allowVibration;
         val?.nickname = data.nickname;
         val?.faceURL = data.faceURL;
+        val?.account = data.account;
         val?.phoneNumber = data.phoneNumber;
         val?.email = data.email;
         val?.birth = data.birth;
