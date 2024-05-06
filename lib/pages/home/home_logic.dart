@@ -71,6 +71,7 @@ class HomeLogic extends GetxController {
 
   @override
   void onInit() {
+    pushLogic.startGetui();
     imLogic.unreadMsgCountEventSubject.listen((value) {
       unreadMsgCount.value = value;
     });
@@ -80,6 +81,7 @@ class HomeLogic extends GetxController {
     imLogic.groupApplicationChangedSubject.listen((value) {
       getUnhandledGroupApplicationCount();
     });
+
     super.onInit();
   }
 

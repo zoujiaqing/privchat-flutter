@@ -121,6 +121,8 @@ flutter {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     // 个推
+    implementation 'com.getui:gtsdk:3.2.18.0'  //个推SDK
+    implementation 'com.getui:gtc:3.2.6.0'  //个推核心组件
     // 根据所需厂商选择集成
     implementation 'com.huawei.hms:push:6.11.0.300'
     implementation 'com.getui.opt:hwp:3.1.2'   // 华为
@@ -132,7 +134,7 @@ dependencies {
     implementation 'com.getui.opt:mzp:3.2.4'   // 魅族
     implementation 'com.getui.opt:ups:3.0.3'   // ups，ups目前支持坚果，索尼，海信手机
     implementation 'com.getui.opt:honor:3.6.0' // 荣耀
-
+    implementation 'com.github.yalantis:ucrop:2.2.8'
 //    implementation('com.amap.api:location:5.6.0')
     implementation 'com.android.support:multidex:1.0.3'
 }

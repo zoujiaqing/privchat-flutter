@@ -585,7 +585,7 @@ class ChatLogic extends GetxController {
   }
 
   void deleteMessage(Message message) async {
-    await OpenIM.iMManager.messageManager.deleteMessageFromLocalAndSvr(conversationID: conversationInfo.conversationID, clientMsgID: message.clientMsgID!);
+    await OpenIM.iMManager.messageManager.deleteMessageFromLocalAndSvr(conversationID: conversationInfo.value.conversationID!, clientMsgID: message.clientMsgID!);
 
 
   }

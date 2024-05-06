@@ -6,8 +6,10 @@ import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:getuiflut/getuiflut.dart';
 
 class Config {
+
   static Future init(Function() runApp) async {
     WidgetsFlutterBinding.ensureInitialized();
     try {
@@ -17,9 +19,7 @@ class Config {
       await Hive.initFlutter(path);
       HttpUtil.init();
     } catch (_) {}
-
     runApp();
-
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitDown,
@@ -31,6 +31,7 @@ class Config {
       statusBarBrightness: brightness,
       statusBarIconBrightness: brightness,
     ));
+
   }
 
   static late String cachePath;

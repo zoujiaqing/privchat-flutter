@@ -49,8 +49,9 @@
 
     <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
-
+    <uses-feature android:name="android.hardware.telephony" android:required="true"/>
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
     <!-- Provide required visibility configuration for API level 30 and above -->
@@ -107,7 +108,17 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-
+        <!-- 添加个推SDK的服务 -->
+<!--        <service android:name="com.getui.getuiflut.FlutterPushService" android:process=":pushservice"/>-->
+<!--        &lt;!&ndash; 添加个推SDK的接收器 &ndash;&gt;-->
+<!--        <receiver android:name="com.getui.getuiflut.FlutterPushService" android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                &lt;!&ndash; 接收透传消息 &ndash;&gt;-->
+<!--                <action android:name="com.getui.flutter.receive_message" />-->
+<!--                &lt;!&ndash; 接收点击通知事件 &ndash;&gt;-->
+<!--                <action android:name="com.getui.flutter.receive_notification" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
             android:exported="false"
@@ -122,9 +133,9 @@
             android:exported="false"
             android:stopWithTask="false" />
 
-        <service
-            android:name="io.openim.live.alert.flutter_privchat_live_alert.services.CallService"
-            android:exported="false" />
+<!--        <service-->
+<!--            android:name="io.openim.live.alert.flutter_privchat_live_alert.services.CallService"-->
+<!--            android:exported="false" />-->
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -147,11 +158,11 @@
         </provider>
 
 
-        <service
-            android:name="de.julianassmann.flutter_background.IsolateHolderService"
-            android:enabled="true"
-            android:exported="false"
-            android:foregroundServiceType="mediaProjection"
-            tools:targetApi="q" />
+<!--        <service-->
+<!--            android:name="de.julianassmann.flutter_background.IsolateHolderService"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="false"-->
+<!--            android:foregroundServiceType="mediaProjection"-->
+<!--            tools:targetApi="q" />-->
     </application>
 </manifest>

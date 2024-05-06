@@ -18,14 +18,14 @@ class PushController extends GetxController {
   Future<void> _init() async {
     initGetuiSdk();
 
-    if (Platform.isIOS) {
+    //if (Platform.isIOS) {
       Getuiflut().startSdk(
-        appId: "",
-        appKey: "",
-        appSecret: "",
+        appId: "0HmnOOx5CfAl2tWQLNtpp5",
+        appKey: "5cvS9boAVG7IrfO4y5k9Q2",
+        appSecret: "vGhSgYPW4e9eXbY5yNBIS7",
       );
-    }
-
+    //}
+    print("flutter pushcon -----");
     Getuiflut().addEventHandler(
       onReceiveClientId: (String message) async {
         Logger.print("Getui flutter onReceiveClientId: $message");
@@ -85,6 +85,7 @@ class PushController extends GetxController {
         Logger.print("Getui flutter onLiveActivityResult: $event");
       }
     );
+
   }
 
   Future<void> initGetuiSdk() async {
@@ -97,6 +98,78 @@ class PushController extends GetxController {
 
   void activityCreate() {
     Getuiflut().onActivityCreate();
+  }
+
+  Future<void> startGetui() async {
+    initGetuiSdk();
+
+    if (Platform.isIOS) {
+      Getuiflut().startSdk(
+        appId: "0HmnOOx5CfAl2tWQLNtpp5",
+        appKey: "5cvS9boAVG7IrfO4y5k9Q2",
+        appSecret: "vGhSgYPW4e9eXbY5yNBIS7",
+      );
+    }
+    print("flutter pushcon -----");
+    Getuiflut().addEventHandler(
+        onReceiveClientId: (String message) async {
+          Logger.print("Getui flutter onReceiveClientId: $message");
+          _getClientId = "ClientId: $message";
+        },
+        onReceiveMessageData: (Map<String, dynamic> msg) async {
+          Logger.print("Getui flutter onReceiveMessageData: $msg");
+          _payloadInfo = msg['payload'];
+        },
+        onNotificationMessageArrived: (Map<String, dynamic> msg) async {
+          Logger.print("Getui flutter onNotificationMessageArrived: $msg");
+          _notificationState = 'Arrived';
+        },
+        onNotificationMessageClicked: (Map<String, dynamic> msg) async {
+          Logger.print("Getui flutter onNotificationMessageClicked: $msg");
+          _notificationState = 'Clicked';
+        },
+        onRegisterDeviceToken: (String message) async {
+          Logger.print("Getui flutter onRegisterDeviceToken: $message");
+          _getDeviceToken = "$message";
+        },
+        onReceivePayload: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onReceivePayload: $message");
+          _onReceivePayload = "$message";
+        },
+        onReceiveNotificationResponse: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onReceiveNotificationResponse: $message");
+          _onReceiveNotificationResponse = "$message";
+        },
+        onAppLinkPayload: (String message) async {
+          Logger.print("Getui flutter onAppLinkPayload: $message");
+          _onAppLinkPayLoad = "$message";
+        },
+        onPushModeResult: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onPushModeResult: $message");
+        },
+        onSetTagResult: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onSetTagResult: $message");
+        },
+        onAliasResult: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onAliasResult: $message");
+        },
+        onQueryTagResult: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onQueryTagResult: $message");
+        },
+        onWillPresentNotification: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onWillPresentNotification: $message");
+        },
+        onOpenSettingsForNotification: (Map<String, dynamic> message) async {
+          Logger.print("Getui flutter onOpenSettingsForNotification: $message");
+        },
+        onTransmitUserMessageReceive: (Map<String, dynamic> event) async {
+          Logger.print("Getui flutter onTransmitUserMessageReceive: $event");
+        },
+        onGrantAuthorization: (String res) async {},
+        onLiveActivityResult: (Map<String, dynamic> event) async {
+          Logger.print("Getui flutter onLiveActivityResult: $event");
+        }
+    );
   }
 
   Future<void> getClientId() async {
