@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
+import 'package:privchat/widgets/chat_panel/AppWidget.dart';
+import 'package:privchat/widgets/chat_panel/chat_bottom.dart';
+import 'package:privchat/widgets/chat_panel/provider_chat_content.dart';
 import 'package:privchat_common/privchat_common.dart';
+import 'package:flutter/material.dart';
+import 'package:privchat/utils/int_ext.dart';
+import 'package:privchat/widgets/chat_panel/AppWidget.dart';
+import 'package:provider/provider.dart';
 
 import 'chat_logic.dart';
 
@@ -83,15 +91,32 @@ class ChatPage extends StatelessWidget {
             onClickCallBtn: logic.call,
           ),
           body: WaterMarkBgView(
-            // TODO: allow set markText
             // text: logic.markText,
             backgroundColor: Styles.c_FFFFFF,
+            // bottomView: ChangeNotifierProvider<ProviderChatContent>(
+            //   create: (BuildContext context) => ProviderChatContent(),
+            //   child: Consumer(builder: (BuildContext context,
+            //       ProviderChatContent providerChatContent, child) {
+            //     return Builder(
+            //       builder: (BuildContext context) {
+            //         return ChatBottom(
+            //           providerChatContent: providerChatContent,
+            //         );
+            //       },
+            //     );
+            //   }),
+            // ),
             bottomView: ChatInputBox(
               allAtMap: logic.atUserNameMappingMap,
               controller: logic.inputCtrl,
               focusNode: logic.focusNode,
               isNotInGroup: logic.isInvalidGroup,
               onSend: (v) => logic.sendTextMsg(),
+              sendAudio: logic.sendAudio,
+              emojiBox:Container(
+                color: Styles.c_F0F2F6,
+                height: 224.h,
+              ),
               toolbox: ChatToolBox(
                 onTapAlbum: logic.onTapAlbum,
                 onTapCamera: logic.onTapCamera,
