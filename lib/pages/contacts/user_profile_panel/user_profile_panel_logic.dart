@@ -44,6 +44,7 @@ class UserProfilePanelLogic extends GetxController {
   void onInit() {
     userInfo = (UserFullInfo()
           ..userID = Get.arguments['userID']
+          ..account = Get.arguments['account']
           ..nickname = Get.arguments['nickname']
           ..faceURL = Get.arguments['faceURL'])
         .obs;
@@ -191,7 +192,7 @@ class UserProfilePanelLogic extends GetxController {
   }
 
   void copyID() {
-    IMUtils.copy(text: userInfo.value.userID!);
+    IMUtils.copy(text: userInfo.value.account!);
   }
 
   void addFriend() => AppNavigator.startSendVerificationApplication(

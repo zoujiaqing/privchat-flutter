@@ -103,8 +103,6 @@ dependencies:
   synchronized: 3.0.1
   pin_code_fields: 8.0.1
 
-  flutter_download_manager:
-    path: local_plugin/flutter_download_manager
   privchat_common:
     path: privchat_common
   privchat_live:
@@ -114,7 +112,8 @@ dependencies:
 dependency_overrides:
   wechat_assets_picker: 9.0.3
   photo_manager: ^3.0.0
-  flutter_openim_sdk: 3.5.1
+  flutter_openim_sdk:
+    path: sdk
 
 dev_dependencies:
   flutter_test:

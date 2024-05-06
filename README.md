@@ -1,5 +1,6 @@
 
-# OpenIM Flutter Demo for Privchat 💬💻
+# PrivChat app
+An open source privacy-focused chat app based on the flutter framework.
 
 ## Start emulator
 ```bash
@@ -30,4 +31,17 @@ export PATH=$HOME/fvm/default/bin:$PATH
 ```bash
 flutter pub get
 flutter run
+```
+
+
+## Install
+
+```bash
+# for iPhone
+flutter build ios
+flutter install --release
+
+# for Android
+flutter build apk
+flutter install --release
 ```

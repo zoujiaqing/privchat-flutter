@@ -88,7 +88,7 @@ class UserProfilePanelPage extends StatelessWidget {
                   if (!logic.isGroupMemberPage)
                     Padding(
                       padding: EdgeInsets.only(top: 4.h),
-                      child: (logic.userInfo.value.userID ?? '').toText
+                      child: (logic.userInfo.value.account! != "" ? (StrRes.account + ": " + logic.userInfo.value.account!) : '').toText
                         ..style = Styles.ts_8E9AB0_14sp
                         ..onTap = logic.copyID,
                     ),

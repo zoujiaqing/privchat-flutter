@@ -27,14 +27,14 @@ class RegisterPage extends StatelessWidget {
                   onAreaCode: logic.openCountryCodePicker,
                   controller: logic.phoneCtrl,
                 )),
-            16.verticalSpace,
-            InputBox.invitationCode(
-              label: StrRes.invitationCode,
-              hintText: sprintf(StrRes.plsEnterInvitationCode, [
-                logic.needInvitationCodeRegister ? '' : '（${StrRes.optional}）'
-              ]),
-              controller: logic.invitationCodeCtrl,
-            ),
+            // 16.verticalSpace,
+            // InputBox.invitationCode(
+            //   label: StrRes.invitationCode,
+            //   hintText: sprintf(StrRes.plsEnterInvitationCode, [
+            //     logic.needInvitationCodeRegister ? '' : '（${StrRes.optional}）'
+            //   ]),
+            //   controller: logic.invitationCodeCtrl,
+            // ),
             30.verticalSpace,
             Obx(() => Button(
                   text: StrRes.nextStep,

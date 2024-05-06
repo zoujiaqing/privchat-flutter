@@ -38,7 +38,7 @@ class LoadingView {
         width: MediaQuery.of(context).size.width,
         color: Colors.transparent,
         child: Center(
-          child: SpinKitCircle(color: Styles.c_0089FF),
+          child: SpinKitDoubleBounce(color: Styles.c_0089FF),
         ),
       ),
     );
