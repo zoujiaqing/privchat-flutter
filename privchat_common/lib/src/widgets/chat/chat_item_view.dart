@@ -183,7 +183,7 @@ class _ChatItemViewState extends State<ChatItemView> {
       const Text('删除'),
       const Text('转发'),
     ];
-
+    print("contentType:${_message.soundElem?.duration??1}");
     if (_message.isTextType) {
       isBubbleBg = true;
       child = ChatText(
@@ -191,6 +191,22 @@ class _ChatItemViewState extends State<ChatItemView> {
         patterns: widget.patterns,
         textScaleFactor: widget.textScaleFactor,
         onVisibleTrulyText: widget.onVisibleTrulyText,
+      );
+    }if (_message.isVoiceType) {
+      isBubbleBg = true;
+      // child = ChatText(
+      //   text: _message.textElem!.content!,
+      //   patterns: widget.patterns,
+      //   textScaleFactor: widget.textScaleFactor,
+      //   onVisibleTrulyText: widget.onVisibleTrulyText,
+      // );
+      child = Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(Icons.record_voice_over_outlined,size: 15,),
+          5.horizontalSpace,
+          Text("${_message.soundElem?.duration??0}\'\'"),
+        ],
       );
     } else if (_message.isAtTextType) {
       isBubbleBg = true;

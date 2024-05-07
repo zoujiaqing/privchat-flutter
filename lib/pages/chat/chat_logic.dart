@@ -5,10 +5,13 @@ import 'dart:io';
 
 import 'package:collection/collection.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
+import 'package:flutter_sound/flutter_sound.dart';
 import 'package:get/get.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_live/privchat_live.dart';
@@ -23,7 +26,7 @@ import '../../core/controller/im_controller.dart';
 import '../../core/im_callback.dart';
 import '../../routes/app_navigator.dart';
 import '../conversation/conversation_logic.dart';
-
+import 'package:privchat_common/src/utils/event_bus_utils.dart';
 class ChatLogic extends GetxController {
   final imLogic = Get.find<IMController>();
   final appLogic = Get.find<AppController>();
@@ -121,7 +124,9 @@ class ChatLogic extends GetxController {
   void onReady() {
     _checkInBlacklist();
     _isJoinedGroup();
-
+    _mPlayer!.openPlayer().then((value) {
+      _mPlayerIsInited = true;
+    });
     super.onReady();
   }
 
@@ -268,6 +273,12 @@ class ChatLogic extends GetxController {
     });
 
     super.onInit();
+
+
+    scrollController.addListener(() {
+      eventBus.fire(HideBottomEvent());
+      FocusScope.of(Get.context!).requestFocus(FocusNode());
+    });
   }
 
   void chatSetup() => isSingleChat
@@ -312,6 +323,27 @@ class ChatLogic extends GetxController {
     atUserInfoMappingMap[OpenIM.iMManager.userID] = OpenIM.iMManager.userInfo;
   }
 
+  var _mPlayerIsInited = false;
+  FlutterSoundPlayer? _mPlayer = FlutterSoundPlayer();
+
+  playSound(String path) async {
+    log("playSoundplaySoundplaySound:${path}");
+    await _mPlayer!.startPlayer(
+    fromURI: path,
+    sampleRate: 44000,
+    codec: Codec.pcm16,
+    numChannels: 1,
+    );
+  }
+
+  sendAudio(String path,int duration) async {
+    if (duration<=1){
+      IMViews.showToast("消息太短啦");
+      return;
+    }
+    print("sendAudiosendAudiosendAudio:${path} : ${duration} : ${File(path).existsSync()}");
+    sendVoiceMsg(path: path, duration: duration);
+  }
   void sendTextMsg() async {
     var content = IMUtils.safeTrim(inputCtrl.text);
     if (content.isEmpty) return;
@@ -341,18 +373,27 @@ class ChatLogic extends GetxController {
     _sendMessage(message);
   }
 
+
+  // /storage/emulated/0/Android/data/cn.privchat.messenger/files/sound/flutter_sound_example.pcm
+  // /data/user/0/cn.privchat.messenger/app_flutter/sound/flutter_sound_example.pcm
+  // /data/user/0/cn.privchat.messenger/app_flutter//data/user/0/cn.privchat.messenger/app_flutter/flutter_sound_example.pcm
   void sendVoiceMsg({
     required String path,
     required int duration
     }) async {
-    final file = await IMUtils.compressImageAndGetFile(File(path));
 
+    var dir =await getApplicationDocumentsDirectory();
+    var descPath = "${dir.path}/flutter_sound_example.pcm";
+    print("sendVoiceMsg:${path}");
+    print("sendVoiceMsg:${descPath}");
+    var file = await File(path).copy(descPath);
     var message = await OpenIM.iMManager.messageManager.createSoundMessage(
-      soundPath: file!.path,
+      soundPath: "flutter_sound_example.pcm",
       duration: duration
     );
     _sendMessage(message);
   }
+
 
   void sendPicture({required String path}) async {
     final file = await IMUtils.compressImageAndGetFile(File(path));
@@ -539,8 +580,8 @@ class ChatLogic extends GetxController {
   }
 
   void parseClickEvent(Message msg) async {
-    log('parseClickEvent:${jsonEncode(msg)}');
     if (msg.contentType == MessageType.custom) {
+      print("asdasd");
       var data = msg.customElem!.data;
       var map = json.decode(data!);
       var customType = map['customType'];
@@ -548,7 +589,15 @@ class ChatLogic extends GetxController {
       } else if (CustomMessageType.meeting == customType) {}
       return;
     }
-    if (msg.contentType == MessageType.voice) {
+    if (msg.contentType == MessageType.voice && msg.soundElem!.sourceUrl!=null) {
+      var dir =await getApplicationDocumentsDirectory();
+      var descPath = "${dir.path}/cache/sound/${msg.clientMsgID}.pcm";
+      var file = File(descPath);
+      if (!file.existsSync()){
+        file.createSync(recursive: true);
+        await Dio().download(msg.soundElem!.sourceUrl!, descPath);
+      }
+      playSound(descPath);
       return;
     }
     IMUtils.parseClickEvent(
