@@ -431,7 +431,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
         _hideAudioRecord();
       },
       child: Container(
-        height: 61.h,
+        height: 62.h,
         child: Center(
           child: Text(
             !isAudioIng?'按住 说话':'松开 结束',
@@ -441,7 +441,6 @@ class _ChatInputBoxState extends State<ChatInputBox> {
       ),
     );
   }
-
 }
 
 class _QuoteView extends StatelessWidget {
