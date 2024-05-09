@@ -27,6 +27,8 @@ import '../../core/im_callback.dart';
 import '../../routes/app_navigator.dart';
 import '../conversation/conversation_logic.dart';
 import 'package:privchat_common/src/utils/event_bus_utils.dart';
+import 'chat_input_box.dart';
+
 class ChatLogic extends GetxController {
   final imLogic = Get.find<IMController>();
   final appLogic = Get.find<AppController>();

@@ -2,17 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
-import 'package:privchat/widgets/chat_panel/AppWidget.dart';
-import 'package:privchat/widgets/chat_panel/chat_bottom.dart';
-import 'package:privchat/widgets/chat_panel/provider_chat_content.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:flutter/material.dart';
-import 'package:privchat/utils/int_ext.dart';
-import 'package:privchat/widgets/chat_panel/AppWidget.dart';
-import 'package:provider/provider.dart';
 
 import 'chat_logic.dart';
+import 'chat_input_box.dart';
 
 class ChatPage extends StatelessWidget {
   final logic = Get.find<ChatLogic>(tag: GetTags.chat);

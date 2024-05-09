@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_common/src/utils/event_bus_utils.dart';
-import 'chat_disable_input_box.dart';
+import 'package:privchat_common/src/widgets/chat/chat_disable_input_box.dart';
 import 'package:privchat/utils/int_ext.dart';
 import 'package:privchat/widgets/chat_panel/chat_audio_mask.dart';
 import 'package:privchat/widgets/chat_panel/provider_chat_content.dart';
@@ -66,11 +66,11 @@ class ChatInputBox extends StatefulWidget {
 class HideBottomEvent{}
 
 class _ChatInputBoxState extends State<ChatInputBox> {
+  // 这个值可以根据 conversationId 记录下来状态
+  bool _voiceMode = false;
   bool _toolsVisible = false;
   bool _emojiVisible = false;
-  bool _leftKeyboardButton = true;
   bool _sendButtonVisible = false;
-
 
   double get _opacity => (widget.enabled ? 1 : .4);
 
@@ -126,41 +126,44 @@ class _ChatInputBoxState extends State<ChatInputBox> {
                       children: [
                         12.horizontalSpace,
 
-                        InkWell(onTap: (){
+                        GestureDetector(onTap: (){
                           setState(() {
-                            _leftKeyboardButton = !_leftKeyboardButton;
-                            if (!_leftKeyboardButton) {
-                              _toolsVisible = false;
-                              _emojiVisible = false;
-                            }
+                            _voiceMode = !_voiceMode;
+                            _toolsVisible = false;
+                            _emojiVisible = false;
+                            // focus 了为啥不弹出键盘？
+                            _voiceMode ? unfocus() : focus();
                           });
                         },
                         child: Padding(
                           padding:
                           EdgeInsets.all(10),
                           child: Icon(
-                            !_leftKeyboardButton?Icons.keyboard:Icons.multitrack_audio_outlined,
+                            _voiceMode ? Icons.keyboard : Icons.multitrack_audio_outlined,
                             size: 30.cale,
                             color: Colors.black,
                           ),
                         ),
                         ),
-
-
                         Expanded(
-                          child: _leftKeyboardButton?_textFiled:audioStatusPannel()
+                          child: _voiceMode ? _voiceButton() : _textFiled
                         ),
                         12.horizontalSpace,
                         GestureDetector(
-                            onTap: (){
-                              setState(() {
-                                _emojiVisible = true;
-                                _toolsVisible = false;
-                                _leftKeyboardButton = true;
-                                unfocus();
-                              });
-                            },
-                            child: Icon(_emojiVisible?Icons.keyboard:Icons.emoji_emotions_outlined, color: Colors.black,size: 40,)),
+                          onTap: (){
+                            setState(() {
+                              _emojiVisible = !_emojiVisible;
+                              _toolsVisible = false;
+                              _voiceMode = false;
+                              _emojiVisible ? unfocus() : focus();
+                            });
+                          },
+                          child: Icon(
+                            _emojiVisible ? Icons.keyboard : Icons.emoji_emotions_outlined,
+                            color: Colors.black,
+                            size: 40,
+                          )
+                        ),
                         12.horizontalSpace,
                         (_sendButtonVisible
                                 ? ImageRes.sendMessage
@@ -225,7 +228,8 @@ class _ChatInputBoxState extends State<ChatInputBox> {
     setState(() {
       _toolsVisible = !_toolsVisible;
       _emojiVisible = false;
-      _leftKeyboardButton = true;
+      _voiceMode = false;
+      // _leftKeyboardButton = true;
       if (_toolsVisible) {
         unfocus();
       } else {
@@ -247,9 +251,6 @@ class _ChatInputBoxState extends State<ChatInputBox> {
   focus() => FocusScope.of(context).requestFocus(widget.focusNode);
 
   unfocus() => FocusScope.of(context).requestFocus(FocusNode());
-
-
-
 
   bool isAudioIng = false;
   late OverlayEntry? _overlayEntry = null;
@@ -380,7 +381,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
     setState(() {
     });
   }
-  Widget audioStatusPannel(){
+  Widget _voiceButton() {
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onVerticalDragStart: (DragStartDetails details) {

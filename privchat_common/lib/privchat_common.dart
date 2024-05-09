@@ -43,7 +43,7 @@ export 'src/widgets/chat/chat_bubble.dart';
 export 'src/widgets/chat/chat_call_item_view.dart';
 export 'src/widgets/chat/chat_friend_relationship_hint_view.dart';
 export 'src/widgets/chat/chat_hint_text_view.dart';
-export 'src/widgets/chat/chat_input_box.dart';
+// export '../../lib/pages/chat/chat_input_box.dart';
 export 'src/widgets/chat/chat_item_container.dart';
 export 'src/widgets/chat/chat_item_view.dart';
 export 'src/widgets/chat/chat_listview.dart';
