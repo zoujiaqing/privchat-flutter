@@ -619,14 +619,16 @@ class ChatLogic extends GetxController {
       //复制
       case 0:
         copyText(message.textElem!.content!);
-      case 1://回复
-
-      case 2://撤销
-
-      case 3://删除
+        break;
+      case 1: //回复
+        break;
+      case 2: //撤销
+        break;
+      case 3: //删除
         deleteMessage(message);
-      case 4://转发
-
+        break;
+      case 4: //转发
+        break;
     }
   }
   void copyText(String text) {
