@@ -35,20 +35,20 @@ class LoginPage extends StatelessWidget {
                         //     _buildItemView(
                         //       label: StrRes.languageSetup,
                         //       showRightArrow: true,
-                        //       isBottomRadius: true,
+                        //       isLastItem: true,
                         //     ),
                         //     Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
                         //     _buildItemView(
                         //       label: StrRes.phoneNumber,
                         //       showRightArrow: true,
-                        //       isBottomRadius: true,
+                        //       isLastItem: true,
                         //     ),
                         //     Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w)
                         //     ,
                         //     _buildItemView(
                         //       label: StrRes.password,
                         //       showRightArrow: true,
-                        //       isBottomRadius: true,
+                        //       isLastItem: true,
                         //     ),
                         //   ],
                         // ),
@@ -116,8 +116,8 @@ class LoginPage extends StatelessWidget {
     TextStyle? textStyle,
     String? value,
     bool switchOn = false,
-    bool isTopRadius = false,
-    bool isBottomRadius = false,
+    bool isFirstItem = false,
+    bool isLastItem = false,
     bool showRightArrow = false,
     bool showSwitchButton = false,
     ValueChanged<bool>? onChanged,
@@ -128,10 +128,10 @@ class LoginPage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 10.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+              topRight: Radius.circular(isFirstItem ? 10.r : 0),
+              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
             ),
           ),
           child: InkWell(

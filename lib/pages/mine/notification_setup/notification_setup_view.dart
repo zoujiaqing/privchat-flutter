@@ -25,17 +25,17 @@ class NotificationSetupPage extends StatelessWidget {
             _buildItemView(
               label: StrRes.notDisturbMode,
               showSwitchButton: true,
-              isBottomRadius: true,
+              isLastItem: true,
             ),
             _buildItemView(
               label: StrRes.allowRing,
               showSwitchButton: true,
-              isBottomRadius: true,
+              isLastItem: true,
             ),
             _buildItemView(
               label: StrRes.allowVibrate,
               showSwitchButton: true,
-              isBottomRadius: true,
+              isLastItem: true,
             ),
           ],
         ),
@@ -48,8 +48,8 @@ class NotificationSetupPage extends StatelessWidget {
     TextStyle? textStyle,
     String? value,
     bool switchOn = false,
-    bool isTopRadius = false,
-    bool isBottomRadius = false,
+    bool isFirstItem = false,
+    bool isLastItem = false,
     bool showRightArrow = false,
     bool showSwitchButton = false,
     ValueChanged<bool>? onChanged,
@@ -61,10 +61,10 @@ class NotificationSetupPage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 10.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+              topRight: Radius.circular(isFirstItem ? 10.r : 0),
+              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
             ),
           ),
           child: InkWell(

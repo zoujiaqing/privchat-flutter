@@ -28,16 +28,16 @@ class GroupItemView extends StatelessWidget {
 class IconItemView extends StatelessWidget {
   final String icon;
   final String label;
-  final bool isTopRadius;
-  final bool isBottomRadius;
+  final bool isFirstItem;
+  final bool isLastItem;
   final VoidCallback? onTap;
 
   const IconItemView({
     Key? key,
     required this.icon,
     required this.label,
-    this.isTopRadius = false,
-    this.isBottomRadius = false,
+    this.isFirstItem = false,
+    this.isLastItem = false,
     this.onTap,
   }) : super(key: key);
 
@@ -48,10 +48,10 @@ class IconItemView extends StatelessWidget {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 10.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+              topRight: Radius.circular(isFirstItem ? 10.r : 0),
+              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
             ),
           ),
           child: InkWell(
@@ -86,6 +86,8 @@ class ItemView extends StatelessWidget {
   final bool isAvatar;
   final bool showRightArrow;
   final VoidCallback? onTap;
+  final bool isFirstItem;
+  final bool isLastItem;
 
   const ItemView({
     Key? key,
@@ -94,6 +96,8 @@ class ItemView extends StatelessWidget {
     this.url,
     this.isAvatar = false,
     this.showRightArrow = true,
+    this.isFirstItem = false,
+    this.isLastItem = false,
     this.onTap,
   }) : super(key: key);
 
@@ -102,36 +106,50 @@ class ItemView extends StatelessWidget {
     return GestureDetector(
         behavior: HitTestBehavior.translucent,
         onTap: showRightArrow ? onTap : null,
-        child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        // margin: EdgeInsets.symmetric(horizontal: 10.w),
-        child: SizedBox(
-            height: 46.h,
-            child: Row(
-              children: [
-                label.toText..style = Styles.ts_0C1C33_14sp,
-                const Spacer(),
-                if (isAvatar)
-                  AvatarView(
-                    width: 32.w,
-                    height: 32.h,
-                    url: url,
-                    text: value,
-                    textStyle: Styles.ts_FFFFFF_10sp,
-                  )
-                else
-                  Expanded(
-                      flex: 3,
-                      child: (IMUtils.emptyStrToNull(value) ?? '').toText
-                        ..style = Styles.ts_0C1C33_14sp
-                        ..maxLines = 1
-                        ..overflow = TextOverflow.ellipsis
-                        ..textAlign = TextAlign.right),
-                if (showRightArrow)
-                  ImageRes.rightArrow.toImage
-                    ..width = 20.w
-                    ..height = 20.h,
-              ],
+        child: Ink(
+          decoration: BoxDecoration(
+            color: Styles.c_FFFFFF,
+            borderRadius: BorderRadius.only(
+              topRight: Radius.circular(isFirstItem ? 10.r : 0),
+              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
+            ),
+          ),
+          child: InkWell(
+            onTap: onTap,
+            child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 16.w),
+            // margin: EdgeInsets.symmetric(horizontal: 10.w),
+            child: SizedBox(
+                height: 46.h,
+                child: Row(
+                  children: [
+                    label.toText..style = Styles.ts_0C1C33_14sp,
+                    const Spacer(),
+                    if (isAvatar)
+                      AvatarView(
+                        width: 32.w,
+                        height: 32.h,
+                        url: url,
+                        text: value,
+                        textStyle: Styles.ts_FFFFFF_10sp,
+                      )
+                    else
+                      Expanded(
+                          flex: 3,
+                          child: (IMUtils.emptyStrToNull(value) ?? '').toText
+                            ..style = Styles.ts_0C1C33_14sp
+                            ..maxLines = 1
+                            ..overflow = TextOverflow.ellipsis
+                            ..textAlign = TextAlign.right),
+                    if (showRightArrow)
+                      ImageRes.rightArrow.toImage
+                        ..width = 20.w
+                        ..height = 20.h,
+                  ],
+                ),
+              ),
             ),
           ),
         ),

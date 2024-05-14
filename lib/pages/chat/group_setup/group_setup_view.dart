@@ -43,7 +43,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
               _buildItemView(
                 text: StrRes.dismissGroup,
                 textStyle: Styles.ts_FF381F_14sp,
-                isBottomRadius: true,
+                isLastItem: true,
                 showRightArrow: true,
                 onTap: logic.quitGroup,
               ),
@@ -259,12 +259,12 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
       children: [
         _buildItemView(
           text: StrRes.groupAc,
-          isBottomRadius: true,
+          isLastItem: true,
           showRightArrow: true,
         ),
         _buildItemView(
           text: StrRes.groupManage,
-          isBottomRadius: true,
+          isLastItem: true,
           showRightArrow: true,
           onTap: logic.manageGroup,
         ),
@@ -282,7 +282,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
       children: [
         _buildItemView(
           text: StrRes.topChat,
-          isBottomRadius: true,
+          isLastItem: true,
           showSwitchButton: true,
           switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
           onTap: () {
@@ -296,7 +296,7 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
         ),
         _buildItemView(
           text: StrRes.messageNotDisturb,
-          isBottomRadius: true,
+          isLastItem: true,
           showSwitchButton: true,
           switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
           onTap: () {
@@ -318,8 +318,8 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
     TextStyle? textStyle,
     String? value,
     bool switchOn = false,
-    bool isTopRadius = false,
-    bool isBottomRadius = false,
+    bool isFirstItem = false,
+    bool isLastItem = false,
     bool showRightArrow = false,
     bool showSwitchButton = false,
     ValueChanged<bool>? onChanged,
@@ -335,10 +335,10 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 10.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+              topRight: Radius.circular(isFirstItem ? 10.r : 0),
+              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
             ),
           ),
           child: Row(

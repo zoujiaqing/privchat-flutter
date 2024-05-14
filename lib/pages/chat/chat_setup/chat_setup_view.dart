@@ -30,7 +30,7 @@ class _ChatSetupPageState extends State<ChatSetupPage> {
                 10.verticalSpace,
                 _buildItemView(
                   text: StrRes.burnAfterReading,
-                  isBottomRadius: true,
+                  isLastItem: true,
                   // onTap: logic.clearChatHistory,
                   showSwitchButton: true
                 ),
@@ -40,7 +40,7 @@ class _ChatSetupPageState extends State<ChatSetupPage> {
                   textStyle: Styles.ts_FF381F_17sp,
                   // onTap: logic.clearChatHistory,
                   showRightArrow: true,
-                  isBottomRadius: true,
+                  isLastItem: true,
                 ),
               ],
             )),
@@ -110,7 +110,7 @@ Widget _buildChatOptionView() => Container(
     children: [
       _buildItemView(
         text: StrRes.topContacts,
-        isBottomRadius: true,
+        isLastItem: true,
         showSwitchButton: true,
         switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
         onTap: () {
@@ -124,7 +124,7 @@ Widget _buildChatOptionView() => Container(
       ),
       _buildItemView(
         text: StrRes.messageNotDisturb,
-        isBottomRadius: true,
+        isLastItem: true,
         showSwitchButton: true,
         switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
         onTap: () {
@@ -146,8 +146,8 @@ Widget _buildItemView({
   TextStyle? textStyle,
   String? value,
   bool switchOn = false,
-  bool isTopRadius = false,
-  bool isBottomRadius = false,
+  bool isFirstItem = false,
+  bool isLastItem = false,
   bool showRightArrow = false,
   bool showSwitchButton = false,
   ValueChanged<bool>? onChanged,
@@ -163,10 +163,10 @@ Widget _buildItemView({
       decoration: BoxDecoration(
         color: Styles.c_FFFFFF,
         borderRadius: BorderRadius.only(
-          topRight: Radius.circular(isTopRadius ? 10.r : 0),
-          topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-          bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-          bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+          topRight: Radius.circular(isFirstItem ? 10.r : 0),
+          topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+          bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+          bottomRight: Radius.circular(isLastItem ? 10.r : 0),
         ),
       ),
       child: Row(

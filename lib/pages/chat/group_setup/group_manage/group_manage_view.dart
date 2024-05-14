@@ -46,7 +46,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       children: [
         _buildItemView(
           text: StrRes.muteAllMember,
-          isBottomRadius: true,
+          isLastItem: true,
           showSwitchButton: true,
           switchOn: logic.groupSetupLogic.groupInfo.value.status == 3,
           onTap: () {
@@ -72,7 +72,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       children: [
         _buildItemView(
           text: StrRes.notAllowSeeMemberProfile,
-          isBottomRadius: true,
+          isLastItem: true,
           showSwitchButton: true,
           switchOn: logic.groupSetupLogic.groupInfo.value.lookMemberInfo == 1 ? false : true,
           onTap: () {
@@ -87,7 +87,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
         ),
         _buildItemView(
           text: StrRes.notAllAddMemberToBeFriend,
-          isBottomRadius: true,
+          isLastItem: true,
           showSwitchButton: true,
           switchOn: logic.groupSetupLogic.groupInfo.value.applyMemberFriend == 1 ? false : true,
           onTap: () {
@@ -102,7 +102,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
         ),
         _buildItemView(
           text: StrRes.joinGroupSet,
-          isBottomRadius: true,
+          isLastItem: true,
           showRightArrow: true,
         ),
       ]
@@ -118,7 +118,7 @@ class _GroupSetupPageState extends State<GroupManagePage> {
       children: [
         _buildItemView(
           text: StrRes.transferGroupOwnerRight,
-          isBottomRadius: true,
+          isLastItem: true,
           showRightArrow: true,
         ),
       ]
@@ -130,8 +130,8 @@ class _GroupSetupPageState extends State<GroupManagePage> {
     TextStyle? textStyle,
     String? value,
     bool switchOn = false,
-    bool isTopRadius = false,
-    bool isBottomRadius = false,
+    bool isFirstItem = false,
+    bool isLastItem = false,
     bool showRightArrow = false,
     bool showSwitchButton = false,
     ValueChanged<bool>? onChanged,
@@ -147,10 +147,10 @@ class _GroupSetupPageState extends State<GroupManagePage> {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 10.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+              topRight: Radius.circular(isFirstItem ? 10.r : 0),
+              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
             ),
           ),
           child: Row(

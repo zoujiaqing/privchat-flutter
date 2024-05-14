@@ -27,14 +27,14 @@ class AccountSetupPage extends StatelessWidget {
                 _buildItemView(
                   label: StrRes.mobile,
                   showRightArrow: true,
-                  isTopRadius: true,
+                  isFirstItem: true,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w)
                 ,
                 _buildItemView(
                   label: StrRes.email,
                   showRightArrow: true,
-                  isBottomRadius: true,
+                  isLastItem: true,
                 ),
               ],
             ),
@@ -44,8 +44,8 @@ class AccountSetupPage extends StatelessWidget {
                 _buildItemView(
                   label: StrRes.changePassword,
                   showRightArrow: true,
-                  isTopRadius: true,
-                  isBottomRadius: true,
+                  isFirstItem: true,
+                  isLastItem: true,
                 ),
               ],
             ),
@@ -75,8 +75,8 @@ class AccountSetupPage extends StatelessWidget {
     TextStyle? textStyle,
     String? value,
     bool switchOn = false,
-    bool isTopRadius = false,
-    bool isBottomRadius = false,
+    bool isFirstItem = false,
+    bool isLastItem = false,
     bool showRightArrow = false,
     bool showSwitchButton = false,
     ValueChanged<bool>? onChanged,
@@ -87,10 +87,10 @@ class AccountSetupPage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Styles.c_FFFFFF,
             borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 10.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
+              topRight: Radius.circular(isFirstItem ? 10.r : 0),
+              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
+              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
+              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
             ),
           ),
           child: InkWell(
