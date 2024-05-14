@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
                         StrRes.welcome.toText
                           ..style = Styles.ts_0C1C33_20sp_semibold,
                         29.verticalSpace,
-                        // _buildCornerBgView(
+                        // _buildItemGroupView(
                         //   children: [
                         //     _buildItemView(
                         //       label: StrRes.languageSetup,
@@ -97,7 +97,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+  Widget _buildItemGroupView({required List<Widget> children}) => Container(
         // margin: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
           color: Styles.c_FFFFFF,

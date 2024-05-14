@@ -22,7 +22,7 @@ class ContactsPage extends StatelessWidget {
           child: Column(
             children: [
               10.verticalSpace,
-              _buildCornerBgView(children: [
+              _buildItemGroupView(children: [
                 _buildItemView(
                   assetsName: ImageRes.newFriend,
                   label: StrRes.newFriend,
@@ -38,7 +38,7 @@ class ContactsPage extends StatelessWidget {
                 ),
               ]),
               10.verticalSpace,
-              _buildCornerBgView(children: [
+              _buildItemGroupView(children: [
                 _buildItemView(
                   assetsName: ImageRes.myFriend,
                   label: StrRes.myFriend,
@@ -59,7 +59,7 @@ class ContactsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+  Widget _buildItemGroupView({required List<Widget> children}) => Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
           color: Styles.c_FFFFFF,

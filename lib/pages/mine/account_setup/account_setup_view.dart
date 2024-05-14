@@ -22,7 +22,7 @@ class AccountSetupPage extends StatelessWidget {
         child: Column(
           children: [
             10.verticalSpace,
-            _buildCornerBgView(
+            _buildItemGroupView(
               children: [
                 _buildItemView(
                   label: StrRes.mobile,
@@ -39,7 +39,7 @@ class AccountSetupPage extends StatelessWidget {
               ],
             ),
             10.verticalSpace,
-            _buildCornerBgView(
+            _buildItemGroupView(
               children: [
                 _buildItemView(
                   label: StrRes.changePassword,
@@ -55,7 +55,7 @@ class AccountSetupPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+  Widget _buildItemGroupView({required List<Widget> children}) => Container(
         // padding: EdgeInsets.symmetric(horizontal: 10.w),
         margin: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(

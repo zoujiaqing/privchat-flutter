@@ -22,7 +22,7 @@ class MinePage extends StatelessWidget {
           children: [
             Obx(() => _buildMyInfoView()),
             10.verticalSpace,
-            _buildCornerBgView(
+            _buildItemGroupView(
               children: [
                 _buildItemView(
                   icon: ImageRes.profileEdit,
@@ -58,7 +58,7 @@ class MinePage extends StatelessWidget {
               ],
             ),
             10.verticalSpace,
-            _buildCornerBgView(
+            _buildItemGroupView(
               children: [
                 _buildItemView(
                   icon: ImageRes.aboutUs,
@@ -69,7 +69,7 @@ class MinePage extends StatelessWidget {
                 ),
               ]),
             10.verticalSpace,
-            _buildCornerBgView(
+            _buildItemGroupView(
               children: [
                 _buildItemView(
                   icon: ImageRes.logout,
@@ -86,7 +86,6 @@ class MinePage extends StatelessWidget {
   }
 
   Widget _buildMyInfoView() => Container(
-        // height: 98.h,
         margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
@@ -149,7 +148,7 @@ class MinePage extends StatelessWidget {
         ),
       );
 
-  Widget _buildCornerBgView({required List<Widget> children}) => Container(
+  Widget _buildItemGroupView({required List<Widget> children}) => Container(
         margin: EdgeInsets.symmetric(horizontal: 10.w),
         decoration: BoxDecoration(
           color: Styles.c_FFFFFF,

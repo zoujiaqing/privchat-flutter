@@ -414,12 +414,6 @@ class _ChatInputBoxState extends State<ChatInputBox> {
       },
       onVerticalDragEnd: (DragEndDetails details) {
         _hideAudioRecord();
-        // updateRecordAudioState(
-        //   RecordAudioState(
-        //       recording: false,
-        //       recordingState: 1,
-        //       noticeMessage: 'end'),
-        // );
       },
       onVerticalDragCancel: () {
         updateRecordAudioState(
