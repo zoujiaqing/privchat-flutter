@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:get/get.dart';
 import 'package:privchat/core/controller/app_controller.dart';
@@ -51,5 +53,28 @@ class SystemSetupLogic extends GetxController {
         await OpenIM.iMManager.messageManager.deleteAllMsgFromLocalAndSvr();
       });
     }
+  }
+
+  void setLanguage(){
+    Get.bottomSheet(
+      BottomSheetView(
+        items: [
+          SheetItem(
+            label: StrRes.chinese,
+            onTap: () {
+              DataSp.putLanguage(1);
+              Get.updateLocale(Locale('zh','CN'));
+            },
+          ),
+          SheetItem(
+            label: StrRes.english,
+            onTap: () {
+              DataSp.putLanguage(2);
+              Get.updateLocale(Locale('en','US'));
+            },
+          ),
+        ],
+      ),
+    );
   }
 }

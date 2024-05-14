@@ -17,7 +17,7 @@ class ChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppView(
       builder: (locale, builder) => GetMaterialApp(
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         enableLog: true,
         builder: builder,
         logWriterCallback: Logger.print,

@@ -26,6 +26,7 @@ class SystemSetupPage extends StatelessWidget {
               label: StrRes.languageSetup,
               showRightArrow: true,
               isBottomRadius: true,
+              onTap: ()=> logic.setLanguage()
             ),
           ],
         ),
