@@ -252,7 +252,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
 
   unfocus() => FocusScope.of(context).requestFocus(FocusNode());
 
-  bool isAudioIng = false;
+  bool isRecording = false;
   late OverlayEntry? _overlayEntry = null;
   late OverlayState? _overlayState = null;
   StreamSubscription? _mRecordingDataSubscription;
@@ -341,6 +341,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
   }
 
   void _showAudioRecord() {
+    _startRecordingTimer();
     // _hideAudioRecord();
     _overlayEntry = OverlayEntry(builder: (BuildContext context) {
       return ChatAudioMask(recordAudioState: _recordState);
@@ -348,6 +349,15 @@ class _ChatInputBoxState extends State<ChatInputBox> {
     _overlayState!.insert(_overlayEntry!);
     record();
   }
+
+  void _startRecordingTimer() {
+    Timer(Duration(seconds: 10), () {
+      if (_recordState.recording) {
+        _onRecordingEnd();
+      }
+    });
+  }
+
   Future<void> _hideAudioRecord() async {
     print("_hideAudioRecord 1  ${_recordState.noticeMessage}");
     if (_overlayEntry != null) {
@@ -381,20 +391,41 @@ class _ChatInputBoxState extends State<ChatInputBox> {
     setState(() {
     });
   }
+
   Widget _voiceButton() {
+    bool isCancel = false;
+    Timer? _pressTimer;
+
+    void _startPressTimer() {
+      _pressTimer = Timer(Duration(milliseconds: 100), () {
+        _showRecordingOverlay();
+      });
+    }
+
+    void _cancelPressTimer() {
+      _pressTimer?.cancel();
+    }
+
     return GestureDetector(
       behavior: HitTestBehavior.translucent,
       onVerticalDragStart: (DragStartDetails details) {
+        if (isRecording) {
+          return; // 如果正在录制，则直接返回，避免重复启动 Timer
+        }
+        setState(() {
+          isRecording = true;
+        });
         updateRecordAudioState(
           RecordAudioState(
               recording: true,
               recordingState: 1,
               noticeMessage: '松开 发送'),
         );
-        _showAudioRecord();
+        _startPressTimer();
       },
       onVerticalDragUpdate: (DragUpdateDetails details) {
-        if (details.localPosition.dy > -150) {
+        if (details.localPosition.dy > -80) {
+          isCancel = false;
           print("松开 发送");
           updateRecordAudioState(
             RecordAudioState(
@@ -403,6 +434,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
                 noticeMessage: '松开 发送'),
           );
         } else {
+          isCancel = true;
           updateRecordAudioState(
             RecordAudioState(
                 recording: true,
@@ -413,27 +445,66 @@ class _ChatInputBoxState extends State<ChatInputBox> {
         _updateAudioRecord();
       },
       onVerticalDragEnd: (DragEndDetails details) {
-        _hideAudioRecord();
+        setState(() {
+          isRecording = false;
+        });
+        _cancelPressTimer();
+        if (!isCancel) {
+          _onRecordingEnd(); // 结束录制
+        } else {
+          _onRecordingCancel(); // 取消录制
+        }
+        //  _hideRecordingOverlay();
       },
       onVerticalDragCancel: () {
+        if (!isRecording) {
+          return; // 如果不在录制状态，则直接返回，避免重复取消录制
+        }
+        setState(() {
+          isRecording = false;
+        });
+        _cancelPressTimer();
+        _onRecordingCancel(); // 直接取消录制
         updateRecordAudioState(
           RecordAudioState(
               recording: false,
               recordingState: 1,
               noticeMessage: 'cancel'),
         );
-        _hideAudioRecord();
+        // _hideRecordingOverlay();
       },
       child: Container(
         height: 62.h,
         child: Center(
           child: Text(
-            !isAudioIng?'按住 说话':'松开 结束',
+            !isRecording ? '按住 说话' : '松开 结束',
             style: TextStyle(fontSize: 20, color: Colors.black),
           ),
         ),
       ),
     );
+  }
+
+  void _showRecordingOverlay() {
+    // 显示滑块遮罩和半透明遮罩
+    // 显示中间的状态框，状态框显示为绿色
+    _showAudioRecord();
+  }
+
+  void _hideRecordingOverlay() {
+    // 隐藏滑块遮罩和半透明遮罩
+    // 隐藏中间的状态框
+    _hideAudioRecord();
+  }
+
+  void _onRecordingEnd() {
+    print("录制结束");
+    _hideAudioRecord();
+  }
+
+  void _onRecordingCancel() {
+    print("取消录制");
+    _hideAudioRecord();
   }
 }
 
