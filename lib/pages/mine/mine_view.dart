@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
 
 import 'mine_logic.dart';
+import 'package:privchat/widgets/group_item_view.dart';
 
 class MinePage extends StatelessWidget {
   final logic = Get.find<MineLogic>();
@@ -22,34 +23,34 @@ class MinePage extends StatelessWidget {
           children: [
             Obx(() => _buildMyInfoView()),
             10.verticalSpace,
-            _buildItemGroupView(
+            GroupItemView(
               children: [
-                _buildItemView(
+                IconItemView(
                   icon: ImageRes.profileEdit,
                   label: StrRes.myInfo,
                   onTap: logic.viewMyInfo,
                   isTopRadius: true,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
-                _buildItemView(
+                IconItemView(
                   icon: ImageRes.accountSetup,
                   label: StrRes.accountSetup,
                   onTap: logic.accountSetup,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
-                _buildItemView(
+                IconItemView(
                   icon: ImageRes.notificationSetup,
                   label: StrRes.notificationSetup,
                   onTap: logic.notificationSetup,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
-                _buildItemView(
+                IconItemView(
                   icon: ImageRes.settingSetup,
                   label: StrRes.systemSetup,
                   onTap: logic.systemSetup,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
-                _buildItemView(
+                IconItemView(
                   icon: ImageRes.privacySetup,
                   label: StrRes.privacySetup,
                   onTap: logic.privacySetup,
@@ -58,9 +59,9 @@ class MinePage extends StatelessWidget {
               ],
             ),
             10.verticalSpace,
-            _buildItemGroupView(
+            GroupItemView(
               children: [
-                _buildItemView(
+                IconItemView(
                   icon: ImageRes.aboutUs,
                   label: StrRes.aboutUs,
                   onTap: logic.aboutUs,
@@ -69,9 +70,9 @@ class MinePage extends StatelessWidget {
                 ),
               ]),
             10.verticalSpace,
-            _buildItemGroupView(
+            GroupItemView(
               children: [
-                _buildItemView(
+                IconItemView(
                   icon: ImageRes.logout,
                   label: StrRes.logout,
                   onTap: logic.logout,
@@ -145,61 +146,6 @@ class MinePage extends StatelessWidget {
               ),
             )
           ],
-        ),
-      );
-
-  Widget _buildItemGroupView({required List<Widget> children}) => Container(
-        margin: EdgeInsets.symmetric(horizontal: 10.w),
-        decoration: BoxDecoration(
-          color: Styles.c_FFFFFF,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(6.r),
-            topRight: Radius.circular(6.r),
-            bottomLeft: Radius.circular(6.r),
-            bottomRight: Radius.circular(6.r),
-          ),
-        ),
-        child: Column(children: children),
-      );
-
-  Widget _buildItemView({
-    required String icon,
-    required String label,
-    bool isTopRadius = false,
-    bool isBottomRadius = false,
-    Function()? onTap,
-  }) =>
-      Container(
-        child: Ink(
-          decoration: BoxDecoration(
-            color: Styles.c_FFFFFF,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isTopRadius ? 10.r : 0),
-              topLeft: Radius.circular(isTopRadius ? 10.r : 0),
-              bottomLeft: Radius.circular(isBottomRadius ? 10.r : 0),
-              bottomRight: Radius.circular(isBottomRadius ? 10.r : 0),
-            ),
-          ),
-          child: InkWell(
-            onTap: onTap,
-            child: Container(
-              height: 48.h,
-              padding: EdgeInsets.only(left: 12.w, right: 16.w),
-              child: Row(
-                children: [
-                  icon.toImage
-                    ..width = 20.w
-                    ..height = 20.h,
-                  11.horizontalSpace,
-                  label.toText..style = Styles.ts_0C1C33_14sp,
-                  const Spacer(),
-                  ImageRes.rightArrow.toImage
-                    ..width = 20.w
-                    ..height = 20.h,
-                ],
-              ),
-            ),
-          ),
         ),
       );
 }
