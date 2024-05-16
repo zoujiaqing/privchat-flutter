@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 import 'package:collection/collection.dart';
 import 'package:common_utils/common_utils.dart';
 import 'package:dio/dio.dart';
@@ -20,7 +19,6 @@ import 'package:rxdart/subjects.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 import 'package:star_menu/star_menu.dart';
-
 import '../../core/controller/app_controller.dart';
 import '../../core/controller/im_controller.dart';
 import '../../core/im_callback.dart';
@@ -346,6 +344,7 @@ class ChatLogic extends GetxController {
     print("sendAudiosendAudiosendAudio:${path} : ${duration} : ${File(path).existsSync()}");
     sendVoiceMsg(path: path, duration: duration);
   }
+
   void sendTextMsg() async {
     var content = IMUtils.safeTrim(inputCtrl.text);
     if (content.isEmpty) return;
@@ -582,9 +581,8 @@ class ChatLogic extends GetxController {
   }
 
   void parseClickEvent(Message msg) async {
-    if (msg.contentType == MessageType.custom) {
-      print("asdasd");
-      var data = msg.customElem!.data;
+    if (msg.contentType == MessageType.text) {
+      var data = msg.customElem?.data;
       var map = json.decode(data!);
       var customType = map['customType'];
       if (CustomMessageType.call == customType && !isInBlacklist.value) {

@@ -3,17 +3,15 @@ import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
-import 'package:flutter/material.dart';
-
+import 'chat_input_box/chat_input_box_view.dart';
 import 'chat_logic.dart';
-import 'chat_input_box.dart';
 
 class ChatPage extends StatelessWidget {
   final logic = Get.find<ChatLogic>(tag: GetTags.chat);
-
   ChatPage({super.key});
 
-  Widget _buildItemView(Message message) => ChatItemView(
+  Widget _buildItemView(Message message) =>
+      ChatItemView(
         key: logic.itemKey(message),
         message: message,
         allAtMap: logic.getAtMapping(message),
@@ -53,7 +51,8 @@ class ChatPage extends StatelessWidget {
         final content = data['content'];
         final view = ChatCallItemView(type: type, content: content);
         return CustomTypeInfo(view);
-      } else if (viewType == CustomMessageType.deletedByFriend || viewType == CustomMessageType.blockedByFriend) {
+      } else if (viewType == CustomMessageType.deletedByFriend ||
+          viewType == CustomMessageType.blockedByFriend) {
         final view = ChatFriendRelationshipAbnormalHintView(
           name: logic.nickname.value,
           onTap: logic.sendFriendVerification,
@@ -104,7 +103,7 @@ class ChatPage extends StatelessWidget {
             //     );
             //   }),
             // ),
-            bottomView: ChatInputBox(
+            bottomView: ChatInputBoxPage(
               allAtMap: logic.atUserNameMappingMap,
               controller: logic.inputCtrl,
               focusNode: logic.focusNode,

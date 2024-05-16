@@ -183,7 +183,7 @@ class _ChatItemViewState extends State<ChatItemView> {
       const Text('删除'),
       const Text('转发'),
     ];
-    print("contentType:${_message.soundElem?.duration??1}");
+    print("contentType:${_message.soundElem?.duration ?? 1}");
     if (_message.isTextType) {
       isBubbleBg = true;
       child = ChatText(
@@ -192,22 +192,30 @@ class _ChatItemViewState extends State<ChatItemView> {
         textScaleFactor: widget.textScaleFactor,
         onVisibleTrulyText: widget.onVisibleTrulyText,
       );
-    }if (_message.isVoiceType) {
+    }
+    if (_message.isVoiceType) {
       isBubbleBg = true;
-      // child = ChatText(
-      //   text: _message.textElem!.content!,
-      //   patterns: widget.patterns,
-      //   textScaleFactor: widget.textScaleFactor,
-      //   onVisibleTrulyText: widget.onVisibleTrulyText,
-      // );
-      child = Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(Icons.record_voice_over_outlined,size: 15,),
-          5.horizontalSpace,
-          Text("${_message.soundElem?.duration??0}\'\'"),
-        ],
-      );
+      double voiceWidth = 0;
+      if(_message.soundElem?.duration != null){
+        int duration = _message.soundElem!.duration!;
+        if(duration < 10){
+          voiceWidth = 50.w;
+        } else if (duration < 30) {
+          voiceWidth = 100.w;
+        } else {
+          voiceWidth = 150.w;
+        }
+        child = Container(
+          constraints: BoxConstraints(maxWidth: voiceWidth),
+          child: Row(
+            children: [
+              Icon(Icons.record_voice_over_outlined,size: 15,),
+              5.horizontalSpace,
+              Text("${_message.soundElem?.duration??0}\'\'"),
+            ],
+          ),
+        );
+      }
     } else if (_message.isAtTextType) {
       isBubbleBg = true;
       child = ChatText(
@@ -240,7 +248,8 @@ class _ChatItemViewState extends State<ChatItemView> {
         }
       }
     } else if (_message.isNotificationType) {
-      if (_message.contentType == MessageType.groupInfoSetAnnouncementNotification) {
+      if (_message.contentType ==
+          MessageType.groupInfoSetAnnouncementNotification) {
       } else {
         return ConstrainedBox(
           constraints: BoxConstraints(maxWidth: maxWidth),
@@ -250,6 +259,7 @@ class _ChatItemViewState extends State<ChatItemView> {
     }
     senderNickname ??= widget.leftNickname ?? _message.senderNickname;
     senderFaceURL ??= widget.leftFaceUrl ?? _message.senderFaceUrl;
+
     return child = ChatItemContainer(
       id: _message.clientMsgID!,
       isISend: _isISend,
@@ -280,14 +290,13 @@ class _ChatItemViewState extends State<ChatItemView> {
     ).addStarMenu(
       items: upperMenuItems,
       params: StarMenuParameters.dropdown(context).copyWith(
-        backgroundParams: const BackgroundParams().copyWith(
-          sigmaX: 3,
-          sigmaY: 3,
-        ),
-        shape: MenuShape.linear,
-        useTouchAsCenter: true,
-        useLongPress: true
-      ),
+          backgroundParams: const BackgroundParams().copyWith(
+            sigmaX: 3,
+            sigmaY: 3,
+          ),
+          shape: MenuShape.linear,
+          useTouchAsCenter: true,
+          useLongPress: true),
       controller: chatItemStarMenuController,
       onItemTapped: func,
     );

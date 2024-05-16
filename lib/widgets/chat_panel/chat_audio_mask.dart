@@ -9,6 +9,7 @@ import 'provider_chat_content.dart';
 
 class ChatAudioMask extends StatefulWidget {
   final RecordAudioState recordAudioState;
+
   const ChatAudioMask({Key? key, required this.recordAudioState})
       : super(key: key);
 
@@ -19,6 +20,7 @@ class ChatAudioMask extends StatefulWidget {
 class _ChatAudioMaskState extends State<ChatAudioMask> {
   double _height = 0;
   bool _showAudioWave = false;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -55,21 +57,18 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
                           height: 100.cale,
                           width: 180.cale,
                           decoration: BoxDecoration(
-                            // color: widget.recordAudioState.recordingState == 1
-                            //     ? Color(0x8FED6D)
-                            //     : Colors.green,
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(10.cale),
-                          ),
+                              color:
+                                  widget.recordAudioState.recordingState == -1
+                                      ? Colors.red
+                                      : Colors.green,
+                              borderRadius: BorderRadius.circular(10.cale)),
                           child: Container(
-                            height: 100.cale,
-                            width: 100.cale,
-                            child: Lottie.asset(
-                              'assets/animation/record_auido.json',
-                            ),
-                          ),
-                        )
-                      : Container(), // 如果 _showAudioWave 为 false，则显示空的 Container
+                              height: 100.cale,
+                              width: 100.cale,
+                              child: Lottie.asset(
+                                  'assets/animation/record_auido.json')))
+                      : Container(),
+                  // 如果 _showAudioWave 为 false，则显示空的 Container
                 ],
               ),
             ),
@@ -84,10 +83,15 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
                         padding: EdgeInsets.all(8.0), // 根据需要调整内边距
                         decoration: BoxDecoration(
                           shape: BoxShape.circle, // 设置形状为圆形
-                          color: Colors.grey, // 设置背景颜色为灰色
+                          color: widget.recordAudioState.recordingState == -1
+                              ? Colors.red
+                              : Colors.grey, // 设置背景颜色为灰色
                         ),
                         child: IconButton(
-                          icon: Icon(Icons.close),
+                          icon: Icon(Icons.close,
+                              color: widget.recordAudioState == -1
+                                  ? Colors.white
+                                  : null),
                           onPressed: () {
                             // 可以在这里实现关闭应用或返回上一个页面的逻辑
                           },
@@ -140,7 +144,7 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
               child: AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: widget.recordAudioState.recordingState == -1 ? Colors.black45 : Colors.white,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(100.cale),
                       topRight: Radius.circular(100.cale),
