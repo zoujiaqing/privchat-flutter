@@ -1,10 +1,6 @@
-import 'dart:async';
-import 'dart:io';
 import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -37,6 +33,7 @@ class ChatInputBoxPage extends StatelessWidget {
   final Widget toolbox;
   final Widget? emojiBox;
   final ValueChanged<String>? onSend;
+  BuildContext? context;
 
   ChatInputBoxPage({
     required this.toolbox,
@@ -54,9 +51,10 @@ class ChatInputBoxPage extends StatelessWidget {
     this.isNotInGroup = false,
     this.hintText,
     this.onSend,
-  }) {
-    print("构造函数：${this.controller}");
-    state.controller = this.controller!;
+    this.context,
+  }){
+    print("LTTTTTT:构造函数init：${this.controller}");
+    // state.controller = this.controller!;
     state.atCallback = this.atCallback;
     state.sendAudio = this.sendAudio;
     state.allAtMap = this.allAtMap;
@@ -70,16 +68,16 @@ class ChatInputBoxPage extends StatelessWidget {
     state.hintText = this.hintText;
     state.toolbox = this.toolbox;
     state.emojiBox = this.emojiBox;
+    state.context = this.context;
     state.onSend = this.onSend;
-    logic.init();
+    state.setController(this.controller!);
   }
 
   double get _opacity => (state.enabled ? 1 : .4);
 
   @override
   Widget build(BuildContext context) {
-    print("builddddddddd");
-    if (!state.enabled) state.controller.clear();
+    if (!state.enabled) state.controller!.clear();
     return GetBuilder<ChatInputBoxLogic>(builder: (logic) {
       return state.isNotInGroup
           ? const ChatDisableInputBox()

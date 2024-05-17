@@ -3,29 +3,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:privchat/pages/chat/chat_logic.dart';
 import '../../../widgets/chat_panel/chat_audio_mask.dart';
 import 'chat_input_box_state.dart';
-import 'dart:async';
 import 'dart:io';
-import 'package:animate_do/animate_do.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
-import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_common/src/utils/event_bus_utils.dart';
-import 'package:privchat_common/src/widgets/chat/chat_disable_input_box.dart';
-import 'package:privchat/utils/int_ext.dart';
-import 'package:privchat/widgets/chat_panel/chat_audio_mask.dart';
 import 'package:privchat/widgets/chat_panel/provider_chat_content.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 
-class HideBottomEvent{}
+class HideBottomEvent {}
 
 class ChatInputBoxLogic extends GetxController {
   final ChatInputBoxState state = ChatInputBoxState();
@@ -41,18 +30,7 @@ class ChatInputBoxLogic extends GetxController {
   void onInit() {
     super.onInit();
     initRecord();
-    print("c----初始化");
-    state.focusNode.addListener(() {
-      if (state.focusNode.hasFocus) {
-        print("11111111");
-        state.toolsVisible = false;
-        state.emojiVisible = false;
-      }
-    });
-
-    state.controller.addListener(() {
-      state.sendButtonVisible = state.controller.text.isNotEmpty;
-    });
+    print("LTTTTTT:INIT");
     _overlayState = Overlay.of(Get.context!);
     eventBus.on<HideBottomEvent>().listen((event) {
       unfocus(Get.context!);
@@ -62,20 +40,26 @@ class ChatInputBoxLogic extends GetxController {
     update();
   }
 
-  init(){
-    print("bbbbb----初始化");
+  @override
+  void onReady() {
+    super.onReady();
+    print("LTTTTTT:ready");
     state.focusNode.addListener(() {
       if (state.focusNode.hasFocus) {
-        print("11111111");
         state.toolsVisible = false;
         state.emojiVisible = false;
       }
     });
-
-    state.controller.addListener(() {
-      state.sendButtonVisible = state.controller.text.isNotEmpty;
+    state.controller!.addListener(() {
+      state.sendButtonVisible = state.controller!.text.isNotEmpty;
+      update();
     });
-    update();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _mRecordingDataSubscription!.cancel();
   }
 
   // 开始计时
@@ -247,12 +231,11 @@ class ChatInputBoxLogic extends GetxController {
     state.toolsVisible = false;
     state.emojiVisible = false;
     // focus 了为啥不弹出键盘？
-    state.voiceMode ? unfocus(Get.context!) : focus(Get.context!);
-    print("去语音");
+    state.voiceMode ? unfocus(state.context!) : focus(state.context!);
     update();
   }
 
-  void changeButton(){
+  void changeButton() {
     print("changeButton");
     state.emojiVisible = !state.emojiVisible;
     state.toolsVisible = false;
@@ -261,9 +244,11 @@ class ChatInputBoxLogic extends GetxController {
     update();
   }
 
-  focus(BuildContext context) => FocusScope.of(context).requestFocus(state.focusNode);
+  focus(BuildContext context) =>
+      FocusScope.of(context).requestFocus(state.focusNode);
 
-  unfocus(BuildContext context) => FocusScope.of(context).requestFocus(FocusNode());
+  unfocus(BuildContext context) =>
+      FocusScope.of(context).requestFocus(FocusNode());
 
   voiceButtonDragStart(DragStartDetails details) {
     if (state.isRecording) {

@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:privchat_common/privchat_common.dart';
-
 import '../../../widgets/chat_panel/provider_chat_content.dart';
 
 typedef SendAudioCallBack = Function(String path, int duration);
@@ -22,6 +21,7 @@ class ChatInputBoxState {
   Widget? emojiBox;
   ValueChanged<String>? onSend;
   Widget? toolbox;
+  BuildContext? context;
 
   bool isCancel = false;
   bool isRecording = false;
@@ -42,9 +42,16 @@ class ChatInputBoxState {
     noticeMessage: 'init',
   );
 
-  TextEditingController controller = TextEditingController();
+  TextEditingController? controller;
   FocusNode focusNode = FocusNode();
 
+  void setController(TextEditingController newController){
+    if(controller == null){
+      controller = newController;
+    }
+  }
+
   ChatInputBoxState() {
+
   }
 }
