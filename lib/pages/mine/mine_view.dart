@@ -29,6 +29,7 @@ class MinePage extends StatelessWidget {
                   icon: ImageRes.settingSetup,
                   label: StrRes.systemSetup,
                   onTap: logic.systemSetup,
+                  isFirstItem: true,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 IconItemView(

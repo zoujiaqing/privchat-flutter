@@ -32,6 +32,7 @@ class IconItemView extends StatelessWidget {
   final bool isFirstItem;
   final bool isLastItem;
   final VoidCallback? onTap;
+  final int count;
 
   const IconItemView({
     Key? key,
@@ -40,6 +41,7 @@ class IconItemView extends StatelessWidget {
     this.isFirstItem = false,
     this.isLastItem = false,
     this.onTap,
+    this.count = 0,
   }) : super(key: key);
 
   @override
@@ -68,6 +70,7 @@ class IconItemView extends StatelessWidget {
                   11.horizontalSpace,
                   label.toText..style = Styles.ts_0C1C33_14sp,
                   const Spacer(),
+                  if (count > 0) UnreadCountView(count: count),
                   ImageRes.rightArrow.toImage
                     ..width = 20.w
                     ..height = 20.h,
