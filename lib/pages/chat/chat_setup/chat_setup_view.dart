@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
+import 'package:privchat/widgets/group_item_view.dart';
 
 import 'chat_setup_logic.dart';
 
@@ -25,31 +25,80 @@ class _ChatSetupPageState extends State<ChatSetupPage> {
       body: SingleChildScrollView(
         child: Obx(() => Column(
               children: [
-                _buildBaseInfoView(),
-                _buildChatOptionView(),
                 10.verticalSpace,
-                _buildItemView(
-                  text: StrRes.burnAfterReading,
-                  isLastItem: true,
-                  // onTap: logic.clearChatHistory,
-                  showSwitchButton: true
+
+                GroupItemView(
+                  children: [
+                      _buildBaseInfoView(),
+                    ]
+                  ),
+                10.verticalSpace,
+                GroupItemView(
+                  children: [
+                    ItemView(
+                      label: StrRes.topContacts,
+                      showSwitchButton: true,
+                      switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
+                      onTap: () {
+                        setState(() {});
+                      },
+                      onChanged: (newValue) {
+                        setState(() {
+                          logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!);
+                        });
+                      },
+                      isFirstItem: true,
+                    ),
+                    Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+                    ItemView(
+                      label: StrRes.messageNotDisturb,
+                      isLastItem: true,
+                      showSwitchButton: true,
+                      switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
+                      onTap: () {
+                        setState(() {});
+                      },
+                      onChanged: (newValue) {
+                        setState(() {
+                          logic.chatLogic.conversationInfo.value.recvMsgOpt = logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0;
+                          logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt!);
+                        });
+                      }
+                    ),
+                  ],
                 ),
                 10.verticalSpace,
-                _buildItemView(
-                  text: StrRes.clearChatHistory,
-                  textStyle: Styles.ts_FF381F_17sp,
-                  // onTap: logic.clearChatHistory,
-                  showRightArrow: true,
-                  isLastItem: true,
+                GroupItemView(
+                  children: [
+                    ItemView(
+                      label: StrRes.burnAfterReading,
+                      isLastItem: true,
+                      showSwitchButton: true,
+                      isFirstItem: true,
+                    ),
+                  ],
+                ),
+                10.verticalSpace,
+                GroupItemView(
+                  children: [
+                    ItemView(
+                      label: StrRes.clearChatHistory,
+                      textStyle: Styles.ts_FF381F_14sp,
+                      isLastItem: true,
+                      showRightArrow: true,
+                      isFirstItem: true,
+                      // onTap: logic.clearChatHistory,
+                    ),
+                  ],
                 ),
               ],
-            )),
+            ),
+          ),
       ),
     );
   }
 
   Widget _buildBaseInfoView() => Container(
-        margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
         padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
         decoration: BoxDecoration(
           color: Styles.c_FFFFFF,
@@ -99,93 +148,4 @@ class _ChatSetupPageState extends State<ChatSetupPage> {
         ),
       );
 
-
-Widget _buildChatOptionView() => Container(
-  decoration: BoxDecoration(
-    color: Styles.c_FFFFFF,
-    borderRadius: BorderRadius.circular(6.r),
-  ),
-  margin: EdgeInsets.symmetric(vertical: 0.h),
-  child: Column(
-    children: [
-      _buildItemView(
-        text: StrRes.topContacts,
-        isLastItem: true,
-        showSwitchButton: true,
-        switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
-        onTap: () {
-          setState(() {});
-        },
-        onChanged: (newValue) {
-          setState(() {
-            logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!);
-          });
-        }
-      ),
-      _buildItemView(
-        text: StrRes.messageNotDisturb,
-        isLastItem: true,
-        showSwitchButton: true,
-        switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
-        onTap: () {
-          setState(() {});
-        },
-        onChanged: (newValue) {
-          setState(() {
-            logic.chatLogic.conversationInfo.value.recvMsgOpt = logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0;
-            logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt!);
-          });
-        }
-      ),
-    ]
-  ),
-);
-
-Widget _buildItemView({
-  required String text,
-  TextStyle? textStyle,
-  String? value,
-  bool switchOn = false,
-  bool isFirstItem = false,
-  bool isLastItem = false,
-  bool showRightArrow = false,
-  bool showSwitchButton = false,
-  ValueChanged<bool>? onChanged,
-  Function()? onTap,
-}) =>
-  GestureDetector(
-    onTap: onTap,
-    behavior: HitTestBehavior.translucent,
-    child: Container(
-      height: 46.h,
-      margin: EdgeInsets.symmetric(horizontal: 10.w),
-      padding: EdgeInsets.symmetric(horizontal: 16.w),
-      decoration: BoxDecoration(
-        color: Styles.c_FFFFFF,
-        borderRadius: BorderRadius.only(
-          topRight: Radius.circular(isFirstItem ? 10.r : 0),
-          topLeft: Radius.circular(isFirstItem ? 10.r : 0),
-          bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
-          bottomRight: Radius.circular(isLastItem ? 10.r : 0),
-        ),
-      ),
-      child: Row(
-        children: [
-          text.toText..style = textStyle ?? Styles.ts_0C1C33_17sp,
-          const Spacer(),
-          if (null != value) value.toText..style = Styles.ts_8E9AB0_14sp,
-          if (showSwitchButton)
-            CupertinoSwitch(
-              value: switchOn,
-              activeColor: Styles.c_0089FF,
-              onChanged: onChanged,
-            ),
-          if (showRightArrow)
-            ImageRes.rightArrow.toImage
-              ..width = 24.w
-              ..height = 24.h,
-        ],
-      ),
-    ),
-  );
 }
