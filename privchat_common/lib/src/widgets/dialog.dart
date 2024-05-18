@@ -46,7 +46,7 @@ class CustomDialog extends StatelessWidget {
                   ),
                   child: Text(
                     title ?? '',
-                    style: Styles.ts_0C1C33_17sp,
+                    style: Styles.ts_0C1C33_14sp,
                   ),
                 ),
                 Divider(
@@ -58,7 +58,7 @@ class CustomDialog extends StatelessWidget {
                     _button(
                       bgColor: Styles.c_FFFFFF,
                       text: leftText ?? StrRes.cancel,
-                      textStyle: Styles.ts_0C1C33_17sp,
+                      textStyle: Styles.ts_0C1C33_14sp,
                       onTap: onTapLeft ?? () => Get.back(result: false),
                     ),
                     Container(
@@ -69,7 +69,7 @@ class CustomDialog extends StatelessWidget {
                     _button(
                       bgColor: Styles.c_FFFFFF,
                       text: rightText ?? StrRes.determine,
-                      textStyle: Styles.ts_0089FF_17sp,
+                      textStyle: Styles.ts_0089FF_14sp,
                       onTap: onTapRight ?? () => Get.back(result: true),
                     ),
                   ],
@@ -137,7 +137,7 @@ class ForwardHintDialog extends StatelessWidget {
               children: [
                 (list.length == 1 ? StrRes.sentTo : StrRes.sentSeparatelyTo)
                     .toText
-                  ..style = Styles.ts_0C1C33_17sp_medium,
+                  ..style = Styles.ts_0C1C33_14sp_medium,
                 5.verticalSpace,
                 list.length == 1
                     ? Row(
@@ -148,7 +148,7 @@ class ForwardHintDialog extends StatelessWidget {
                           ),
                           10.horizontalSpace,
                           (list.first['nickname'] ?? '').toText
-                            ..style = Styles.ts_0C1C33_17sp,
+                            ..style = Styles.ts_0C1C33_14sp,
                         ],
                       )
                     : ConstrainedBox(
@@ -211,11 +211,11 @@ class ForwardHintDialog extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     StrRes.cancel.toText
-                      ..style = Styles.ts_0C1C33_17sp
+                      ..style = Styles.ts_0C1C33_14sp
                       ..onTap = () => Get.back(),
                     26.horizontalSpace,
                     StrRes.determine.toText
-                      ..style = Styles.ts_0089FF_17sp
+                      ..style = Styles.ts_0089FF_14sp
                       ..onTap = () => Get.back(result: true),
                   ],
                 )

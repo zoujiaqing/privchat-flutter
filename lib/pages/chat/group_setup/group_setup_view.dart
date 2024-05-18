@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:privchat/pages/chat/group_setup/group_manage/group_manage_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:sprintf/sprintf.dart';
+import 'package:privchat/widgets/group_item_view.dart';
 
 import 'group_setup_logic.dart';
 
@@ -29,24 +30,71 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
             if (logic.isJoinedGroup.value) _buildBaseInfoView(),
             if (logic.isJoinedGroup.value) _buildMemberView(),
             if (logic.isOwnerOrAdmin) _buildManageView(),
-            _buildChatOptionView(),
+            10.verticalSpace,
+            GroupItemView(
+              children: [
+                ItemView(
+                  isFirstItem: true,
+                  label: StrRes.topChat,
+                  isLastItem: true,
+                  showSwitchButton: true,
+                  switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
+                  onTap: () {
+                    setState(() {});
+                  },
+                  onChanged: (newValue) {
+                    setState(() {
+                      logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!);
+                    });
+                  }
+                ),
+                Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+                ItemView(
+                  label: StrRes.messageNotDisturb,
+                  isLastItem: true,
+                  showSwitchButton: true,
+                  switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
+                  onTap: () {
+                    setState(() {});
+                  },
+                  onChanged: (newValue) {
+                    setState(() {
+                      logic.chatLogic.conversationInfo.value.recvMsgOpt = logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0;
+                      logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt!);
+                    });
+                  }
+                ),
+              ],
+            ),
+            10.verticalSpace,
             if (!logic.isOwner)
-              _buildItemView(
-                text: logic.isJoinedGroup.value
-                    ? StrRes.exitGroup
-                    : StrRes.delete,
-                textStyle: Styles.ts_FF381F_14sp,
-                showRightArrow: true,
-                onTap: logic.quitGroup,
-              ),
+            GroupItemView(
+              children: [
+                ItemView(
+                  label: logic.isJoinedGroup.value
+                      ? StrRes.exitGroup
+                      : StrRes.delete,
+                  textStyle: Styles.ts_FF381F_14sp,
+                  showRightArrow: true,
+                  onTap: logic.quitGroup,
+                  isFirstItem: true,
+                  isLastItem: true,
+                ),
+              ],
+            ),
             if (logic.isOwner)
-              _buildItemView(
-                text: StrRes.dismissGroup,
-                textStyle: Styles.ts_FF381F_14sp,
-                isLastItem: true,
-                showRightArrow: true,
-                onTap: logic.quitGroup,
-              ),
+            GroupItemView(
+              children: [
+                ItemView(
+                  label: StrRes.dismissGroup,
+                  textStyle: Styles.ts_FF381F_14sp,
+                  showRightArrow: true,
+                  onTap: logic.quitGroup,
+                  isFirstItem: true,
+                  isLastItem: true,
+                ),
+              ],
+            ),
             40.verticalSpace,
           ],
         ),
@@ -250,114 +298,27 @@ class _GroupSetupPageState extends State<GroupSetupPage> {
 
   
   Widget _buildManageView() => Container(
-    decoration: BoxDecoration(
-      color: Styles.c_FFFFFF,
-      borderRadius: BorderRadius.circular(6.r),
-    ),
-    margin: EdgeInsets.symmetric(vertical: 10.h),
     child: Column(
       children: [
-        _buildItemView(
-          text: StrRes.groupAc,
-          isLastItem: true,
-          showRightArrow: true,
-        ),
-        _buildItemView(
-          text: StrRes.groupManage,
-          isLastItem: true,
-          showRightArrow: true,
-          onTap: logic.manageGroup,
-        ),
-      ]
-    ),
-  );
-  
-  Widget _buildChatOptionView() => Container(
-    decoration: BoxDecoration(
-      color: Styles.c_FFFFFF,
-      borderRadius: BorderRadius.circular(6.r),
-    ),
-    margin: EdgeInsets.symmetric(vertical: 10.h),
-    child: Column(
-      children: [
-        _buildItemView(
-          text: StrRes.topChat,
-          isLastItem: true,
-          showSwitchButton: true,
-          switchOn: logic.chatLogic.conversationInfo.value.isPinned!,
-          onTap: () {
-            setState(() {});
-          },
-          onChanged: (newValue) {
-            setState(() {
-              logic.chatLogic.setConversationTop(!logic.chatLogic.conversationInfo.value.isPinned!);
-            });
-          }
-        ),
-        _buildItemView(
-          text: StrRes.messageNotDisturb,
-          isLastItem: true,
-          showSwitchButton: true,
-          switchOn: logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? false : true,
-          onTap: () {
-            setState(() {});
-          },
-          onChanged: (newValue) {
-            setState(() {
-              logic.chatLogic.conversationInfo.value.recvMsgOpt = logic.chatLogic.conversationInfo.value.recvMsgOpt == 0 ? 1 : 0;
-              logic.chatLogic.setConversationDisturb(logic.chatLogic.conversationInfo.value.recvMsgOpt!);
-            });
-          }
+        10.verticalSpace,
+        GroupItemView(
+          children: [
+            ItemView(
+              label: StrRes.groupAc,
+              isFirstItem: true,
+              showRightArrow: true,
+            ),
+            Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+            ItemView(
+              label: StrRes.groupManage,
+              isLastItem: true,
+              showRightArrow: true,
+              onTap: logic.manageGroup,
+            ),
+          ],
         ),
       ]
     ),
   );
 
-  Widget _buildItemView({
-    required String text,
-    TextStyle? textStyle,
-    String? value,
-    bool switchOn = false,
-    bool isFirstItem = false,
-    bool isLastItem = false,
-    bool showRightArrow = false,
-    bool showSwitchButton = false,
-    ValueChanged<bool>? onChanged,
-    Function()? onTap,
-  }) =>
-      GestureDetector(
-        onTap: onTap,
-        behavior: HitTestBehavior.translucent,
-        child: Container(
-          height: 46.h,
-          margin: EdgeInsets.symmetric(horizontal: 10.w),
-          padding: EdgeInsets.symmetric(horizontal: 16.w),
-          decoration: BoxDecoration(
-            color: Styles.c_FFFFFF,
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(isFirstItem ? 10.r : 0),
-              topLeft: Radius.circular(isFirstItem ? 10.r : 0),
-              bottomLeft: Radius.circular(isLastItem ? 10.r : 0),
-              bottomRight: Radius.circular(isLastItem ? 10.r : 0),
-            ),
-          ),
-          child: Row(
-            children: [
-              text.toText..style = textStyle ?? Styles.ts_0C1C33_14sp,
-              const Spacer(),
-              if (null != value) value.toText..style = Styles.ts_8E9AB0_14sp,
-              if (showSwitchButton)
-                CupertinoSwitch(
-                  value: switchOn,
-                  activeColor: Styles.c_0089FF,
-                  onChanged: onChanged,
-                ),
-              if (showRightArrow)
-                ImageRes.rightArrow.toImage
-                  ..width = 24.w
-                  ..height = 24.h,
-            ],
-          ),
-        ),
-      );
 }

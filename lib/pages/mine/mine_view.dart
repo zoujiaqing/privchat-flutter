@@ -26,10 +26,9 @@ class MinePage extends StatelessWidget {
             GroupItemView(
               children: [
                 IconItemView(
-                  icon: ImageRes.profileEdit,
-                  label: StrRes.myInfo,
-                  onTap: logic.viewMyInfo,
-                  isFirstItem: true,
+                  icon: ImageRes.settingSetup,
+                  label: StrRes.systemSetup,
+                  onTap: logic.systemSetup,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 IconItemView(
@@ -42,12 +41,6 @@ class MinePage extends StatelessWidget {
                   icon: ImageRes.notificationSetup,
                   label: StrRes.notificationSetup,
                   onTap: logic.notificationSetup,
-                ),
-                Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
-                IconItemView(
-                  icon: ImageRes.settingSetup,
-                  label: StrRes.systemSetup,
-                  onTap: logic.systemSetup,
                 ),
                 Divider(height: 1, color: Styles.c_E8EAEF, indent: 44.w),
                 IconItemView(
@@ -86,7 +79,9 @@ class MinePage extends StatelessWidget {
     );
   }
 
-  Widget _buildMyInfoView() => Container(
+  Widget _buildMyInfoView() => GestureDetector(
+        onTap: logic.viewMyInfo,
+        child: Container(
         margin: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h),
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
@@ -113,7 +108,7 @@ class MinePage extends StatelessWidget {
                   4.verticalSpace,
                   GestureDetector(
                     behavior: HitTestBehavior.translucent,
-                    onTap: logic.copyID,
+                    // onTap: logic.copyID,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -121,9 +116,9 @@ class MinePage extends StatelessWidget {
                           ..style = Styles.ts_8E9AB0_14sp,
                         (logic.imLogic.userInfo.value.account ?? '').toText
                           ..style = Styles.ts_8E9AB0_14sp,
-                        ImageRes.mineCopy.toImage
-                          ..width = 16.w
-                          ..height = 16.h,
+                        // ImageRes.mineCopy.toImage
+                        //   ..width = 16.w
+                        //   ..height = 16.h,
                       ],
                     ),
                   ),
@@ -132,7 +127,7 @@ class MinePage extends StatelessWidget {
             ),
             GestureDetector(
               behavior: HitTestBehavior.translucent,
-              onTap: logic.viewMyQrcode,
+              // onTap: logic.viewMyQrcode,
               child: Row(
                 children: [
                   ImageRes.mineQr.toImage
@@ -147,5 +142,6 @@ class MinePage extends StatelessWidget {
             )
           ],
         ),
-      );
+      ),
+    );
 }

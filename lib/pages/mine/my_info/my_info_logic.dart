@@ -18,6 +18,8 @@ class MyInfoLogic extends GetxController {
   _onChangedSefInfo(UserInfo userInfo) {}
 
   void editMyName() => AppNavigator.startEditMyInfo();
+  
+  void viewMyQrcode() => AppNavigator.startMyQrcode();
 
   void editEnglishName() => AppNavigator.startEditMyInfo(
         attr: EditAttr.englishName,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:privchat_common/privchat_common.dart';
+import 'package:flutter/cupertino.dart';
 
 class GroupItemView extends StatelessWidget {
   final List<Widget> children;
@@ -88,6 +89,11 @@ class ItemView extends StatelessWidget {
   final VoidCallback? onTap;
   final bool isFirstItem;
   final bool isLastItem;
+  final bool switchOn;
+  final bool showSwitchButton;
+  final ValueChanged<bool>? onChanged;
+  final TextStyle? textStyle;
+  final bool isQrcode;
 
   const ItemView({
     Key? key,
@@ -95,10 +101,15 @@ class ItemView extends StatelessWidget {
     this.value,
     this.url,
     this.isAvatar = false,
-    this.showRightArrow = true,
+    this.showRightArrow = false,
     this.isFirstItem = false,
     this.isLastItem = false,
     this.onTap,
+    this.switchOn = false,
+    this.showSwitchButton = false,
+    this.onChanged,
+    this.textStyle,
+    this.isQrcode = false,
   }) : super(key: key);
 
   @override
@@ -125,7 +136,7 @@ class ItemView extends StatelessWidget {
                 height: 46.h,
                 child: Row(
                   children: [
-                    label.toText..style = Styles.ts_0C1C33_14sp,
+                    label.toText..style = textStyle ?? Styles.ts_0C1C33_14sp,
                     const Spacer(),
                     if (isAvatar)
                       AvatarView(
@@ -135,6 +146,10 @@ class ItemView extends StatelessWidget {
                         text: value,
                         textStyle: Styles.ts_FFFFFF_10sp,
                       )
+                    else if (isQrcode)
+                      ImageRes.mineQr.toImage
+                        ..width = 18.w
+                        ..height = 18.h
                     else
                       Expanded(
                           flex: 3,
@@ -147,6 +162,12 @@ class ItemView extends StatelessWidget {
                       ImageRes.rightArrow.toImage
                         ..width = 20.w
                         ..height = 20.h,
+                    if (showSwitchButton)
+                      CupertinoSwitch(
+                        value: switchOn,
+                        activeColor: Styles.c_0089FF,
+                        onChanged: onChanged,
+                      ),
                   ],
                 ),
               ),
