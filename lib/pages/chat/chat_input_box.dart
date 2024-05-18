@@ -419,7 +419,8 @@ class _ChatInputBoxState extends State<ChatInputBox> {
           RecordAudioState(
               recording: true,
               recordingState: 1,
-              noticeMessage: '松开 发送'),
+              noticeMessage: StrRes.releaseToSend,
+            ),
         );
         _startPressTimer();
       },
@@ -431,7 +432,8 @@ class _ChatInputBoxState extends State<ChatInputBox> {
             RecordAudioState(
                 recording: true,
                 recordingState: 1,
-                noticeMessage: '松开 发送'),
+                noticeMessage: StrRes.releaseToSend,
+              ),
           );
         } else {
           isCancel = true;
@@ -439,7 +441,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
             RecordAudioState(
                 recording: true,
                 recordingState: -1,
-                noticeMessage: '松开 取消'),
+                noticeMessage: StrRes.releaseToCancel),
           );
         }
         _updateAudioRecord();

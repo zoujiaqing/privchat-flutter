@@ -3,6 +3,7 @@ import 'package:privchat/utils/int_ext.dart';
 import 'package:privchat/widgets/chat_panel/AppWidget.dart';
 import 'package:privchat/widgets/chat_panel/chat_audio_mask.dart';
 import 'package:privchat/widgets/chat_panel/provider_chat_content.dart';
+import 'package:privchat_common/privchat_common.dart';
 import 'chat_input_box.dart';
 
 class ChatBottom extends StatefulWidget {
@@ -144,7 +145,7 @@ class _ChatBottomState extends State<ChatBottom> with WidgetsBindingObserver {
                           widget.providerChatContent.updateRecordAudioState(
                             RecordAudioState(recording: true,
                                 recordingState: 1,
-                                noticeMessage: '松开 发送'),
+                                noticeMessage: StrRes.releaseToSend),
                           );
                           _showAudioRecord();
                         },
@@ -153,21 +154,21 @@ class _ChatBottomState extends State<ChatBottom> with WidgetsBindingObserver {
                           //     '-------------------------->onVerticalDragUpdate:${details.delta}');
                           // print(
                           //     '-------------------------->onVerticalDragUpdate:${details.localPosition.dy}');
-                          if (details.localPosition.dy > -150) {
-                            widget.providerChatContent.updateRecordAudioState(
-                              RecordAudioState(
-                                  recording: true,
-                                  recordingState: 1,
-                                  noticeMessage: '松开 发送'),
-                            );
-                          } else {
-                            widget.providerChatContent.updateRecordAudioState(
-                              RecordAudioState(
-                                  recording: true,
-                                  recordingState: -1,
-                                  noticeMessage: '松开 取消'),
-                            );
-                          }
+                          // if (details.localPosition.dy > -20) {
+                          //   widget.providerChatContent.updateRecordAudioState(
+                          //     RecordAudioState(
+                          //         recording: true,
+                          //         recordingState: 1,
+                          //         noticeMessage: StrRes.releaseToSend),
+                          //   );
+                          // } else {
+                          //   widget.providerChatContent.updateRecordAudioState(
+                          //     RecordAudioState(
+                          //         recording: true,
+                          //         recordingState: -1,
+                          //         noticeMessage: StrRes.releaseToCancel),
+                          //   );
+                          // }
                           _updateAudioRecord();
                         },
                         onVerticalDragEnd: (DragEndDetails details) {
@@ -197,11 +198,7 @@ class _ChatBottomState extends State<ChatBottom> with WidgetsBindingObserver {
                           ),
                           height: 80.cale,
                           child: Center(
-                            child: Text(
-                              '按住 说话',
-                              style: TextStyle(
-                                  fontSize: 30, color: Color(0x30000000)),
-                            ),
+                            child: StrRes.holdTalk.toText..style = Styles.ts_0089FF_22sp_semibold,
                           ),
                         ),
                       ),

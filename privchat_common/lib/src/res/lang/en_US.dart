@@ -121,6 +121,7 @@ const Map<String, String> en_US = {
   "send": "Send",
   "holdTalk": "Hold to Talk",
   "releaseToSend": "Release to Send",
+  "releaseToCancel": "Release to Cancel",
   "releaseToSendSwipeUpToCancel": "Release to Send, Swipe Up to Cancel",
   "liftFingerToCancelSend": "Lift Finger to Cancel Send",
   "callDuration": "Call Duration: %s",

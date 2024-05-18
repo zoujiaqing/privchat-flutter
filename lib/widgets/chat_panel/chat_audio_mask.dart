@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:privchat/utils/int_ext.dart';
+import 'package:privchat_common/privchat_common.dart';
 
 import 'provider_chat_content.dart';
 
@@ -45,7 +46,7 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
   Widget build(BuildContext context) {
     return Positioned(
       child: Material(
-        color: Colors.black.withOpacity(0.5),
+        color: Colors.black.withOpacity(0.8),
         child: Column(
           children: [
             Expanded(
@@ -54,12 +55,13 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
                 children: <Widget>[
                   _showAudioWave
                       ? Container(
+                        margin: EdgeInsets.only(bottom: 200.cale),
                           height: 100.cale,
                           width: 180.cale,
                           decoration: BoxDecoration(
                               color:
                                   widget.recordAudioState.recordingState == -1
-                                      ? Colors.red
+                                      ? Color.fromARGB(255, 244, 91, 91)
                                       : Colors.green,
                               borderRadius: BorderRadius.circular(10.cale)),
                           child: Container(
@@ -84,14 +86,14 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
                         decoration: BoxDecoration(
                           shape: BoxShape.circle, // 设置形状为圆形
                           color: widget.recordAudioState.recordingState == -1
-                              ? Colors.red
-                              : Colors.grey, // 设置背景颜色为灰色
+                              ? Styles.c_E8EAEF
+                              : Styles.c_E8EAEF_opacity50, // 设置背景颜色为灰色
                         ),
                         child: IconButton(
                           icon: Icon(Icons.close,
                               color: widget.recordAudioState == -1
-                                  ? Colors.white
-                                  : null),
+                                  ? Colors.black87
+                                  : Colors.black54),
                           onPressed: () {
                             // 可以在这里实现关闭应用或返回上一个页面的逻辑
                           },
@@ -100,18 +102,14 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
                       Container(
                         padding: EdgeInsets.symmetric(vertical: 10.cale),
                         alignment: Alignment.bottomCenter,
-                        child: Text(
-                          widget.recordAudioState.noticeMessage,
-                          // style: AppTextStyle.textStyle_30_F7F7F7,
-                          style: TextStyle(fontSize: 20), // 使用您需要的文本样式
-                        ),
+                        child: widget.recordAudioState.noticeMessage.toText..style = Styles.ts_E8EAEF_14sp,
                       ),
                       // 文 按钮
                       Container(
                         padding: EdgeInsets.all(8.0), // 根据需要调整内边距
                         decoration: BoxDecoration(
                           shape: BoxShape.circle, // 设置形状为圆形
-                          color: Colors.grey, // 设置背景颜色为灰色
+                          color: Styles.c_E8EAEF_opacity50, // 设置背景颜色为灰色
                         ),
                         child: TextButton(
                           style: ButtonStyle(
@@ -144,7 +142,7 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
               child: AnimatedContainer(
                   duration: const Duration(milliseconds: 150),
                   decoration: BoxDecoration(
-                    color: widget.recordAudioState.recordingState == -1 ? Colors.black45 : Colors.white,
+                    color: widget.recordAudioState.recordingState == -1 ?  Colors.grey : Styles.c_E8EAEF,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(100.cale),
                       topRight: Radius.circular(100.cale),

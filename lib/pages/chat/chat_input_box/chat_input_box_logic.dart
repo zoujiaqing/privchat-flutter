@@ -13,6 +13,7 @@ import 'package:privchat_common/src/utils/event_bus_utils.dart';
 import 'package:privchat/widgets/chat_panel/provider_chat_content.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:privchat_common/privchat_common.dart';
 
 class HideBottomEvent {}
 
@@ -257,24 +258,24 @@ class ChatInputBoxLogic extends GetxController {
     state.isRecording = true;
     updateRecordAudioState(
       RecordAudioState(
-          recording: true, recordingState: 1, noticeMessage: '松开 发送'),
+          recording: true, recordingState: 1, noticeMessage: StrRes.releaseToSend),
     );
     _startPressTimer();
   }
 
   voiceButtonDragUpdate(DragUpdateDetails details) {
-    if (details.localPosition.dy > -80) {
+    if (details.localPosition.dy > -28) {
       state.isCancel = false;
       print("松开 发送");
       updateRecordAudioState(
         RecordAudioState(
-            recording: true, recordingState: 1, noticeMessage: '松开 发送'),
+            recording: true, recordingState: 1, noticeMessage: StrRes.releaseToSend),
       );
     } else {
       state.isCancel = true;
       updateRecordAudioState(
         RecordAudioState(
-            recording: true, recordingState: -1, noticeMessage: '松开 取消'),
+            recording: true, recordingState: -1, noticeMessage: StrRes.releaseToCancel),
       );
     }
     _updateAudioRecord();

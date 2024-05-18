@@ -263,6 +263,8 @@ class StrRes {
 
   static String get releaseToSend => 'releaseToSend'.tr;
 
+  static String get releaseToCancel => 'releaseToCancel'.tr;
+
   static String get releaseToSendSwipeUpToCancel => 'releaseToSendSwipeUpToCancel'.tr;
 
   static String get liftFingerToCancelSend => 'liftFingerToCancelSend'.tr;

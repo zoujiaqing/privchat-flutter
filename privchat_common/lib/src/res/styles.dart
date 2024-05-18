@@ -110,6 +110,11 @@ class Styles {
     fontSize: 10.sp,
   );
 
+  static TextStyle ts_E8EAEF_14sp = TextStyle(
+    color: c_E8EAEF,
+    fontSize: 14.sp,
+  );
+
   static TextStyle ts_8E9AB0_10sp_semibold = TextStyle(
     color: c_8E9AB0,
     fontSize: 10.sp,
