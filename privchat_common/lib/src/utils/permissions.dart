@@ -1,4 +1,7 @@
+import 'dart:io';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:privchat_common/privchat_common.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class Permissions {
   Permissions._();
@@ -47,10 +50,27 @@ class Permissions {
   }
 
   static void photos(Function()? onGranted) async {
-    if (await Permission.photos.request().isGranted) {
-      onGranted?.call();
+    if (Platform.isAndroid) {
+      DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+      AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+      int sdkInt = androidInfo.version.sdkInt;
+      if (sdkInt >= 33) {
+        if (await Permission.photos.request().isGranted) {
+          onGranted?.call();
+        }
+        if (await Permission.photos.isPermanentlyDenied) {}
+      } else {
+        if (await Permission.storage.request().isGranted) {
+          onGranted?.call();
+        }
+        if (await Permission.storage.isPermanentlyDenied) {}
+      }
+    } else {
+      if (await Permission.photos.request().isGranted) {
+        onGranted?.call();
+      }
+      if (await Permission.photos.isPermanentlyDenied) {}
     }
-    if (await Permission.photos.isPermanentlyDenied) {}
   }
 
   static void notification(Function()? onGranted) async {

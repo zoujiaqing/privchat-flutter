@@ -168,7 +168,7 @@ class ChatInputBoxPage extends StatelessWidget {
         height: 62.h,
         child: Center(
           child: Text(
-            state.isRecording ? '按住 说话' : '松开 结束',
+            state.isRecording ? StrRes.releaseToSend : StrRes.holdTalk,
             style: TextStyle(fontSize: 20, color: Colors.black),
           ),
         ),

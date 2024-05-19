@@ -15,6 +15,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:uuid/uuid.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 
 class IMViews {
   IMViews._();
@@ -124,7 +125,8 @@ class IMViews {
             SheetItem(
               label: StrRes.toolboxAlbum,
               onTap: () {
-                Permissions.storage(() async {
+                // if android
+                Permissions.photos(() async {
                   final XFile? image = await _picker.pickImage(
                     source: ImageSource.gallery,
                   );

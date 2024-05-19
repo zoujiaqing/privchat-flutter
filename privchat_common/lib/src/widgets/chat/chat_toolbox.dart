@@ -28,11 +28,7 @@ class ChatToolBox extends StatelessWidget {
         text: StrRes.toolboxAlbum,
         icon: ImageRes.toolboxAlbum,
         onTap: () {
-          if (Platform.isAndroid) {
-            Permissions.storage(onTapAlbum);
-          } else {
-            Permissions.photos(onTapAlbum);
-          }
+          Permissions.photos(onTapAlbum);
         },
       ),
       ToolboxItemInfo(

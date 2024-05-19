@@ -1,7 +1,7 @@
-import 'dart:developer';
+import 'package:flutter/foundation.dart';
 
 class Logger {
   static void print(dynamic text, {bool isError = false}) {
-    log('** $text, isError [$isError]', name: 'OpenIM-App');
+    debugPrint('** $text, isError [$isError]');
   }
 }
