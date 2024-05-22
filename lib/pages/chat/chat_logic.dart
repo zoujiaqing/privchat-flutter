@@ -331,7 +331,7 @@ class ChatLogic extends GetxController {
     await _mPlayer!.startPlayer(
     fromURI: path,
     sampleRate: 44000,
-    codec: Codec.pcm16,
+    codec: Codec.opusWebM,
     numChannels: 1,
     );
   }

@@ -298,7 +298,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
 
   Future<IOSink> createFile() async {
     var tempDir = await getTemporaryDirectory();
-    _mPath = '${tempDir.path}/flutter_sound_example.pcm';
+    _mPath = '${tempDir.path}/flutter_audio.opus';
     var outputFile = File(_mPath!);
     if (outputFile.existsSync()) {
       await outputFile.delete();
@@ -319,7 +319,7 @@ class _ChatInputBoxState extends State<ChatInputBox> {
 
     await _mRecorder!.startRecorder(
         toStream: recordingDataController.sink,
-        codec: Codec.pcm16,
+        codec: Codec.opusWebM,
         numChannels: 1,
         sampleRate: tSampleRate,
         enableVoiceProcessing: _mEnableVoiceProcessing

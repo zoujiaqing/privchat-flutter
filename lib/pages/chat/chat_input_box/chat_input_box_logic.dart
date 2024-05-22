@@ -154,7 +154,7 @@ class ChatInputBoxLogic extends GetxController {
 
     await state.mRecorder!.startRecorder(
         toStream: recordingDataController.sink,
-        codec: Codec.pcm16,
+        codec: Codec.opusWebM,
         numChannels: 1,
         sampleRate: 44000,
         enableVoiceProcessing: false);
