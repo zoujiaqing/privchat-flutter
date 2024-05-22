@@ -1,6 +1,6 @@
-
 buildscript {
     ext.kotlin_version = '1.9.22'
+    
     repositories {
         maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
         maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' }
@@ -22,10 +22,8 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.4.2'
+        classpath 'com.android.tools.build:gradle:7.3.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.google.gms:google-services:4.4.1'  // fcm
-        classpath 'com.huawei.agconnect:agcp:1.9.1.303'    // hms
     }
 }
 
