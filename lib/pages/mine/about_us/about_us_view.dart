@@ -30,7 +30,7 @@ class AboutUsPage extends StatelessWidget {
             child: Column(
               children: [
                 23.verticalSpace,
-                ImageRes.splashLogo.toImage
+                ImageRes.loginLogo.toImage
                   ..width = 55.w
                   ..height = 55.h,
                 10.verticalSpace,
