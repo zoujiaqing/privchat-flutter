@@ -89,7 +89,7 @@ dependencies:
 
 dependency_overrides:
   wechat_assets_picker: ^9.0.3
-  photo_manager: ^3.0.0
+  photo_manager: ^3.1.1
 
 dev_dependencies:
   flutter_test:
