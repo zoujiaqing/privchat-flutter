@@ -48,6 +48,7 @@ class SearchFriendLogic extends GetxController {
 
   viewFriendInfo(ISUserInfo info) => AppNavigator.startUserProfilePane(
         userID: info.userID!,
+        account: info.account,
         offAndToNamed: true,
       );
 }

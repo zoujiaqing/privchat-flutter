@@ -125,6 +125,7 @@ class GlobalSearchLogic extends CommonSearchLogic {
 
   void viewUserProfile(UserInfo info) => AppNavigator.startUserProfilePane(
         userID: info.userID!,
+        account: info.account,
         nickname: info.nickname,
         faceURL: info.faceURL,
       );

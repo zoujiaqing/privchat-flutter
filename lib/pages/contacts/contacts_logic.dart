@@ -68,8 +68,9 @@ class ContactsLogic extends GetxController implements ViewUserProfileBridge, Sel
       );
 
   @override
-  viewUserProfile(String userID, String? nickname, String? faceURL, [String? groupID]) => AppNavigator.startUserProfilePane(
+  viewUserProfile(String userID, String? account, String? nickname, String? faceURL, [String? groupID]) => AppNavigator.startUserProfilePane(
         userID: userID,
+        account: account,
         nickname: nickname,
         faceURL: faceURL,
         groupID: groupID,

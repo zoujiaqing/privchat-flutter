@@ -37,6 +37,7 @@ class ChatSetupLogic extends GetxController {
 
   void viewUserInfo() => AppNavigator.startUserProfilePane(
         userID: conversationInfo.value.userID!,
+        account: conversationInfo.value.account!,
         nickname: conversationInfo.value.showName,
         faceURL: conversationInfo.value.faceURL,
       );

@@ -134,6 +134,7 @@ class SearchGroupMemberLogic extends GetxController {
   viewMemberInfo(GroupMembersInfo membersInfo) =>
       AppNavigator.startUserProfilePane(
         userID: membersInfo.userID!,
+        account: membersInfo.account!,
         groupID: membersInfo.groupID,
         nickname: membersInfo.nickname,
         faceURL: membersInfo.faceURL,

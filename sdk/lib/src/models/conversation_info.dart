@@ -12,6 +12,9 @@ class ConversationInfo {
   // User ID in case of a single chat
   String? userID;
 
+  // User account
+  String? account;
+
   // Group ID in case of a group chat
   String? groupID;
 
@@ -68,6 +71,7 @@ class ConversationInfo {
     required this.conversationID,
     this.conversationType,
     this.userID,
+    this.account,
     this.groupID,
     this.showName,
     this.faceURL,
@@ -90,6 +94,7 @@ class ConversationInfo {
   ConversationInfo.fromJson(Map<String, dynamic> json) : conversationID = json['conversationID'] {
     conversationType = json['conversationType'];
     userID = json['userID'];
+    account = json['account'];
     groupID = json['groupID'];
     showName = json['showName'];
     faceURL = json['faceURL'];

@@ -658,6 +658,7 @@ class ChatLogic extends GetxController {
   void viewUserInfo(UserInfo userInfo) {
     AppNavigator.startUserProfilePane(
       userID: userInfo.userID!,
+      account: userInfo.account,
       nickname: userInfo.nickname,
       faceURL: userInfo.faceURL,
       groupID: groupID,

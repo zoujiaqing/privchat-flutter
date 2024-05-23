@@ -109,6 +109,10 @@ class FullUserInfo {
     return publicInfo?.userID ?? friendInfo?.userID ?? blackInfo?.userID ?? '';
   }
 
+  String get account {
+    return publicInfo?.account ?? friendInfo?.account ?? blackInfo?.account ?? '';
+  }
+
   String get nickname {
     return publicInfo?.nickname ?? friendInfo?.nickname ?? blackInfo?.nickname ?? '';
   }
@@ -126,6 +130,9 @@ class PublicUserInfo {
   /// User ID
   String? userID;
 
+  /// User account
+  String? account;
+
   /// Nickname
   String? nickname;
 
@@ -142,6 +149,7 @@ class PublicUserInfo {
 
   PublicUserInfo({
     this.userID,
+    this.account,
     this.nickname,
     this.faceURL,
     this.appManagerLevel,
@@ -150,6 +158,7 @@ class PublicUserInfo {
 
   PublicUserInfo.fromJson(Map<String, dynamic> json) {
     userID = json['userID'];
+    account = json['account'];
     nickname = json['nickname'];
     faceURL = json['faceURL'];
     appManagerLevel = json['appManagerLevel'];
@@ -159,6 +168,7 @@ class PublicUserInfo {
   Map<String, dynamic> toJson() {
     final data = Map<String, dynamic>();
     data['userID'] = this.userID;
+    data['account'] = this.account;
     data['nickname'] = this.nickname;
     data['faceURL'] = this.faceURL;
     data['appMangerLevel'] = this.appManagerLevel;
@@ -257,6 +267,9 @@ class BlacklistInfo {
   /// User ID
   String? userID;
 
+  /// User account
+  String? account;
+
   /// Nickname
   String? nickname;
 
@@ -288,6 +301,7 @@ class BlacklistInfo {
     this.ownerUserID,
     this.blockUserID,
     this.userID,
+    this.account,
     this.nickname,
     this.faceURL,
     this.gender,
@@ -301,6 +315,7 @@ class BlacklistInfo {
     ownerUserID = json['ownerUserID'];
     blockUserID = json['blockUserID'];
     userID = json['userID'];
+    account = json['account'];
     nickname = json['nickname'];
     faceURL = json['faceURL'];
     gender = json['gender'];
@@ -315,6 +330,7 @@ class BlacklistInfo {
     data['ownerUserID'] = this.ownerUserID;
     data['blockUserID'] = this.blockUserID;
     data['userID'] = this.userID;
+    data['account'] = this.account;
     data['nickname'] = this.nickname;
     data['faceURL'] = this.faceURL;
     data['gender'] = this.gender;

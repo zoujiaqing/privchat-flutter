@@ -104,6 +104,7 @@ class UserProfilePanelLogic extends GetxController {
 
     if (null != user && null != fullInfo) {
       userInfo.update((val) {
+        val?.account = user.account;
         val?.nickname = user.nickname;
         val?.faceURL = user.faceURL;
         val?.remark = user.friendInfo?.remark;

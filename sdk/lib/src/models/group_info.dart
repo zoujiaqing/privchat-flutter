@@ -138,6 +138,9 @@ class GroupMembersInfo {
   /// User ID
   String? userID;
 
+  /// User account
+  String? account;
+
   /// Nickname
   String? nickname;
 
@@ -171,6 +174,7 @@ class GroupMembersInfo {
   GroupMembersInfo({
     this.groupID,
     this.userID,
+    this.account,
     this.roleLevel,
     this.joinTime,
     this.nickname,
@@ -186,6 +190,7 @@ class GroupMembersInfo {
   GroupMembersInfo.fromJson(Map<String, dynamic> json) {
     groupID = json['groupID'];
     userID = json['userID'];
+    account = json['account'];
     roleLevel = json['roleLevel'];
     joinTime = json['joinTime'];
     nickname = json['nickname'];
@@ -202,6 +207,7 @@ class GroupMembersInfo {
     final data = Map<String, dynamic>();
     data['groupID'] = this.groupID;
     data['userID'] = this.userID;
+    data['account'] = this.account;
     data['roleLevel'] = this.roleLevel;
     data['joinTime'] = this.joinTime;
     data['nickname'] = this.nickname;

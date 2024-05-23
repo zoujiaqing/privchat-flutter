@@ -14,7 +14,7 @@ abstract class ScanBridge {
 }
 
 abstract class ViewUserProfileBridge {
-  viewUserProfile(String userID, String? nickname, String? faceURL);
+  viewUserProfile(String userID, String? account, String? nickname, String? faceURL);
 }
 
 abstract class SelectContactsBridge {

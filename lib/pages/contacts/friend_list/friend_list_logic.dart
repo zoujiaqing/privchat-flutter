@@ -99,6 +99,7 @@ class FriendListLogic extends GetxController {
 
   void viewFriendInfo(ISUserInfo info) => AppNavigator.startUserProfilePane(
         userID: info.userID!,
+        account: info.account!,
       );
 
   void searchFriend() => AppNavigator.startSearchFriend();

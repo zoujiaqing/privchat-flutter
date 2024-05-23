@@ -108,6 +108,7 @@ class GroupSetupLogic extends GetxController {
 
   get _defaultMemberInfo => GroupMembersInfo(
         userID: OpenIM.iMManager.userID,
+        account: OpenIM.iMManager.userInfo.account,
         nickname: OpenIM.iMManager.userInfo.nickname,
       );
 
@@ -343,6 +344,7 @@ class GroupSetupLogic extends GetxController {
 
   void viewMemberInfo(GroupMembersInfo membersInfo) => AppNavigator.startUserProfilePane(
         userID: membersInfo.userID!,
+        account: membersInfo.account!,
         nickname: membersInfo.nickname,
         faceURL: membersInfo.faceURL,
         groupID: membersInfo.groupID,
