@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
+import 'package:privchat/widgets/group_item_view.dart';
 
 import 'personal_info_logic.dart';
 
@@ -21,40 +22,48 @@ class PersonalInfoPage extends StatelessWidget {
             child: Column(
               children: [
                 10.verticalSpace,
-                _buildItemGroupView(
+                GroupItemView(
                   children: [
-                    _buildItemView(
+                    ItemView(
                       label: StrRes.avatar,
                       isAvatar: true,
                       value: logic.nickname,
                       url: logic.faceURL,
+                      isFirstItem: true,
                     ),
-                    _buildItemView(
+                    Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+                    ItemView(
                       label: StrRes.name,
                       value: logic.nickname,
                     ),
-                    _buildItemView(
+                    Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+                    ItemView(
                       label: StrRes.gender,
                       value: logic.isMale ? StrRes.man : StrRes.woman,
                     ),
-                    _buildItemView(
+                    Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+                    ItemView(
                       label: StrRes.birthDay,
                       value: logic.birth,
+                      isLastItem: true,
                     ),
                   ],
                 ),
                 10.verticalSpace,
-                _buildItemGroupView(
+                GroupItemView(
                   children: [
-                    _buildItemView(
+                    ItemView(
                       label: StrRes.mobile,
                       value: logic.phoneNumber,
                       onTap: logic.clickPhoneNumber,
+                      isFirstItem: true,
                     ),
-                    _buildItemView(
+                    Divider(height: 1, color: Styles.c_E8EAEF, indent: 16.w),
+                    ItemView(
                       label: StrRes.email,
                       value: logic.email,
                       onTap: logic.clickEmail,
+                      isLastItem: true,
                     ),
                   ],
                 ),
@@ -63,50 +72,4 @@ class PersonalInfoPage extends StatelessWidget {
           )),
     );
   }
-
-  Widget _buildItemGroupView({required List<Widget> children}) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 16.w),
-        margin: EdgeInsets.symmetric(horizontal: 10.w),
-        decoration: BoxDecoration(
-          color: Styles.c_FFFFFF,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(6.r),
-            topRight: Radius.circular(6.r),
-            bottomLeft: Radius.circular(6.r),
-            bottomRight: Radius.circular(6.r),
-          ),
-        ),
-        child: Column(children: children),
-      );
-
-  Widget _buildItemView({
-    required String label,
-    String? value,
-    String? url,
-    bool isAvatar = false,
-    Function()? onTap,
-  }) =>
-      GestureDetector(
-        behavior: HitTestBehavior.translucent,
-        onTap: onTap,
-        child: SizedBox(
-          height: 46.h,
-          child: Row(
-            children: [
-              label.toText..style = Styles.ts_0C1C33_17sp,
-              const Spacer(),
-              if (null != value && !isAvatar)
-                value.toText..style = Styles.ts_0C1C33_17sp,
-              if (isAvatar)
-                AvatarView(
-                  width: 32.w,
-                  height: 32.h,
-                  url: url,
-                  text: value,
-                  textStyle: Styles.ts_FFFFFF_10sp,
-                ),
-            ],
-          ),
-        ),
-      );
 }
