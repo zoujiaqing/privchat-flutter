@@ -70,10 +70,10 @@ PODS:
   - flutter_openim_sdk (0.0.1):
     - Flutter
     - OpenIMSDKCore (= 3.5.1)
-  - flutter_sound (9.4.6):
+  - flutter_sound (9.4.11):
     - Flutter
-    - flutter_sound_core (= 9.4.6)
-  - flutter_sound_core (9.4.6)
+    - flutter_sound_core (= 9.4.11)
+  - flutter_sound_core (9.4.11)
   - flutter_webrtc (0.9.36):
     - Flutter
     - WebRTC-SDK (= 114.5735.08)
@@ -143,8 +143,6 @@ PODS:
     - Flutter
     - WebRTC-SDK (= 114.5735.08)
   - local_auth_darwin (0.0.1):
-    - Flutter
-  - local_auth_ios (0.0.1):
     - Flutter
   - Mantle (2.2.0):
     - Mantle/extobjc (= 2.2.0)
@@ -257,7 +255,6 @@ DEPENDENCIES:
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - livekit_client (from `.symlinks/plugins/livekit_client/ios`)
   - local_auth_darwin (from `.symlinks/plugins/local_auth_darwin/darwin`)
-  - local_auth_ios (from `.symlinks/plugins/local_auth_ios/ios`)
   - map_launcher (from `.symlinks/plugins/map_launcher/ios`)
   - mobile_scanner (from `.symlinks/plugins/mobile_scanner/ios`)
   - open_filex (from `.symlinks/plugins/open_filex/ios`)
@@ -358,8 +355,6 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/livekit_client/ios"
   local_auth_darwin:
     :path: ".symlinks/plugins/local_auth_darwin/darwin"
-  local_auth_ios:
-    :path: ".symlinks/plugins/local_auth_ios/ios"
   map_launcher:
     :path: ".symlinks/plugins/map_launcher/ios"
   mobile_scanner:
@@ -415,8 +410,8 @@ SPEC CHECKSUMS:
   flutter_local_notifications: 4cde75091f6327eb8517fa068a0a5950212d2086
   flutter_native_splash: edf599c81f74d093a4daf8e17bd7a018854bc778
   flutter_openim_sdk: 81a70127bb8523bc3dd4f4b8198c24a5a5596b19
-  flutter_sound: d1ed7b8bac3c4513ac5ef8b90c15f3a6b860291b
-  flutter_sound_core: 46f6f56752a209dcc72be9f09b71c8b626f70d49
+  flutter_sound: c7be258397c5881c35ab5c95ed0dd7a855394041
+  flutter_sound_core: 7397a34d3b31224ade1289c5fc4621a613d4d9f7
   flutter_webrtc: 55df3aaa802114dad390191a46c2c8d535751268
   getuiflut: 8628ba2b64a738a847a07d2b67e0ac305778e2ee
   GoogleDataTransport: 6c09b596d841063d76d4288cc2d2f42cc36e1e2a
@@ -434,7 +429,6 @@ SPEC CHECKSUMS:
   libwebp: 1786c9f4ff8a279e4dac1e8f385004d5fc253009
   livekit_client: 108b5e32d6036dfc1af5e2237251d2b723a10f76
   local_auth_darwin: 4d56c90c2683319835a61274b57620df9c4520ab
-  local_auth_ios: c6cf091ded637a88f24f86a8875d8b0f526e2605
   Mantle: c5aa8794a29a022dfbbfc9799af95f477a69b62d
   map_launcher: e325db1261d029ff33e08e03baccffe09593ffea
   MLImage: 7bb7c4264164ade9bf64f679b40fb29c8f33ee9b
