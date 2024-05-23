@@ -3,7 +3,7 @@ import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
-import 'chat_input_box/chat_input_box_view.dart';
+import '../../widgets/chat_input_box/chat_input_box_view.dart';
 import 'chat_logic.dart';
 
 class ChatPage extends StatelessWidget {
@@ -103,7 +103,7 @@ class ChatPage extends StatelessWidget {
             //     );
             //   }),
             // ),
-            bottomView: ChatInputBoxPage(
+            bottomView: ChatInputBoxView(
               allAtMap: logic.atUserNameMappingMap,
               controller: logic.inputCtrl,
               focusNode: logic.focusNode,

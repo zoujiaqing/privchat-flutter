@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:privchat_common/privchat_common.dart';
-import '../../../widgets/chat_panel/provider_chat_content.dart';
+import 'chat_audio_mask.dart';
 
 typedef SendAudioCallBack = Function(String path, int duration);
 typedef clickEmojiCallBack = Function();

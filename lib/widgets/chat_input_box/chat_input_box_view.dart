@@ -14,7 +14,7 @@ double kInputBoxMinHeight = 56.h;
 typedef SendAudioCallBack = Function(String path, int duration);
 typedef clickEmojiCallBack = Function();
 
-class ChatInputBoxPage extends StatelessWidget {
+class ChatInputBoxView extends StatelessWidget {
   final state = Get.find<ChatInputBoxLogic>().state;
   final logic = ChatInputBoxLogic();
 
@@ -35,7 +35,7 @@ class ChatInputBoxPage extends StatelessWidget {
   final ValueChanged<String>? onSend;
   BuildContext? context;
 
-  ChatInputBoxPage({
+  ChatInputBoxView({
     required this.toolbox,
     this.emojiBox,
     this.allAtMap = const {},

@@ -6,8 +6,6 @@ import 'package:lottie/lottie.dart';
 import 'package:privchat/utils/int_ext.dart';
 import 'package:privchat_common/privchat_common.dart';
 
-import 'provider_chat_content.dart';
-
 class ChatAudioMask extends StatefulWidget {
   final RecordAudioState recordAudioState;
 
@@ -172,3 +170,14 @@ class _ChatAudioMaskState extends State<ChatAudioMask> {
     super.dispose();
   }
 }
+
+class RecordAudioState {
+  final bool recording;
+  int recordingState;
+  final String noticeMessage;
+  RecordAudioState(
+      {required this.recording,
+        required this.recordingState,
+        required this.noticeMessage});
+}
+
