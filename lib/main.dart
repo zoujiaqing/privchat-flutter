@@ -11,7 +11,7 @@ void main() {
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarColor: Styles.c_F8F9FA,
       systemNavigationBarDividerColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
