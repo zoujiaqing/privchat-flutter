@@ -38,12 +38,12 @@ class Config {
   static const uiW = 375.0;
   static const uiH = 812.0;
 
-  static const String deptName = "OpenIM";
+  static const String deptName = "PrivChat";
   static const String deptID = '0';
 
   static const double textScaleFactor = 1.0;
 
-  static const secret = 'tuoyun';
+  static const secret = 'privchat';
 
   static const mapKey = '';
 
@@ -54,8 +54,8 @@ class Config {
     iOSPushSound: '+1',
   );
 
-  static const friendScheme = "io.openim.app/addFriend/";
-  static const groupScheme = "io.openim.app/joinGroup/";
+  static const friendScheme = "cn.privchat.messenger/addFriend/";
+  static const groupScheme = "cn.privchat.messenger/joinGroup/";
   
   static const appAuthUrl = "https://web.privchat.cn/logic";
   static const imApiUrl = "https://web.privchat.cn/api";
