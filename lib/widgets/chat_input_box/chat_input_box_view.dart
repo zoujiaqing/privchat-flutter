@@ -8,6 +8,7 @@ import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_common/src/widgets/chat/chat_disable_input_box.dart';
 import 'package:privchat/utils/int_ext.dart';
 import 'chat_input_box_logic.dart';
+import 'dart:io';
 
 double kInputBoxMinHeight = 56.h;
 
@@ -77,6 +78,13 @@ class ChatInputBoxView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double bottomPadding = 0;
+    if (Platform.isIOS) {
+      bottomPadding = 16.h;
+    } else {
+      bottomPadding = 16.h;
+    }
+
     if (!state.enabled) state.controller!.clear();
     return GetBuilder<ChatInputBoxLogic>(builder: (logic) {
       return state.isNotInGroup
@@ -86,6 +94,7 @@ class ChatInputBoxView extends StatelessWidget {
               : Column(
                   children: [
                     Container(
+                      padding: EdgeInsets.only(bottom: bottomPadding),
                       constraints:
                           BoxConstraints(minHeight: kInputBoxMinHeight),
                       color: Styles.c_F0F2F6,

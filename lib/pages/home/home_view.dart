@@ -20,6 +20,8 @@ class HomePage extends StatelessWidget {
     double bottomPadding = 0;
     if (Platform.isIOS) {
       bottomPadding = 16.h;
+    } else {
+      bottomPadding = 16.h;
     }
     return Obx(() => Scaffold(
           backgroundColor: Styles.c_FFFFFF,

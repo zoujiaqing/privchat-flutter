@@ -8,12 +8,14 @@ import 'app.dart';
 
 void main() {
   Config.init(() => runApp(const ChatApp()));
+  WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isAndroid) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: []);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Styles.c_F8F9FA,
-      systemNavigationBarDividerColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.dark,
+      systemNavigationBarColor: Colors.lightBlue,
+      statusBarColor: Colors.lightBlue,
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarIconBrightness: Brightness.light,
     ));
   }
 }
