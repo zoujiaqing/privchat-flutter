@@ -76,10 +76,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'openim'
-            keyPassword 'openim'
-            storeFile file('./openim')
-            storePassword 'openim'
+            keyAlias 'privchat'
+            keyPassword 'privchat'
+            storeFile file('./privchat')
+            storePassword 'privchat'
         }
     }
 
