@@ -613,6 +613,11 @@ class ChatLogic extends GetxController {
       playSound(descPath);
       return;
     }
+
+    if (msg.contentType == MessageType.picture) {
+      onTapPicture(msg);
+      return;
+    }
     IMUtils.parseClickEvent(
       msg,
       messageList: messageList,
@@ -648,10 +653,17 @@ class ChatLogic extends GetxController {
     IMViews.showToast(StrRes.copySuccessfully);
   }
 
-  void deleteMessage(Message message) async {
-    await OpenIM.iMManager.messageManager.deleteMessageFromLocalAndSvr(conversationID: conversationInfo.value.conversationID!, clientMsgID: message.clientMsgID!);
+  void deleteMessage(Message message) {
+    messageList.remove(message);
+    messageList.refresh();
+    IMViews.showToast("删除成功");
 
+  }
 
+  void onTapPicture(Message message) {
+    print("123123message");
+    print(message.pictureElem?.bigPicture?.url ?? "");
+    AppNavigator.startCheckHighImage(imageUrl: message.pictureElem?.bigPicture?.url.toString() ?? "");
   }
 
   void onTapLeftAvatar(Message message) {

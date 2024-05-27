@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:privchat_common/privchat_common.dart';
@@ -23,6 +24,10 @@ class HomePage extends StatelessWidget {
     } else {
       bottomPadding = 16.h;
     }
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.green,
+      systemNavigationBarColor: Colors.green,
+    ));
     return Obx(() => Scaffold(
           backgroundColor: Styles.c_FFFFFF,
           body: IndexedStack(

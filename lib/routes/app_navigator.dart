@@ -247,6 +247,9 @@ class AppNavigator {
         'type': type,
       });
 
+  static startCheckHighImage({required String imageUrl}) =>
+      Get.toNamed(AppRoutes.checkHighImage, arguments: {'imageUrl': imageUrl});
+
   static startEditGroupAnnouncement({required String groupID}) =>
       Get.toNamed(AppRoutes.editGroupAnnouncement, arguments: groupID);
 

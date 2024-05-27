@@ -275,14 +275,13 @@ DEPENDENCIES:
   - wakelock_plus (from `.symlinks/plugins/wakelock_plus/ios`)
 
 SPEC REPOS:
-  "git@gitee.com:mirrors/CocoaPods-Specs.git":
+  https://gitee.com/mirrors/CocoaPods-Specs:
     - DKImagePickerController
     - DKPhotoGallery
     - flutter_sound_core
     - GoogleDataTransport
     - GoogleMLKit
     - GoogleToolboxForMac
-    - GoogleUtilities
     - GoogleUtilitiesComponents
     - GTCommonSDK
     - GTMSessionFetcher
@@ -291,7 +290,6 @@ SPEC REPOS:
     - Mantle
     - MLImage
     - MLKitBarcodeScanning
-    - MLKitCommon
     - MLKitVision
     - Mute
     - nanopb
@@ -299,12 +297,15 @@ SPEC REPOS:
     - OrderedSet
     - PromisesObjC
     - ReachabilitySwift
-    - SDWebImage
     - SDWebImageWebPCoder
     - SwiftyGif
     - TOCropViewController
     - WebRTC-SDK
     - ZXSDK
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - GoogleUtilities
+    - MLKitCommon
+    - SDWebImage
 
 EXTERNAL SOURCES:
   app_installer:
@@ -465,6 +466,6 @@ SPEC CHECKSUMS:
   WebRTC-SDK: c24d2a6c9f571f2ed42297cb8ffba9557093142b
   ZXSDK: 414bed508b670437a9bdf7c75d49816b8cb7b2d4
 
-PODFILE CHECKSUM: 6ae7799b8a7f9148f2185f7346fb70e68722c4de
+PODFILE CHECKSUM: 18f8cba0eaa68d12314e746ccf600502876d480d
 
 COCOAPODS: 1.15.2

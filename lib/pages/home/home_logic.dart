@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:get/get.dart';
 import 'package:local_auth/local_auth.dart';
@@ -83,6 +84,7 @@ class HomeLogic extends GetxController {
     });
 
     super.onInit();
+
   }
 
   @override

@@ -27,6 +27,8 @@ import '../pages/contacts/add_by_search/add_by_search_binding.dart';
 import '../pages/contacts/add_by_search/add_by_search_view.dart';
 import '../pages/contacts/add_method/add_method_binding.dart';
 import '../pages/contacts/add_method/add_method_view.dart';
+import '../pages/contacts/check_high_image/check_high_image_binding.dart';
+import '../pages/contacts/check_high_image/check_high_image_view.dart';
 import '../pages/contacts/create_group/create_group_binding.dart';
 import '../pages/contacts/create_group/create_group_view.dart';
 import '../pages/contacts/friend_list/friend_list_binding.dart';
@@ -350,6 +352,11 @@ class AppPages {
       name: AppRoutes.setSelfInfo,
       page: () => SetSelfInfoPage(),
       binding: SetSelfInfoBinding(),
+    ),
+    _pageBuilder(
+      name: AppRoutes.checkHighImage,
+      page: () => CheckHighImageViewPage(),
+      binding: CheckHighImageBinding(),
     ),
   ];
 }
