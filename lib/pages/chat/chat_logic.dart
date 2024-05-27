@@ -405,6 +405,19 @@ class ChatLogic extends GetxController {
     _sendMessage(message);
   }
 
+  Future<SearchResult> getMediaMessages({
+    int searchTimePosition = 0,
+    int pageIndex = 1,
+    int count = 20,
+  }) =>
+      OpenIM.iMManager.messageManager.searchLocalMessages(
+        conversationID: conversationInfo.value.conversationID,
+        messageTypeList: [MessageType.picture, MessageType.video],
+        searchTimePosition: searchTimePosition,
+        pageIndex: pageIndex,
+        count: count,
+      );
+
   void sendVideo({
     required String videoPath,
     required String mimeType,
