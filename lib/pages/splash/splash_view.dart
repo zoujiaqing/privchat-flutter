@@ -14,7 +14,11 @@ class SplashPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ImageRes.splashLogo.toImage,
+        child: Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: ImageRes.splashLogo.toImage..fit = BoxFit.cover,
+        ),
       ),
     );
   }
