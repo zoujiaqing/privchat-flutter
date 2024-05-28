@@ -55,6 +55,7 @@ class IMController extends GetxController with IMCallback, OpenIMLive {
       ..userManager.setUserListener(OnUserListener(
         onSelfInfoUpdated: (u) {
           userInfo.update((val) {
+            val?.account = u.account;
             val?.nickname = u.nickname;
             val?.faceURL = u.faceURL;
             val?.remark = u.remark;
