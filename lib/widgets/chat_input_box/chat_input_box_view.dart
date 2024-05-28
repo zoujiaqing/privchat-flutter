@@ -185,37 +185,48 @@ class ChatInputBoxView extends StatelessWidget {
     );
   }
 
-  Widget get _textFiled => 
-                Container(
-                  margin: EdgeInsets.only(top: 10.h, bottom: 10.h),
-                  child: Column(
-                    children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          color: Styles.c_FFFFFF,
-                          borderRadius: BorderRadius.circular(4.r),
-                        ),
-                        child: ChatTextField(
-                          allAtMap: state.allAtMap,
-                          atCallback: state.atCallback,
-                          controller: state.controller,
-                          focusNode: state.focusNode,
-                          style: state.style ?? Styles.ts_0C1C33_17sp,
-                          atStyle: state.atStyle ?? Styles.ts_0089FF_17sp,
-                          inputFormatters: state.inputFormatters,
-                          enabled: state.enabled,
-                          hintText: state.hintText,
-                          textAlign: state.enabled ? TextAlign.start : TextAlign.center,
-                        ),
+  Widget get _textFiled {
+    return Container(
+        margin: EdgeInsets.all(10.h),
+        child: Column(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Styles.c_FFFFFF,
+                borderRadius: BorderRadius.circular(4.r),
+              ),
+              child: ChatTextField(
+                // Your ChatTextField configurations here
+              ),
+            ),
+            if (true)
+              Container(
+                margin: EdgeInsets.only(top: 4.h),
+                padding: EdgeInsets.all(6.w),
+                decoration: BoxDecoration(
+                  color: Styles.c_FFFFFF,
+                  borderRadius: BorderRadius.circular(4.r),
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text("邹佳庆：哈哈哈哈哈"),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        // Handle the tap event to remove or hide the reference text
+                      },
+                      child: Icon(
+                        Icons.close,
+                        size: 14.w,
+                        color: Colors.grey,
                       ),
-                      if (true) Container(
-                        margin: EdgeInsets.only(top: 4.h),
-                        padding: EdgeInsets.all(6.cale),
-                        decoration: BoxDecoration(
-                          color: Styles.c_FFFFFF,
-                          borderRadius: BorderRadius.circular(4.r),
-                        ),
-                        child: Text("邹佳庆：哈哈哈哈哈"),
-                      )
-                    ]));
+                    ),
+                  ],
+                ),
+              )
+          ],
+        ),
+    );
+  }
 }
