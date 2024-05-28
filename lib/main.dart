@@ -15,7 +15,6 @@ void main() {
       statusBarColor: Colors.transparent,
       systemNavigationBarColor: Colors.transparent,
       systemNavigationBarDividerColor: Colors.transparent,
-
     ));
   }
 }
