@@ -24,9 +24,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
-    return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle.dark,
-      child: Container(
+    return Container(
         color: backgroundColor ?? Styles.c_FFFFFF,
         padding: EdgeInsets.only(top: mq.padding.top),
         child: Container(
@@ -47,8 +45,7 @@ class TitleBar extends StatelessWidget implements PreferredSizeWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 
   @override

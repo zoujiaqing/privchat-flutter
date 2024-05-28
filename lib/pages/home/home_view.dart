@@ -24,10 +24,6 @@ class HomePage extends StatelessWidget {
     } else {
       bottomPadding = 16.h;
     }
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.green,
-      systemNavigationBarColor: Colors.green,
-    ));
     return Obx(() => Scaffold(
           backgroundColor: Styles.c_FFFFFF,
           body: IndexedStack(

@@ -7,15 +7,15 @@ import 'package:privchat_common/privchat_common.dart';
 import 'app.dart';
 
 void main() {
+  Config.init(() => runApp(const ChatApp()));
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge, overlays: []);
   if (Platform.isAndroid) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.green,
-      systemNavigationBarColor: Colors.green,
-      systemNavigationBarDividerColor: Colors.green,
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarDividerColor: Colors.transparent,
 
     ));
   }
-  Config.init(() => runApp(const ChatApp()));
-  WidgetsFlutterBinding.ensureInitialized();
-
 }
