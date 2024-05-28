@@ -196,7 +196,16 @@ class ChatInputBoxView extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4.r),
               ),
               child: ChatTextField(
-                // Your ChatTextField configurations here
+                allAtMap: state.allAtMap,
+                atCallback: state.atCallback,
+                controller: state.controller,
+                focusNode: state.focusNode,
+                style: state.style ?? Styles.ts_0C1C33_17sp,
+                atStyle: state.atStyle ?? Styles.ts_0089FF_17sp,
+                inputFormatters: state.inputFormatters,
+                enabled: state.enabled,
+                hintText: state.hintText,
+                textAlign: state.enabled ? TextAlign.start : TextAlign.center,
               ),
             ),
             if (true)
