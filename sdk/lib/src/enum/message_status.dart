@@ -11,4 +11,6 @@ class MessageStatus {
 
   /// Already deleted
   static const deleted = 4;
+
+  static const read = 5;
 }

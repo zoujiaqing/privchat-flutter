@@ -23,6 +23,7 @@ class ChatItemContainer extends StatelessWidget {
     this.showLeftNickname = true,
     this.showRightNickname = false,
     required this.child,
+    required this.childStatusIcon,
     this.sendStatusStream,
     this.onTapLeftAvatar,
     this.onTapRightAvatar,
@@ -46,6 +47,7 @@ class ChatItemContainer extends StatelessWidget {
   final bool showLeftNickname;
   final bool showRightNickname;
   final Widget child;
+  final Widget? childStatusIcon;
   final Stream<MsgStreamEv<bool>>? sendStatusStream;
   final Function()? onTapLeftAvatar;
   final Function()? onTapRightAvatar;
@@ -109,6 +111,8 @@ class ChatItemContainer extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   _buildChildView(BubbleType.receiver),
+                  4.horizontalSpace,
+                  if (childStatusIcon != null) childStatusIcon!,
                 ],
               ),
             ],
@@ -132,6 +136,8 @@ class ChatItemContainer extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  if (childStatusIcon != null) childStatusIcon!,
+                  4.horizontalSpace,
                   _buildChildView(BubbleType.send),
                 ],
               ),

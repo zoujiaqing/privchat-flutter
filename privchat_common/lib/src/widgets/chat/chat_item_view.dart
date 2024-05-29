@@ -168,6 +168,7 @@ class _ChatItemViewState extends State<ChatItemView> {
 
   Widget _buildChildView() {
     Widget? child;
+    Widget? childStatusItem;
     String? senderNickname;
     String? senderFaceURL;
     bool isBubbleBg = false;
@@ -210,11 +211,15 @@ class _ChatItemViewState extends State<ChatItemView> {
           child: Row(
             children: [
               Icon(Icons.record_voice_over_outlined,size: 15,),
-              5.horizontalSpace,
-              Text("${_message.soundElem?.duration??0}\'\'"),
+              10.horizontalSpace,
+              Text("${_message.soundElem?.duration??0}″"),
             ],
           ),
         );
+      }
+      if (!_isISend) {
+        // TODO: if unread show it
+        childStatusItem = _buildUnreadVoiceIcon();
       }
     } else if (_message.isAtTextType) {
       isBubbleBg = true;
@@ -260,6 +265,11 @@ class _ChatItemViewState extends State<ChatItemView> {
     senderNickname ??= widget.leftNickname ?? _message.senderNickname;
     senderFaceURL ??= widget.leftFaceUrl ?? _message.senderFaceUrl;
 
+    // My send message status
+    if (_isISend) {
+      childStatusItem = _buildStatusIcon(MessageStatus.read);
+    }
+
     return child = ChatItemContainer(
       id: _message.clientMsgID!,
       isISend: _isISend,
@@ -287,6 +297,7 @@ class _ChatItemViewState extends State<ChatItemView> {
         onTap: widget.onClickItemView,
         child: child ?? ChatText(text: StrRes.unsupportedMessage),
       ),
+      childStatusIcon: childStatusItem,
     ).addStarMenu(
       items: upperMenuItems,
       params: StarMenuParameters.dropdown(context).copyWith(
@@ -299,6 +310,51 @@ class _ChatItemViewState extends State<ChatItemView> {
           useLongPress: true),
       controller: chatItemStarMenuController,
       onItemTapped: func,
+    );
+  }
+
+  Widget _buildUnreadVoiceIcon() {
+    return Icon(
+      Icons.circle,
+      color: Colors.redAccent,
+      size: 8,
+    );
+  }
+
+  Widget _buildStatusIcon(int status) {
+    IconData iconData;
+    Color color;
+
+    switch (status) {
+      case MessageStatus.sending:
+        iconData = Icons.access_time;
+        color = Colors.blue;
+        break;
+      case MessageStatus.succeeded:
+        iconData = Icons.check;
+        color = Colors.blue;
+        break;
+      case MessageStatus.succeeded:
+        iconData = Icons.done_all;
+        color = Colors.blue;
+        break;
+      case MessageStatus.read:
+        iconData = Icons.done_all;
+        color = Colors.green;
+        break;
+      case MessageStatus.failed:
+        iconData = Icons.error;
+        color = Colors.red;
+        break;
+      default:
+        iconData = Icons.access_time;
+        color = Colors.blue;
+    }
+
+    return Icon(
+      iconData,
+      color: color,
+      size: 16,
     );
   }
 }
