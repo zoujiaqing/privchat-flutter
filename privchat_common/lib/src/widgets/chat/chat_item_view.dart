@@ -267,7 +267,7 @@ class _ChatItemViewState extends State<ChatItemView> {
 
     // My send message status
     if (_isISend) {
-      childStatusItem = _buildStatusIcon(MessageStatus.read);
+      childStatusItem = _buildStatusIcon(_message.isRead! ? MessageStatus.read : _message.status!);
     }
 
     return child = ChatItemContainer(
@@ -334,10 +334,6 @@ class _ChatItemViewState extends State<ChatItemView> {
         iconData = Icons.check;
         color = Colors.blue;
         break;
-      case MessageStatus.succeeded:
-        iconData = Icons.done_all;
-        color = Colors.blue;
-        break;
       case MessageStatus.read:
         iconData = Icons.done_all;
         color = Colors.green;
@@ -354,7 +350,7 @@ class _ChatItemViewState extends State<ChatItemView> {
     return Icon(
       iconData,
       color: color,
-      size: 16,
+      size: 22,
     );
   }
 }
