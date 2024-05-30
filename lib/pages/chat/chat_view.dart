@@ -110,6 +110,7 @@ class ChatPage extends StatelessWidget {
               isNotInGroup: logic.isInvalidGroup,
               onSend: (v) => logic.sendTextMsg(),
               sendAudio: logic.sendAudio,
+              replyMsg: logic.replyMsg,
               context: context,
               emojiBox:Container(
                 color: Styles.c_F0F2F6,

@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -9,6 +12,8 @@ import 'package:privchat_common/src/widgets/chat/chat_disable_input_box.dart';
 import 'package:privchat/utils/int_ext.dart';
 import 'chat_input_box_logic.dart';
 import 'dart:io';
+
+
 
 double kInputBoxMinHeight = 56.h;
 
@@ -34,6 +39,7 @@ class ChatInputBoxView extends StatelessWidget {
   final Widget toolbox;
   final Widget? emojiBox;
   final ValueChanged<String>? onSend;
+  var replyMsg = "".obs;
   BuildContext? context;
 
   ChatInputBoxView({
@@ -52,6 +58,7 @@ class ChatInputBoxView extends StatelessWidget {
     this.isNotInGroup = false,
     this.hintText,
     this.onSend,
+    required this.replyMsg,
     this.context,
   }){
     print("LTTTTTT:构造函数init：${this.controller}");
@@ -71,6 +78,8 @@ class ChatInputBoxView extends StatelessWidget {
     state.emojiBox = this.emojiBox;
     state.context = this.context;
     state.onSend = this.onSend;
+    state.replyMsg = this.replyMsg.value;
+    state.replyAction(this.replyMsg.value);
     state.setController(this.controller!);
   }
 
@@ -208,34 +217,52 @@ class ChatInputBoxView extends StatelessWidget {
                 textAlign: state.enabled ? TextAlign.start : TextAlign.center,
               ),
             ),
-            if (true)
-              Container(
-                margin: EdgeInsets.only(top: 4.h),
-                padding: EdgeInsets.all(6.w),
-                decoration: BoxDecoration(
-                  color: Styles.c_FFFFFF,
-                  borderRadius: BorderRadius.circular(4.r),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text("邹佳庆：哈哈哈哈哈"),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // Handle the tap event to remove or hide the reference text
-                      },
-                      child: Icon(
-                        Icons.close,
-                        size: 14.w,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              )
+            _transfer,
           ],
         ),
     );
   }
+
+  Widget get _transfer {
+    if (state.replyMsg != "") {
+      return Container(
+        margin: EdgeInsets.only(top: 4.h),
+        padding: EdgeInsets.all(6.w),
+        decoration: BoxDecoration(
+          color: Styles.c_FFFFFF,
+          borderRadius: BorderRadius.circular(4.r),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: _transfermsg,
+            ),
+            GestureDetector(
+              onTap: () {
+                // Handle the tap event to remove or hide the reference text
+                replyMsg.value = "";
+                print("33333333333");
+              },
+              child: Icon(
+                Icons.close,
+                size: 14.w,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Container();
+    }
+  }
+
+  Widget get _transfermsg {
+
+    return Container(
+       child: Text(state.replyMsg!),
+    );
+  }
+
+
 }

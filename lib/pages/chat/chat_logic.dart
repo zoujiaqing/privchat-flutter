@@ -71,6 +71,7 @@ class ChatLogic extends GetxController {
   final isInGroup = true.obs;
   final memberCount = 0.obs;
   final isInBlacklist = false.obs;
+  var replyMsg = "".obs;
 
   final scrollingCacheMessageList = <Message>[];
   late StreamSubscription memberAddSub;
@@ -361,17 +362,20 @@ class ChatLogic extends GetxController {
         atUserInfoList: curMsgAtUser.map(createAtInfoByID).toList(),
         quoteMessage: quoteMsg,
       );
+      _sendMessage(message);
     } else if (quoteMsg != null) {
-      message = await OpenIM.iMManager.messageManager.createQuoteMessage(
-        text: content,
-        quoteMsg: quoteMsg!,
-      );
+      message = await OpenIM.iMManager.messageManager .createQuoteMessage(text: content, quoteMsg: quoteMsg!);
+      _sendMessage(message, groupId: quoteMsg!.groupID);
+      print(quoteMsg);
+      quoteMsg = null;
+      replyMsg.value = "";
     } else {
       message = await OpenIM.iMManager.messageManager.createTextMessage(
         text: content,
       );
+      _sendMessage(message);
     }
-    _sendMessage(message);
+
   }
 
 
@@ -637,6 +641,7 @@ class ChatLogic extends GetxController {
         copyText(message.textElem!.content!);
         break;
       case 1: //回复
+        onTapReply(message);
         break;
       case 2: //撤销
         break;
@@ -664,6 +669,19 @@ class ChatLogic extends GetxController {
     print("123123message");
     print(message.pictureElem?.bigPicture?.url ?? "");
     AppNavigator.startCheckHighImage(imageUrl: message.pictureElem?.bigPicture?.url.toString() ?? "");
+  }
+
+  void onTapReply(Message message) {
+    focusNode.requestFocus();
+    if (message.contentType == MessageType.picture) {
+      replyMsg.value = message.senderNickname! + ": [图片]";
+    } else if (message.contentType == MessageType.text) {
+      replyMsg.value = message.senderNickname! + ":" + message.textElem!.content!;
+    } else if (message.contentType == MessageType.voice) {
+      replyMsg.value = message.senderNickname! + ": [语音]";
+    }
+    quoteMsg = message;
+    print("-=-=-= ${replyMsg}");
   }
 
   void onTapLeftAvatar(Message message) {
