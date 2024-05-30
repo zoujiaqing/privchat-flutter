@@ -644,25 +644,48 @@ class ChatLogic extends GetxController {
         onTapReply(message);
         break;
       case 2: //撤销
+        revokeMessage(message);
         break;
       case 3: //删除
-        deleteMessage(message);
+        // TODO: delete from local or server?
+        deleteMessageFromLocalAndServer(message);
         break;
       case 4: //转发
         break;
     }
   }
-  void copyText(String text) {
 
+  void copyText(String text) {
     Clipboard.setData(ClipboardData(text: text));
     IMViews.showToast(StrRes.copySuccessfully);
   }
 
-  void deleteMessage(Message message) {
+  void revokeMessage(Message message) async {
+    await OpenIM.iMManager.messageManager.revokeMessage(
+        conversationID: conversationInfo.value.conversationID,
+        clientMsgID: message.clientMsgID!,
+     );
+    IMViews.showToast("已撤销");
+  }
+
+  void deleteMessageFromLocalAndServer(Message message) async {
+    await OpenIM.iMManager.messageManager.deleteMessageFromLocalAndSvr(
+        conversationID: conversationInfo.value.conversationID,
+        clientMsgID: message.clientMsgID!,
+    );
     messageList.remove(message);
     messageList.refresh();
     IMViews.showToast("删除成功");
+  }
 
+  void deleteMessageFromLocal(Message message) async {
+    await OpenIM.iMManager.messageManager.deleteMessageFromLocalStorage(
+        conversationID: conversationInfo.value.conversationID,
+        clientMsgID: message.clientMsgID!,
+    );
+    messageList.remove(message);
+    messageList.refresh();
+    IMViews.showToast("删除成功");
   }
 
   void onTapPicture(Message message) {
