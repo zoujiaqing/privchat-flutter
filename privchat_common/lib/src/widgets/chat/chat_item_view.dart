@@ -167,6 +167,7 @@ class _ChatItemViewState extends State<ChatItemView> {
 
   Widget _buildChildView() {
     Widget? child;
+    Widget? queueChild;
     Widget? childStatusItem;
     String? senderNickname;
     String? senderFaceURL;
@@ -245,13 +246,13 @@ class _ChatItemViewState extends State<ChatItemView> {
     } else if (_message.isQuoteType) {
       final queueMsg = _message.quoteElem;
       isBubbleBg = true;
-      // TODO: 这里不能使用 ChatText，要自定义一个 ChatQueue()
       child = ChatText(
         text: queueMsg!.text!,
         patterns: widget.patterns,
         textScaleFactor: widget.textScaleFactor,
         onVisibleTrulyText: widget.onVisibleTrulyText,
       );
+      queueChild = _buildQueueChild(queueMsg.quoteMessage!);
     } else if (_message.isCustomType) {
       final info = widget.customTypeBuilder?.call(context, _message);
       if (null != info) {
@@ -306,6 +307,7 @@ class _ChatItemViewState extends State<ChatItemView> {
         onTap: widget.onClickItemView,
         child: child ?? ChatText(text: StrRes.unsupportedMessage),
       ),
+      queueChild: queueChild,
       childStatusIcon: childStatusItem,
     ).addStarMenu(
       items: upperMenuItems,
@@ -327,6 +329,31 @@ class _ChatItemViewState extends State<ChatItemView> {
       Icons.circle,
       color: Colors.redAccent,
       size: 8,
+    );
+  }
+
+  Widget _buildQueueChild(Message message) {
+    return Container(
+      padding: const EdgeInsets.all(6.0),
+      decoration: BoxDecoration(
+        color: Styles.c_F4F5F7,
+        borderRadius: BorderRadius.circular(6.0),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '${message.senderNickname}${StrRes.colon}',
+            style: Styles.ts_8E9AB0_12sp,
+          ),
+          4.horizontalSpace,
+          // TODO: 这个 Text("应用原文") 要改成一个build，可以显示图片或文字
+          Text(
+            "引用原文",
+            style: Styles.ts_8E9AB0_12sp,
+          ),
+        ],
+      ),
     );
   }
 
