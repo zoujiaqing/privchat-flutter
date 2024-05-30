@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
@@ -350,7 +349,7 @@ class _ChatItemViewState extends State<ChatItemView> {
     return Icon(
       iconData,
       color: color,
-      size: 22,
+      size: 18,
     );
   }
 }
