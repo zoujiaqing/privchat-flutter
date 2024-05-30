@@ -35,8 +35,8 @@ class ChatText extends StatelessWidget {
     child: MatchTextView(
         text: text,
         textStyle: textStyle ??
-            (isISend ? Styles.ts_FFFFFF_17sp : Styles.ts_0C1C33_17sp),
-        matchTextStyle: Styles.ts_0089FF_17sp,
+            (isISend ? Styles.ts_FFFFFF_14sp : Styles.ts_0C1C33_14sp),
+        matchTextStyle: Styles.ts_0089FF_14sp,
         prefixSpan: prefixSpan,
         textAlign: textAlign,
         overflow: overflow,
