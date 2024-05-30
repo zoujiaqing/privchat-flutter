@@ -365,7 +365,7 @@ class ChatLogic extends GetxController {
       _sendMessage(message);
     } else if (quoteMsg != null) {
       message = await OpenIM.iMManager.messageManager .createQuoteMessage(text: content, quoteMsg: quoteMsg!);
-      _sendMessage(message, groupId: quoteMsg!.groupID);
+      _sendMessage(message);
       print(quoteMsg);
       quoteMsg = null;
       replyMsg.value = "";

@@ -242,6 +242,16 @@ class _ChatItemViewState extends State<ChatItemView> {
         message: _message,
         sendProgressStream: widget.sendProgressSubject,
       );
+    } else if (_message.isQuoteType) {
+      final queueMsg = _message.quoteElem;
+      isBubbleBg = true;
+      // TODO: 这里不能使用 ChatText，要自定义一个 ChatQueue()
+      child = ChatText(
+        text: queueMsg!.text!,
+        patterns: widget.patterns,
+        textScaleFactor: widget.textScaleFactor,
+        onVisibleTrulyText: widget.onVisibleTrulyText,
+      );
     } else if (_message.isCustomType) {
       final info = widget.customTypeBuilder?.call(context, _message);
       if (null != info) {
