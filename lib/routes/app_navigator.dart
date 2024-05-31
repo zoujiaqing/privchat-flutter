@@ -250,6 +250,9 @@ class AppNavigator {
   static startCheckHighImage({required String imageUrl}) =>
       Get.toNamed(AppRoutes.checkHighImage, arguments: {'imageUrl': imageUrl});
 
+  static startForwordMessage({required Message message}) =>
+      Get.toNamed(AppRoutes.forwordMessage, arguments: {'message': message});
+
   static startEditGroupAnnouncement({required String groupID}) =>
       Get.toNamed(AppRoutes.editGroupAnnouncement, arguments: groupID);
 

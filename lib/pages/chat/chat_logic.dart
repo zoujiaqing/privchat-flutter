@@ -67,6 +67,8 @@ class ChatLogic extends GetxController {
   final groupMemberRoleLevel = 1.obs;
   GroupInfo? groupInfo;
   GroupMembersInfo? groupMembersInfo;
+  var sendingProgress = 0.0.obs;
+  var isSending = false.obs;
 
   final isInGroup = true.obs;
   final memberCount = 0.obs;
@@ -458,6 +460,37 @@ class ChatLogic extends GetxController {
     }
   }
 
+  void sendForwordMessage(
+      Message message, {
+        String? userId,
+        String? groupId,
+        bool addToUI = true,
+      }) {
+    log('send : ${json.encode(message)}');
+    userId = IMUtils.emptyStrToNull(userId);
+    groupId = IMUtils.emptyStrToNull(groupId);
+    if (null == userId && null == groupId || userId == userID && userId != null || groupId == groupID && groupId != null) {
+      if (addToUI) {
+        messageList.add(message);
+        scrollBottom();
+      }
+    }
+    Logger.print('uid:$userID userId:$userId gid:$groupID groupId:$groupId');
+    _reset(message);
+
+    bool useOuterValue = null != userId || null != groupId;
+    OpenIM.iMManager.messageManager
+        .sendMessage(
+      message: message,
+      userID: useOuterValue ? userId : userID,
+      groupID: useOuterValue ? groupId : groupID,
+      offlinePushInfo: Config.offlinePushInfo,
+    )
+        .then((value) => _sendSucceeded(message, value))
+        .catchError((error, _) => _senFailed(message, groupId, error, _))
+        .whenComplete(() => _completed());
+  }
+
   void _sendMessage(
     Message message, {
     String? userId,
@@ -662,6 +695,7 @@ class ChatLogic extends GetxController {
         deleteMessageFromLocalAndServer(message);
         break;
       case 4: //转发
+        AppNavigator.startForwordMessage(message: message);
         break;
     }
   }

@@ -97,6 +97,8 @@ import '../pages/register/verify_phone/verify_phone_binding.dart';
 import '../pages/register/verify_phone/verify_phone_view.dart';
 import '../pages/splash/splash_binding.dart';
 import '../pages/splash/splash_view.dart';
+import '../pages/chat/forword_message/forword_message_binding.dart';
+import '../pages/chat/forword_message/forword_message_view.dart';
 
 part 'app_routes.dart';
 
@@ -357,6 +359,11 @@ class AppPages {
       name: AppRoutes.checkHighImage,
       page: () => CheckHighImageViewPage(),
       binding: CheckHighImageBinding(),
+    ),
+    _pageBuilder(
+      name: AppRoutes.forwordMessage,
+      page: () => ForwordMessagePage(),
+      binding: ForwordMessageBinding(),
     ),
   ];
 }

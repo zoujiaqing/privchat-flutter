@@ -68,6 +68,7 @@ abstract class AppRoutes {
   static const setPassword = '/set_password';
   static const setSelfInfo = '/set_self_info';
   static const checkHighImage = '/check_high_image';
+  static const forwordMessage = '/forword_message';
 
 }
 
