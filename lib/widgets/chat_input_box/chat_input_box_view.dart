@@ -11,6 +11,7 @@ import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_common/src/widgets/chat/chat_disable_input_box.dart';
 import 'package:privchat/utils/int_ext.dart';
 import 'chat_input_box_logic.dart';
+import '../../pages/chat/chat_logic.dart';
 import 'dart:io';
 
 
@@ -22,6 +23,7 @@ typedef clickEmojiCallBack = Function();
 
 class ChatInputBoxView extends StatelessWidget {
   final state = Get.find<ChatInputBoxLogic>().state;
+  final logicChat = Get.find<ChatLogic>(tag: GetTags.chat);
   final logic = ChatInputBoxLogic();
 
   final AtTextCallback? atCallback;
@@ -224,7 +226,7 @@ class ChatInputBoxView extends StatelessWidget {
   }
 
   Widget get _transfer {
-    if (state.replyMsg != "") {
+    if (logicChat.replyMsg != "") {
       return Container(
         margin: EdgeInsets.only(top: 4.h),
         padding: EdgeInsets.all(6.w),
@@ -240,7 +242,8 @@ class ChatInputBoxView extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 // Handle the tap event to remove or hide the reference text
-                replyMsg.value = "";
+                logicChat.replyMsg.value = "";
+                logicChat.quoteMsg = null;
                 print("33333333333");
               },
               child: Icon(
@@ -260,7 +263,7 @@ class ChatInputBoxView extends StatelessWidget {
   Widget get _transfermsg {
 
     return Container(
-       child: Text(state.replyMsg!),
+       child: Text(logicChat.replyMsg.value),
     );
   }
 

@@ -364,9 +364,20 @@ class ChatLogic extends GetxController {
       );
       _sendMessage(message);
     } else if (quoteMsg != null) {
-      message = await OpenIM.iMManager.messageManager .createQuoteMessage(text: content, quoteMsg: quoteMsg!);
+      Message replyMeg;
+      if (quoteMsg!.contentType == MessageType.quote) {
+        print("-=-=-=-=111111");
+        print(quoteMsg);
+        replyMeg = await OpenIM.iMManager.messageManager.createTextMessage(
+          text: quoteMsg!.senderNickname! + ": [消息]",
+        );
+      } else {
+        replyMeg = quoteMsg!;
+        print("-=-=-=-=2222222");
+        print(quoteMsg);
+      }
+      message = await OpenIM.iMManager.messageManager .createQuoteMessage(text: content, quoteMsg: replyMeg);
       _sendMessage(message);
-      print(quoteMsg);
       quoteMsg = null;
       replyMsg.value = "";
     } else {
@@ -702,9 +713,13 @@ class ChatLogic extends GetxController {
       replyMsg.value = message.senderNickname! + ":" + message.textElem!.content!;
     } else if (message.contentType == MessageType.voice) {
       replyMsg.value = message.senderNickname! + ": [语音]";
+    } else if (message.contentType == MessageType.advancedText){
+      replyMsg.value = message.senderNickname! + ": [文字]";
+    } else {
+      replyMsg.value = message.senderNickname! + ": [消息]";
     }
     quoteMsg = message;
-    print("-=-=-= ${replyMsg}");
+    print("-=-=-= ${replyMsg.value}");
   }
 
   void onTapLeftAvatar(Message message) {
