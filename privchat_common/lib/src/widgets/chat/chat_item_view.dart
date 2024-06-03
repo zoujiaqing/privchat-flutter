@@ -167,7 +167,7 @@ class _ChatItemViewState extends State<ChatItemView> {
 
   Widget _buildChildView() {
     Widget? child;
-    Widget? queueChild;
+    Widget? quoteChild;
     Widget? childStatusItem;
     String? senderNickname;
     String? senderFaceURL;
@@ -244,15 +244,15 @@ class _ChatItemViewState extends State<ChatItemView> {
         sendProgressStream: widget.sendProgressSubject,
       );
     } else if (_message.isQuoteType) {
-      final queueMsg = _message.quoteElem;
+      final quoteMsg = _message.quoteElem;
       isBubbleBg = true;
       child = ChatText(
-        text: queueMsg!.text!,
+        text: quoteMsg!.text!,
         patterns: widget.patterns,
         textScaleFactor: widget.textScaleFactor,
         onVisibleTrulyText: widget.onVisibleTrulyText,
       );
-      queueChild = _buildQueueChild(queueMsg.quoteMessage!);
+      quoteChild = _buildquoteChild(quoteMsg.quoteMessage!);
     } else if (_message.isCustomType) {
       final info = widget.customTypeBuilder?.call(context, _message);
       if (null != info) {
@@ -307,7 +307,7 @@ class _ChatItemViewState extends State<ChatItemView> {
         onTap: widget.onClickItemView,
         child: child ?? ChatText(text: StrRes.unsupportedMessage),
       ),
-      queueChild: queueChild,
+      quoteChild: quoteChild,
       childStatusIcon: childStatusItem,
     ).addStarMenu(
       items: upperMenuItems,
@@ -332,7 +332,7 @@ class _ChatItemViewState extends State<ChatItemView> {
     );
   }
 
-  Widget _buildQueueChild(Message message) {
+  Widget _buildquoteChild(Message message) {
     return Container(
       padding: const EdgeInsets.all(6.0),
       decoration: BoxDecoration(
