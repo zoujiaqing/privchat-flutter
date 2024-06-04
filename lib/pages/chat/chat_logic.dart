@@ -742,18 +742,25 @@ class ChatLogic extends GetxController {
   void onTapReply(Message message) {
     focusNode.requestFocus();
     if (message.contentType == MessageType.picture) {
-      replyMsg.value = message.senderNickname! + ": [图片]";
+      replyMsg.value = message.senderNickname! + ": [${StrRes.picture}]";
     } else if (message.contentType == MessageType.text) {
       replyMsg.value = message.senderNickname! + ":" + message.textElem!.content!;
     } else if (message.contentType == MessageType.voice) {
-      replyMsg.value = message.senderNickname! + ": [语音]";
-    } else if (message.contentType == MessageType.advancedText){
-      replyMsg.value = message.senderNickname! + ": [文字]";
+      replyMsg.value = message.senderNickname! + ": [${StrRes.voice}]";
+    } else if (message.contentType == MessageType.video) {
+      replyMsg.value = message.senderNickname! + ": [${StrRes.video}]";
+    } else if (message.contentType == MessageType.file) {
+      replyMsg.value = message.senderNickname! + ": [${StrRes.file}]";
+    } else if (message.contentType == MessageType.location) {
+      replyMsg.value = message.senderNickname! + ": [${StrRes.location}]";
+    } else if (message.contentType == MessageType.card) {
+      replyMsg.value = message.senderNickname! + ": [${StrRes.carte}]";
+    } else if (message.contentType == MessageType.merger){
+      replyMsg.value = message.senderNickname! + ": [${StrRes.chatRecord}]";
     } else {
-      replyMsg.value = message.senderNickname! + ": [消息]";
+      replyMsg.value = message.senderNickname! + ": [${StrRes.unsupportedMessage}]";
     }
     quoteMsg = message;
-    print("-=-=-= ${replyMsg.value}");
   }
 
   void onTapLeftAvatar(Message message) {
