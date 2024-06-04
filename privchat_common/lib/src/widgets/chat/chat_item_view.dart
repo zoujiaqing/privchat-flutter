@@ -333,6 +333,31 @@ class _ChatItemViewState extends State<ChatItemView> {
   }
 
   Widget _buildquoteChild(Message message) {
+    Widget contentView;
+    if (message.isTextType) {
+      contentView = Text(
+        message.textElem!.content!,
+        style: Styles.ts_8E9AB0_12sp,
+      );
+    } else if (message.isPictureType) {
+      contentView = ChatPictureView(
+        isISend: false,
+        message: message,
+        sendProgressStream: widget.sendProgressSubject,
+      );
+    } else if (message.isVideoType) {
+      contentView = ChatVideoView(
+        isISend: false,
+        message: message,
+        sendProgressStream: widget.sendProgressSubject,
+      );
+    } else {
+      contentView = Text(
+        "引用",
+        style: Styles.ts_8E9AB0_12sp,
+      );
+    }
+    
     return Container(
       padding: const EdgeInsets.all(6.0),
       decoration: BoxDecoration(
@@ -346,12 +371,8 @@ class _ChatItemViewState extends State<ChatItemView> {
             '${message.senderNickname}${StrRes.colon}',
             style: Styles.ts_8E9AB0_12sp,
           ),
-          4.horizontalSpace,
-          // TODO: 这个 Text("应用原文") 要改成一个build，可以显示图片或文字
-          Text(
-            "引用原文",
-            style: Styles.ts_8E9AB0_12sp,
-          ),
+          6.horizontalSpace,
+          contentView,
         ],
       ),
     );

@@ -117,6 +117,8 @@ class ChatItemContainer extends StatelessWidget {
                   if (childStatusIcon != null) childStatusIcon!,
                 ],
               ),
+              if (quoteChild != null) 4.verticalSpace,
+              if (quoteChild != null) quoteChild!,
             ],
           ),
         ],
