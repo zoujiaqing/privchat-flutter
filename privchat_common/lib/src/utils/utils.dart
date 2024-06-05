@@ -1040,6 +1040,8 @@ class IMUtils {
           checkedList.add(UserInfo.fromJson(value.toJson()));
         } else if (value is UserInfo) {
           checkedList.add(value);
+        } else if (value is ConversationInfo) {
+          checkedList.add(UserInfo.fromJson(value.toJson()));
         }
       }
       return checkedList;

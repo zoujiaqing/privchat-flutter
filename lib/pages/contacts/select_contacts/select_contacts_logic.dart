@@ -165,8 +165,10 @@ class SelectContactsLogic extends GetxController {
       } else {
         checkedList.putIfAbsent(key ?? '', () => info);
       }
+
     } else {
       confirmSelectedItem(info);
+
     }
   }
 

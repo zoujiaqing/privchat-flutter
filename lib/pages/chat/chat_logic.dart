@@ -10,8 +10,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_openim_sdk/flutter_openim_sdk.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:get/get.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:privchat/pages/chat/group_setup/group_setup_logic.dart';
+import 'package:privchat/pages/contacts/select_contacts/select_contacts_logic.dart';
 import 'package:privchat_common/privchat_common.dart';
 import 'package:privchat_live/privchat_live.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -74,6 +76,9 @@ class ChatLogic extends GetxController {
   final memberCount = 0.obs;
   final isInBlacklist = false.obs;
   var replyMsg = "".obs;
+  final checkedList = <UserInfo>[];
+  final defaultCheckedList = <UserInfo>[];
+  final allList = <UserInfo>[].obs;
 
   final scrollingCacheMessageList = <Message>[];
   late StreamSubscription memberAddSub;
@@ -140,6 +145,10 @@ class ChatLogic extends GetxController {
     searchMessage = arguments['searchMessage'];
     nickname.value = conversationInfo.value.showName ?? '';
     faceUrl.value = conversationInfo.value.faceURL ?? '';
+    defaultCheckedList.addAll([]);
+    checkedList.addAll([]);
+    allList.addAll(defaultCheckedList);
+    allList.addAll(checkedList);
 
     _setSdkSyncDataListener();
 
@@ -695,7 +704,7 @@ class ChatLogic extends GetxController {
         deleteMessageFromLocalAndServer(message);
         break;
       case 4: //转发
-        AppNavigator.startForwordMessage(message: message);
+        onTapForwordMessage(message);
         break;
     }
   }
@@ -731,6 +740,26 @@ class ChatLogic extends GetxController {
     messageList.remove(message);
     messageList.refresh();
     IMViews.showToast("删除成功");
+  }
+
+  void onTapForwordMessage(Message message) async {
+    final result = await AppNavigator.startSelectContacts(
+      action: SelAction.forward,
+      checkedList: checkedList,
+      defaultCheckedIDList: defaultCheckedList.map((e) => e.userID!).toList(),
+    );
+
+    final listRes = result["checkedList"];
+
+      for (ConversationInfo recipient in listRes) {
+
+        // 获取原始消息
+        // 转发消息
+        var createNewForwordmsg = await OpenIM.iMManager.messageManager.createForwardMessage(
+            message: message);
+        _sendMessage(createNewForwordmsg, userId: recipient.userID, groupId: recipient.groupID);
+      }
+
   }
 
   void onTapPicture(Message message) {
