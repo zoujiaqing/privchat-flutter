@@ -217,8 +217,7 @@ class _ChatItemViewState extends State<ChatItemView> {
           ),
         );
       }
-      if (!_isISend) {
-        // TODO: if unread show it
+      if (!_isISend && !_message.isRead!) {
         childStatusItem = _buildUnreadVoiceIcon();
       }
     } else if (_message.isAtTextType) {
