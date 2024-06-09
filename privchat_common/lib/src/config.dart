@@ -25,12 +25,12 @@ class Config {
       DeviceOrientation.portraitDown,
     ]);
 
-    // var brightness = Platform.isAndroid ? Brightness.dark : Brightness.light;
-    // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-    //   statusBarColor: Colors.transparent,
-    //   statusBarBrightness: brightness,
-    //   statusBarIconBrightness: brightness,
-    // ));
+    var brightness = Platform.isAndroid ? Brightness.dark : Brightness.light;
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarBrightness: brightness,
+      statusBarIconBrightness: brightness,
+    ));
 
   }
 

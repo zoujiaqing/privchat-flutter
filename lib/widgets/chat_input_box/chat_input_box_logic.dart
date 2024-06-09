@@ -120,7 +120,7 @@ class ChatInputBoxLogic extends GetxController {
   }
 
   void _startRecordingTimer() {
-    Timer(Duration(seconds: 10), () {
+    Timer(Duration(seconds: 60), () {
       if (state.recordState.recording) {
         _onRecordingEnd();
       }
