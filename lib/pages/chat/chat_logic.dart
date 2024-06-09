@@ -341,11 +341,9 @@ class ChatLogic extends GetxController {
   playSound(String path) async {
     log("playSoundplaySoundplaySound:${path}");
     await _mPlayer!.startPlayer(
-    fromURI: path,
-    sampleRate: 44000,
-    codec: Codec.opusWebM,
-    numChannels: 1,
-    );
+        fromURI: path,
+        codec: Codec.aacMP4,
+      );
   }
 
   sendAudio(String path,int duration) async {

@@ -7,7 +7,6 @@ import 'chat_audio_mask.dart';
 import 'chat_input_box_state.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:privchat_common/src/utils/event_bus_utils.dart';
 import 'package:audio_session/audio_session.dart';
@@ -59,7 +58,7 @@ class ChatInputBoxLogic extends GetxController {
   @override
   void dispose() {
     super.dispose();
-    _mRecordingDataSubscription!.cancel();
+    _mRecordingDataSubscription?.cancel();
   }
 
   // 开始计时
@@ -103,14 +102,14 @@ class ChatInputBoxLogic extends GetxController {
 
   String? _mPath;
 
-  Future<IOSink> createFile() async {
+  Future<String> createFile() async {
     var tempDir = await getTemporaryDirectory();
-    _mPath = '${tempDir.path}/flutter_sound_example.pcm';
+    _mPath = '${tempDir.path}/flutter_sound_file.m4a';
     var outputFile = File(_mPath!);
     if (outputFile.existsSync()) {
       await outputFile.delete();
     }
-    return outputFile.openWrite();
+    return _mPath!;
   }
 
   ///---------------------------录音开始
@@ -140,23 +139,12 @@ class ChatInputBoxLogic extends GetxController {
 
   Future<void> record() async {
     assert(_mRecorderIsInited);
-    var sink = await createFile();
-
-    var recordingDataController = StreamController<Food>();
-
-    _mRecordingDataSubscription =
-        recordingDataController.stream.listen((buffer) {
-      if (buffer is FoodData) {
-        sink.add(buffer.data!);
-      }
-    });
+    var filePath = await createFile();
 
     await state.mRecorder!.startRecorder(
-        toStream: recordingDataController.sink,
-        codec: Codec.opusWebM,
-        numChannels: 1,
-        sampleRate: 44000,
-        enableVoiceProcessing: false);
+      toFile: filePath,
+      codec: Codec.aacMP4,
+    );
     _cancelAndRestartTimer =
         Timer.periodic(const Duration(milliseconds: 800), (timer) {
       duration += 1;
