@@ -21,6 +21,8 @@ import 'package:rxdart/subjects.dart';
 import 'package:wechat_assets_picker/wechat_assets_picker.dart';
 import 'package:wechat_camera_picker/wechat_camera_picker.dart';
 import 'package:star_menu/star_menu.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../../core/controller/app_controller.dart';
 import '../../core/controller/im_controller.dart';
 import '../../core/im_callback.dart';
@@ -342,9 +344,24 @@ class ChatLogic extends GetxController {
     log("playSoundplaySoundplaySound:${path}");
     await _mPlayer!.startPlayer(
         fromURI: path,
-        codec: Codec.aacMP4,
+        codec: Codec.amrNB,
+        whenFinished: () {
+          print("Voice message play finished");
+        },
       );
   }
+
+  void stopVoiceMessage() async {
+    if (_mPlayerIsInited) {
+      await _mPlayer!.stopPlayer();
+    }
+  }
+
+  Future<void> requestPermissions() async {
+    await Permission.microphone.request();
+    await Permission.storage.request();
+  }
+
 
   sendAudio(String path,int duration) async {
     if (duration<=1){
@@ -659,7 +676,7 @@ class ChatLogic extends GetxController {
     }
     if (msg.contentType == MessageType.voice && msg.soundElem!.sourceUrl!=null) {
       var dir =await getApplicationDocumentsDirectory();
-      var descPath = "${dir.path}/cache/sound/${msg.clientMsgID}.pcm";
+      var descPath = "${dir.path}/cache/sound/${msg.clientMsgID}.amr";
       var file = File(descPath);
       if (!file.existsSync()){
         file.createSync(recursive: true);

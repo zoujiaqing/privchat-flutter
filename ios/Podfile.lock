@@ -3,6 +3,8 @@ PODS:
     - Flutter
   - audio_session (0.0.1):
     - Flutter
+  - audioplayers_darwin (0.0.1):
+    - Flutter
   - camera_avfoundation (0.0.1):
     - Flutter
   - connectivity_plus (0.0.1):
@@ -233,6 +235,7 @@ PODS:
 DEPENDENCIES:
   - app_installer (from `.symlinks/plugins/app_installer/ios`)
   - audio_session (from `.symlinks/plugins/audio_session/ios`)
+  - audioplayers_darwin (from `.symlinks/plugins/audioplayers_darwin/ios`)
   - camera_avfoundation (from `.symlinks/plugins/camera_avfoundation/ios`)
   - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - device_info_plus (from `.symlinks/plugins/device_info_plus/ios`)
@@ -312,6 +315,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/app_installer/ios"
   audio_session:
     :path: ".symlinks/plugins/audio_session/ios"
+  audioplayers_darwin:
+    :path: ".symlinks/plugins/audioplayers_darwin/ios"
   camera_avfoundation:
     :path: ".symlinks/plugins/camera_avfoundation/ios"
   connectivity_plus:
@@ -396,6 +401,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   app_installer: 4301996bd8f3c6f75776416b8885a6d92928306f
   audio_session: 088d2483ebd1dc43f51d253d4a1c517d9a2e7207
+  audioplayers_darwin: 877d9a4d06331c5c374595e46e16453ac7eafa40
   camera_avfoundation: 759172d1a77ae7be0de08fc104cfb79738b8a59e
   connectivity_plus: bf0076dd84a130856aa636df1c71ccaff908fa1d
   device_info_plus: 97af1d7e84681a90d0693e63169a5d50e0839a0d
